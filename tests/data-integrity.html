@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>اختبار سلامة البيانات — خريطة مارفل</title>
+<style>
+  body{ font-family: sans-serif; background:#0a0c12; color:#e9e7e0; padding:24px; }
+  h1{ color:#e6c165; }
+  .pass{ color:#4caf50; }
+  .fail{ color:#ff4d4d; }
+  .issue{ padding:6px 10px; border-inline-start:3px solid #ff4d4d; margin:4px 0; background:#171b26; }
+  #summary{ font-size:18px; margin-bottom:16px; padding:12px; background:#171b26; border-radius:8px; }
+</style>
+</head>
+<body>
+<h1>🧪 اختبار سلامة بيانات خريطة مارفل</h1>
+<div id="summary">جارِ التحميل...</div>
+<div id="issues"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/storageLayer.js"></script>
+<script src="../js/knowledgeLayer.js"></script>
+<script>
+(async function(){
+  const summaryEl = document.getElementById('summary');
+  const issuesEl = document.getElementById('issues');
+  try{
+    const base = await StorageLayer.loadBaseData();
+    const kl = createKnowledgeLayer();
+    kl.setData(base);
+
+    const issues = kl.validateIntegrity();
+    const nodeCount = kl.getAllNodes().length;
+    const groupCount = kl.getGroups().length;
+
+    if(issues.length === 0){
+      summaryEl.innerHTML = `<span class="pass">✅ كل الاختبارات ناجحة.</span> ${nodeCount} عقدة، ${groupCount} مجموعة، بدون مشاكل سلامة بيانات.`;
+    } else {
+      summaryEl.innerHTML = `<span class="fail">⚠️ تم اكتشاف ${issues.length} ملاحظة.</span> (${nodeCount} عقدة، ${groupCount} مجموعة)`;
+      issues.forEach(issue=>{
+        const div = document.createElement('div');
+        div.className = 'issue';
+        div.textContent = issue;
+        issuesEl.appendChild(div);
+      });
+    }
+  }catch(err){
+    summaryEl.innerHTML = `<span class="fail">❌ فشل تحميل البيانات:</span> ${err.message}`;
+  }
+})();
+</script>
+</body>
+</html>

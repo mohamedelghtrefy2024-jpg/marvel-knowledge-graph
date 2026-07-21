@@ -1,0 +1,956 @@
+[
+  {
+    "id": "e419aa6c-ac62-4b66-8a7c-fbf48e4b19d9",
+    "from": "d8c8685d-298e-4be7-8f3d-2f7b53fc852e",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: نيك فيوري بيعرض على ستيف مهمة إنقاذ العالم — تمهيد مباشر لفيلم The Avengers.",
+    "source": null
+  },
+  {
+    "id": "86e0d319-3347-419d-a0b4-1ed6b8f87539",
+    "from": "931d2aae-ecad-4ccf-b462-ffd438f739d9",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: نيك فيوري بيقابل توني ستارك ويكشفله عن \"مبادرة الأفنجرز\" — أول لبنة رسمية للكون السينمائي المشترك.",
+    "source": null
+  },
+  {
+    "id": "a6ad9143-488d-4e84-af3a-8d411bf62d45",
+    "from": "a4f3a50d-af6a-4cc1-8f59-ec0a59de93b9",
+    "to": "898c83d2-30bb-4c38-9fb9-c12ec26fb014",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: العميل كولسون بيلاقي مطرقة ثور مغروزة في حفرة بالصحراء — تمهيد مباشر لفيلم Thor.",
+    "source": null
+  },
+  {
+    "id": "4005874d-56b2-4523-822a-7db29d8744b0",
+    "from": "01a6852c-c891-4f08-982f-99c910fc04fe",
+    "to": "a4f3a50d-af6a-4cc1-8f59-ec0a59de93b9",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "توني ستارك بيظهر في آخر مشهد بيتكلم مع الجنرال روس عن \"فريق\" بيتكوّن — أول تلميح لفكرة الأفنجرز.",
+    "source": null
+  },
+  {
+    "id": "7c7f5e3b-6cc1-4452-b749-b1e7394bc567",
+    "from": "0460b3a3-aa02-4806-be06-4fe4fe55d3df",
+    "to": "4cf74f3d-5fa7-411e-a0ca-473123c6f828",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "سقوط شيلد في الفيلم ده أثّر مباشرة على أحداث المسلسل بالكامل، وغيّر مصير منظمة شيلد فيه من الأساس.",
+    "source": null
+  },
+  {
+    "id": "49b7560d-6a2d-4df3-bbbc-9b4a67b7bafa",
+    "from": "3b91a2f6-d43d-42c2-8135-83f6168321f8",
+    "to": "a515937f-819d-488e-bc11-e701302367ea",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "استكمال مباشر لنفس الشخصية والخط القصصي بعد سنين، دلوقتي رسميًا جوه MCU.",
+    "source": null
+  },
+  {
+    "id": "8471558b-f5ff-41a3-b444-963fe4428aa7",
+    "from": "3b91a2f6-d43d-42c2-8135-83f6168321f8",
+    "to": "eb3ad664-1808-4409-9712-08b3dd0decc4",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مات ميردوك (ديردفيل) بينضم لجيسيكا جونز ولوك كيدج وآيرون فيست في The Defenders، بعد إحداث كل مسلسل منفصل.",
+    "source": null
+  },
+  {
+    "id": "3cad535f-47d5-414f-bbaf-cfa3528352fa",
+    "from": "3b91a2f6-d43d-42c2-8135-83f6168321f8",
+    "to": "cb629411-a925-48be-920a-7bc710ac8d33",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "فرانك كاسل (بانيشر) اتقدّم لأول مرة كشخصية رئيسية في الموسم التاني من Daredevil، قبل ما ياخد مسلسله المستقل بالكامل.",
+    "source": null
+  },
+  {
+    "id": "0b4e55fb-1e3f-427a-90e2-4fd822044f43",
+    "from": "898c83d2-30bb-4c38-9fb9-c12ec26fb014",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: نيك فيوري بيوري إريك سيلفيج التسراكت، وسيلفيج ده أصلاً تحت سيطرة لوكي — الخيط اللي بيوصل لأحداث The Avengers.",
+    "source": null
+  },
+  {
+    "id": "0919b3ab-3919-4ad9-a247-6f91ba26ed79",
+    "from": "688ffdca-33d3-4480-a0d4-46ce563780e5",
+    "to": "42633ac3-0499-4d78-a23b-8bfdf588eb63",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: الأسجارديون بيسلّموا الأثير (حجر الواقع) للكولكتور عشان يحفظه — بيظهر بعد كده جوه متحف الكولكتور نفسه في مشهد Guardians.",
+    "source": null
+  },
+  {
+    "id": "4ac96b90-4ac7-4493-ace1-3b25944e8e44",
+    "from": "42633ac3-0499-4d78-a23b-8bfdf588eb63",
+    "to": "3170180d-f69e-4529-8710-6e7b7a1cf04e",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: كوزمو الكلب الفضائي وهوارد الدك بيظهروا جوه أنقاض متحف الكولكتور — نفس الشخصيات والمكان بيكملوا في الجزء التاني.",
+    "source": null
+  },
+  {
+    "id": "bbad7606-84a2-499c-bb7f-13e4d4482fb8",
+    "from": "876ac385-c59f-4dd9-b956-7af54279cf07",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: تانوس نفسه بيلبس قفاز اللانهاية الفاضي ويقرر يدور بنفسه على حجارة اللانهاية — بداية خط تانوس المباشر لـ Infinity War.",
+    "source": null
+  },
+  {
+    "id": "cbc2591e-2548-4bff-9f65-706828782413",
+    "from": "d323a26e-0861-41e8-8359-c3f682eb6f0d",
+    "to": "a8f039e2-ed57-48a5-97ab-b73ece564d65",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: ستيف وسام محتاجين مساعدة سكوت لانج (آنت مان) عشان \"الاتفاقية\" مانعاهم يتواصلوا مع توني — نفس المشهد ده بيتوسع ويتفصل في Civil War.",
+    "source": null
+  },
+  {
+    "id": "dc56eef2-7068-4d4d-8d18-e9aaa7eb601c",
+    "from": "1cf66c6a-20a0-4370-bfe7-120f59ccfe40",
+    "to": "eb3ad664-1808-4409-9712-08b3dd0decc4",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "جيسيكا جونز بتنضم لديردفيل ولوك كيدج وآيرون فيست يشكّلوا فريق The Defenders سوا.",
+    "source": null
+  },
+  {
+    "id": "9ee45ef6-38d9-4225-8bf5-e58a06767c2f",
+    "from": "0d8ee461-f8ad-4241-b91a-984cc38294de",
+    "to": "c51ea516-6ff1-4192-a1a9-4606fe09edb2",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: فالنتينا دي فونتين بتجنّد يلينا بيلوفا وتقنعها إن كلينت بارتون (هوكآي) هو المسؤول عن موت ناتاشا — ده بالظبط اللي بيحرّك حبكة مسلسل Hawkeye.",
+    "source": null
+  },
+  {
+    "id": "5c0c6c1e-e07d-4ae3-bb17-1f48621d6711",
+    "from": "a8f039e2-ed57-48a5-97ab-b73ece564d65",
+    "to": "4d6dcc43-5f21-46a0-adf7-7f2117c22ef7",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "الفيلم قدّم شخصية تي'تشالا/بلاك بانثر لأول مرة وأسس لخلفيته، قبل ما ياخد فيلمه المستقل.",
+    "source": null
+  },
+  {
+    "id": "ae114389-3568-48a3-aa24-6e508c1b4ee6",
+    "from": "a8f039e2-ed57-48a5-97ab-b73ece564d65",
+    "to": "95667737-461d-497c-9ec9-29e25eee123a",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "توني ستارك جنّد بيتر باركر في هذا الفيلم بالظبط، وده نقطة البداية لقصة سبايدرمان في MCU.",
+    "source": null
+  },
+  {
+    "id": "e02cc58f-7efe-484a-9264-9fb304984554",
+    "from": "bddc03a1-7ec8-49af-82af-06cf8e88bbfd",
+    "to": "1c2dcd86-acf3-44bb-be94-82a74d98c49e",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "دكتور سترينج بيظهر في مشهد قصير بيساعد ثور يلاقي أودين، بيربط الفيلمين زمنيًا.",
+    "source": null
+  },
+  {
+    "id": "77d8c80c-ca8d-42cb-b59f-4a0cf06aa183",
+    "from": "3cc790c6-5d3f-4256-bb33-caecafb683d3",
+    "to": "3ad92bf7-32e2-4ac5-89bb-b5a5191b6389",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "نهاية الفيلم (سكوت لانج عالق في العالم الكمي وقت الطفرة) هي المدخل المباشر لخطة \"رحلة الزمن\" في Endgame.",
+    "source": null
+  },
+  {
+    "id": "b64a95c3-b437-4b24-9959-e6373b808983",
+    "from": "3ad92bf7-32e2-4ac5-89bb-b5a5191b6389",
+    "to": "16bbe769-a749-46f7-8d47-74b5661b3902",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "كارول دانفرز بتظهر بداية الفيلم استجابة لبيجر نيك فيوري اللي شفناه في نهاية Captain Marvel بالظبط.",
+    "source": null
+  },
+  {
+    "id": "cc7e8abc-86d4-4c53-a8e0-d5f68196d46d",
+    "from": "8702aa1e-b155-4bf6-b5ad-b1772698e852",
+    "to": "ba2edd8e-c023-4c4e-b6e0-717abc297668",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "واندا بعد أحداث ويستفيو بتبقى الشرير الرئيسي في الفيلم، واستخدامها لكتاب دارك هولد بيبدأ من هنا.",
+    "source": null
+  },
+  {
+    "id": "a12b4654-eb16-482f-a8f4-89483cc72297",
+    "from": "d9b53cc9-3cc5-43ad-add0-ac7964c846ae",
+    "to": "ba2edd8e-c023-4c4e-b6e0-717abc297668",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "فكرة المالتيفيرس والمتغيرات (Variants) اللي بيقدمها المسلسل بتبقى الأساس اللي مبني عليه الفيلم.",
+    "source": null
+  },
+  {
+    "id": "125abf6f-a8fb-4847-8879-653bd3199dff",
+    "from": "d9b53cc9-3cc5-43ad-add0-ac7964c846ae",
+    "to": "72a24cf8-d0da-43ee-810b-1d4cc04a24f9",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "هيئة TVA (سلطة الفارق الزمني) اللي اتعرفنا عليها هنا بتظهر تاني بدور محوري في الفيلم.",
+    "source": null
+  },
+  {
+    "id": "44ddce2f-b7eb-481b-8b15-b5017f78f683",
+    "from": "9a88d80b-ab72-41ab-ab23-a4f21d91566b",
+    "to": "a5104ffc-0bcd-4189-9d5d-632ae300614f",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "الخواتم العشرة اللي شفناها في نهاية الفيلم بتترشح تلعب دور في أحداث Doomsday حسب التلميحات الرسمية.",
+    "source": null
+  },
+  {
+    "id": "06b8d8de-2368-46de-be90-46e21ccd7615",
+    "from": "7c70d170-075d-48e1-a81a-8e6fa908905f",
+    "to": "a515937f-819d-488e-bc11-e701302367ea",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مات ميردوك/ديردفيل بيظهر كضيف في المسلسل، وده أول ظهور رسمي ليه جوه MCU بعد نتفليكس.",
+    "source": null
+  },
+  {
+    "id": "0335be51-5f0b-4b2d-b13a-c531f28248a0",
+    "from": "c51ea516-6ff1-4192-a1a9-4606fe09edb2",
+    "to": "a515937f-819d-488e-bc11-e701302367ea",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "كينجبن (ويلسون فيسك) اتقدّم كشرير رئيسي هنا كأول ظهور رسمي ليه في MCU (خارج نتفليكس)، وخطه بيكمل ويتوسع في Born Again.",
+    "source": null
+  },
+  {
+    "id": "496ec906-7ec1-4318-b760-de62e0487e55",
+    "from": "c51ea516-6ff1-4192-a1a9-4606fe09edb2",
+    "to": "415a7f4a-d978-443d-812d-ee5a6a7c3a96",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مايا لوبيز (إيكو) شخصية أساسية في المسلسل بتنتقم من كينجبن، وحصل بينهم مواجهة في آخر حلقة — دي البداية المباشرة لمسلسل Echo اللي بيكمل قصتها.",
+    "source": null
+  },
+  {
+    "id": "f7b05de5-d440-461b-bfa6-122adadbd20b",
+    "from": "7ec178ee-1433-4b17-a89c-c8288cfce9b3",
+    "to": "eb3ad664-1808-4409-9712-08b3dd0decc4",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "لوك كيدج بينضم للفريق الرباعي (ديردفيل، جيسيكا جونز، آيرون فيست) في The Defenders.",
+    "source": null
+  },
+  {
+    "id": "2bc3d8d4-20ec-4106-b287-5a8180d44c1a",
+    "from": "41ea7114-8ce0-4521-bf9f-ab152d2949ea",
+    "to": "eb3ad664-1808-4409-9712-08b3dd0decc4",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "داني راند (آيرون فيست) بيبقى العضو الرابع في فريق The Defenders، وقصته بتقود لخط \"ذا هاند\" الأساسي في المسلسل.",
+    "source": null
+  },
+  {
+    "id": "cf9f435e-a88d-4560-bd5e-0536f9cf931d",
+    "from": "1c2dcd86-acf3-44bb-be94-82a74d98c49e",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: سفينة ثور بتتقابل مع سفينة تانوس العملاقة (Sanctuary II) — بداية أحداث Infinity War مباشرة.",
+    "source": null
+  },
+  {
+    "id": "9be3fa07-5d04-4b1f-9871-904d20b8e977",
+    "from": "cb629411-a925-48be-920a-7bc710ac8d33",
+    "to": "a515937f-819d-488e-bc11-e701302367ea",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "فرانك كاسل (بانيشر) اتقدّم أصلاً كشخصية جوه مسلسل Daredevil قبل ما ياخد مسلسله المستقل، وبيرجع تاني رسميًا في Born Again.",
+    "source": null
+  },
+  {
+    "id": "6a2fda85-1ca9-4ee7-b280-8304267c1f60",
+    "from": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "to": "16bbe769-a749-46f7-8d47-74b5661b3902",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: نيك فيوري قبل ما يتلاشى بيبعت إشارة استغاثة برمز كابتن مارفل — تمهيد مباشر لفيلمها.",
+    "source": null
+  },
+  {
+    "id": "adc4fe27-e018-48e5-981a-4abfcdb9dc03",
+    "from": "463d45fa-7477-45d7-b774-8da1d5a35993",
+    "to": "32c57b15-2667-4033-98f9-6f1161ac0960",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "المسلسل بيوري رحلة سام ويلسون وهو بيقبل يبقى كابتن أمريكا الجديد، وبيقدّم جواكين توريس اللي بيبقى الفالكون الجديد في الفيلم.",
+    "source": null
+  },
+  {
+    "id": "1d6b55f3-f8be-432c-b127-e014a28d992e",
+    "from": "e6c3f14e-f859-409d-8fcf-33bb397db818",
+    "to": "ba2edd8e-c023-4c4e-b6e0-717abc297668",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "كابتن كارتر (نسخة بديلة من بيجي كارتر بقوى الجندي الخارق) بتظهر فعليًا في الفيلم كعضوة في الإلوميناتي، وكمان وحش جارجانتوس اللي ظهر في حلقة \"سترينج سوبريم\" بيتكرر ظهوره في الفيلم.",
+    "source": null
+  },
+  {
+    "id": "f533ef41-f278-4768-bf81-94ffb4a43f2f",
+    "from": "b2fe0368-f863-49d6-98fa-5f464d59fedf",
+    "to": "ee70f0ab-2de2-4b10-8c9d-1e47c18fbe1a",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: سوار كمالة بيلمع فجأة وبتتبادل الأماكن مع كارول دانفرز (كابتن مارفل) — بداية أحداث The Marvels مباشرة، وموثّق إن نفس مخرجة الفيلم صوّرت المشهد ده بنفسها.",
+    "source": null
+  },
+  {
+    "id": "7614eddc-b746-480a-bed1-a93fa8749bfc",
+    "from": "08763f69-bc2a-4054-9fcd-8d70c77b0e24",
+    "to": "ba2edd8e-c023-4c4e-b6e0-717abc297668",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر يعرض أول تريلر لفيلم دكتور سترينج التاني مباشرة — إعلان رسمي عن الفيلم الجاي.",
+    "source": null
+  },
+  {
+    "id": "488c010b-ef63-44b4-8a8b-7199962bd6bf",
+    "from": "d095c7b0-8788-4911-bf09-501689330f40",
+    "to": "d9b53cc9-3cc5-43ad-add0-ac7964c846ae",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر بيوري لوكي وموبيوس في معرض شيكاغو 1893 بيتفرجوا على فيكتور تايملي (نسخة تانية من كانج) — نفس المشهد ده بالظبط بيتعرض بتفصيل أكتر في حلقة الموسم التاني من Loki.",
+    "source": null
+  },
+  {
+    "id": "e93930b7-e226-4bbb-a720-f205c1bfae5c",
+    "from": "415a7f4a-d978-443d-812d-ee5a6a7c3a96",
+    "to": "a515937f-819d-488e-bc11-e701302367ea",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "المسلسل بيكمل شفا كينجبن من الطلقة اللي اتصابها في نهاية Hawkeye، وعلاقته المعقدة بمايا لوبيز — الخلفية المباشرة لظهوره في Born Again.",
+    "source": null
+  },
+  {
+    "id": "3b9bb4d5-a68f-47d9-88b5-969306f643e5",
+    "from": "32c57b15-2667-4033-98f9-6f1161ac0960",
+    "to": "d76bf745-6520-498d-a3a1-2a0ae2c50fd5",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر: صامويل ستيرنز بيحذّر سام ويلسون من هجوم جاي من \"عوالم تانية\" — تلميح مباشر لتصادم الكون الرئيسي بالمالتيفيرس، وفالنتينا دي فونتين (شريرة الفيلمين) بتفضل مديرة CIA لحد أحداث Thunderbolts.",
+    "source": null
+  },
+  {
+    "id": "cfcaec75-305b-4b06-a3d3-e8371b03427c",
+    "from": "a65f9681-c828-4642-901c-5749b782cf0d",
+    "to": "a5104ffc-0bcd-4189-9d5d-632ae300614f",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد التتر (بعد 4 سنين من أحداث الفيلم): دكتور دووم بيظهر جالس مع فرانكلين ريتشاردز الطفل، وبتنتهي بجملة \"الفانتاستيك فور هيرجعوا في Avengers: Doomsday\" — تأكيد رسمي من كيفن فايج نفسه.",
+    "source": null
+  },
+  {
+    "id": "8ff990f3-e0e9-4e38-ac57-195e73539612",
+    "from": "a65f9681-c828-4642-901c-5749b782cf0d",
+    "to": "d76bf745-6520-498d-a3a1-2a0ae2c50fd5",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مشهد ما بعد تتر Thunderbolts بيوري نسخة مصغّرة من نفس مشهد سفينة الفانتاستيك فور وهي بتوصل لكون الأرض 616 الرئيسي — تمهيد لانضمامهم الفعلي.",
+    "source": null
+  },
+  {
+    "id": "744bb779-8931-45fd-98cd-cd410d02da93",
+    "from": "f6e66fe5-0e5c-45a2-9d0c-6e70d0087add",
+    "to": "08763f69-bc2a-4054-9fcd-8d70c77b0e24",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "في مشهد ما بعد التتر، إيدي بروك ينتقل عبر تعويذة دكتور سترينج لحظيًا لكون مارفل الرسمي (MCU)، يشوف خبر عن هوية سبايدرمان، قبل ما ينسحب تاني لكونه — أول تلميح رسمي إن عالم فينوم وMCU أكوان متوازية في نفس المالتيفيرس.",
+    "source": null
+  },
+  {
+    "id": "fccad2e1-d8c0-4e09-ade8-c657571b6335",
+    "from": "900c09c9-f557-44c1-8bee-72c8a2637856",
+    "to": "08763f69-bc2a-4054-9fcd-8d70c77b0e24",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "في مشاهد ما بعد التتر، موربيوس بيشوف إعلانات عن سبايدرمان في عالمه بعد ما فيتشر (الرجل الطائر) بييجي من كون تاني — تلميح مباشر لتداخل الأكوان بين عالم سوني وMCU.",
+    "source": null
+  },
+  {
+    "id": "47112712-da76-4572-b39c-4667fa43c628",
+    "from": "a5104ffc-0bcd-4189-9d5d-632ae300614f",
+    "to": "ff44bf6f-2440-4cdb-9d71-6ea377f2f1fb",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "قصة من جزئين رسميًا مؤكدة من مارفل ستوديوز — Doomsday هو الجزء الأول، وSecret Wars هو الخاتمة المباشرة ليه.",
+    "source": null
+  },
+  {
+    "id": "af16217e-8a19-43c5-877b-9cf0cbd2cee3",
+    "from": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "توني ستارك عضو مؤسس في فريق الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "c2f4dc76-e2f4-4ae3-9c32-eeb1c9ae5311",
+    "from": "d1d7ae48-07d9-4cfe-a969-673a675773a4",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "ستيف روجرز عضو مؤسس في فريق الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "f12001da-c1ed-402b-8251-813f054086a4",
+    "from": "c78f0b35-33cb-4f6c-a20a-4ca0bcf87844",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "ثور عضو مؤسس في فريق الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "7765d188-7393-4476-a2cb-8ab058f0cb6c",
+    "from": "1a26319b-ca3f-4214-beb4-96c023924428",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "enemy_of",
+    "direction": "undirected",
+    "description": "ثانوس هو الخصم الرئيسي للأفنجرز في أحداث Infinity War و Endgame",
+    "source": null
+  },
+  {
+    "id": "17725380-5af7-44b4-9309-fcfde46f021b",
+    "from": "c78f0b35-33cb-4f6c-a20a-4ca0bcf87844",
+    "to": "fd522942-ae5a-42f7-84cb-8583ed481042",
+    "type": "owns",
+    "direction": "directed",
+    "description": "ثور يمتلك مطرقة مولنير",
+    "source": null
+  },
+  {
+    "id": "23b6342f-ffc1-49c3-b968-baa997abbf09",
+    "from": "1a26319b-ca3f-4214-beb4-96c023924428",
+    "to": "653652f6-94a3-4066-8d1b-0ebae1629bf3",
+    "type": "uses",
+    "direction": "directed",
+    "description": "ثانوس يستخدم قفاز اللانهاية لتنفيذ الطفرة",
+    "source": null
+  },
+  {
+    "id": "f3fb9745-3548-4fe3-96bb-6c68f894b74d",
+    "from": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "to": "264780d6-5361-4755-8b7d-81fd7039f821",
+    "type": "located_in",
+    "direction": "directed",
+    "description": "برج ستارك (برج الأفنجرز) هو مقر توني ستارك في نيويورك",
+    "source": null
+  },
+  {
+    "id": "9c09648e-0be4-4f46-8497-2ef34986304f",
+    "from": "c78f0b35-33cb-4f6c-a20a-4ca0bcf87844",
+    "to": "493bdaf2-1912-4b36-b3df-19f07a2579cf",
+    "type": "originated_from",
+    "direction": "directed",
+    "description": "ثور ينحدر من مملكة أسجارد",
+    "source": null
+  },
+  {
+    "id": "010df3ca-9711-4203-8445-7a0350244bf3",
+    "from": "1b6c8b16-b2bc-4c77-9abf-9f98e611e3a7",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "شيلد هي المنظمة التي أسست مبادرة الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "98942e99-0a32-4c16-ac36-f050cc1e07c9",
+    "from": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "to": "931d2aae-ecad-4ccf-b462-ffd438f739d9",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لتوني ستارك/آيرون مان في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "f4aef17a-9254-455c-be80-aabf030c2973",
+    "from": "d1d7ae48-07d9-4cfe-a969-673a675773a4",
+    "to": "d8c8685d-298e-4be7-8f3d-2f7b53fc852e",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لستيف روجرز/كابتن أمريكا في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "14a97a5a-7220-4ea7-b853-357b998ff585",
+    "from": "c78f0b35-33cb-4f6c-a20a-4ca0bcf87844",
+    "to": "898c83d2-30bb-4c38-9fb9-c12ec26fb014",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لثور في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "442e5e22-b65c-49f0-9792-7d656a842c9f",
+    "from": "26fc8ef9-d6a4-4284-ad1b-62211720f418",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "معركة نيويورك هي الحدث الرئيسي في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "4e4b380a-0058-40a5-9ff7-46274fa4fdd2",
+    "from": "653652f6-94a3-4066-8d1b-0ebae1629bf3",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "قفاز اللانهاية عنصر محوري في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "7d3fd1e4-08f5-41c8-a9f6-63cf390781b7",
+    "from": "653652f6-94a3-4066-8d1b-0ebae1629bf3",
+    "to": "3ad92bf7-32e2-4ac5-89bb-b5a5191b6389",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "قفاز اللانهاية يُستخدم مرة أخرى لعكس الطفرة في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "9cb21d91-983e-4ce3-a7e1-f835778544a2",
+    "from": "d2f05022-5ef2-4fa4-88b5-9291c59aebfe",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "بروس بانر (هالك) عضو مؤسس في فريق الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "ae998910-b2bd-4852-b569-009ba429be71",
+    "from": "9aee4ff7-fe02-4d05-a868-5577d8cd9727",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "ناتاشا رومانوف (بلاك ويدو) عضوة مؤسسة في فريق الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "cb305b2e-3766-4082-9e15-77f706ed8fa5",
+    "from": "5228710c-c7df-4a69-8315-ce8151408dca",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "كلينت بارتون (هوكآي) عضو مؤسس في فريق الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "59c5976d-2cdc-4db3-bcbe-9e79000328d4",
+    "from": "958c63aa-a29c-4590-aee6-755cd845d70b",
+    "to": "1b6c8b16-b2bc-4c77-9abf-9f98e611e3a7",
+    "type": "member_of",
+    "direction": "directed",
+    "description": "نيك فيوري هو مدير منظمة شيلد",
+    "source": null
+  },
+  {
+    "id": "495c2bd6-97e9-4a3e-8d86-6e06a53de78b",
+    "from": "958c63aa-a29c-4590-aee6-755cd845d70b",
+    "to": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
+    "type": "created",
+    "direction": "directed",
+    "description": "نيك فيوري هو من أسس ونظّم مبادرة الأفنجرز",
+    "source": null
+  },
+  {
+    "id": "52a43a6e-7f0d-4c52-8126-ad2693662abd",
+    "from": "d2f05022-5ef2-4fa4-88b5-9291c59aebfe",
+    "to": "01a6852c-c891-4f08-982f-99c910fc04fe",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور سينمائي لبروس بانر/هالك في عصر MCU الحالي كان في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "60a5fe8c-e6b8-4dc8-a57e-404bcaa161ab",
+    "from": "9aee4ff7-fe02-4d05-a868-5577d8cd9727",
+    "to": "a4f3a50d-af6a-4cc1-8f59-ec0a59de93b9",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لناتاشا رومانوف (بلاك ويدو) كان في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "cfc0bb3f-f92a-4829-bf12-27e2274041b8",
+    "from": "5228710c-c7df-4a69-8315-ce8151408dca",
+    "to": "898c83d2-30bb-4c38-9fb9-c12ec26fb014",
+    "type": "cameo",
+    "direction": "directed",
+    "description": "كلينت بارتون (هوكآي) ظهر في مشهد قصير (كاميو) في هذا الفيلم قبل أول ظهور رسمي كامل له في The Avengers",
+    "source": null
+  },
+  {
+    "id": "d07e144b-301e-4784-aa76-4e9695ff7e4f",
+    "from": "751ee8e5-f165-4098-b71f-4a21047adc0a",
+    "to": "1b6c8b16-b2bc-4c77-9abf-9f98e611e3a7",
+    "type": "enemy_of",
+    "direction": "undirected",
+    "description": "اتضح إن هايدرا اخترقت شيلد من الداخل لعقود طويلة، وانكشف ده بالكامل في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "39111174-2afe-4529-8d4e-e34376a8e012",
+    "from": "751ee8e5-f165-4098-b71f-4a21047adc0a",
+    "to": "0460b3a3-aa02-4806-be06-4fe4fe55d3df",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "انكشاف اختراق هايدرا لشيلد هو الحدث المحوري في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "fe387c8d-12ce-4c7a-8e28-0b7065505044",
+    "from": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "to": "1b85ba7e-b315-4acd-97eb-b8504ac8cab5",
+    "type": "owns",
+    "direction": "directed",
+    "description": "توني ستارك هو مالك ورئيس شركة ستارك إندستريز",
+    "source": null
+  },
+  {
+    "id": "4ea0d29b-725b-4d5a-a58a-71ae2d48f197",
+    "from": "1b85ba7e-b315-4acd-97eb-b8504ac8cab5",
+    "to": "d8c8685d-298e-4be7-8f3d-2f7b53fc852e",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "أسلحة ستارك إندستريز (من إنتاج هاورد ستارك) ظهرت في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "ac3cb531-22ea-4a37-a788-2a337187c568",
+    "from": "9bce4944-3fdb-4d23-a376-8e1add4898d5",
+    "to": "a8f039e2-ed57-48a5-97ab-b73ece564d65",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "واكاندا اتقدّمت لأول مرة بشكل واضح في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "688f17d9-ec44-48de-9d4a-1a691dc01c87",
+    "from": "9bce4944-3fdb-4d23-a376-8e1add4898d5",
+    "to": "4d6dcc43-5f21-46a0-adf7-7f2117c22ef7",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "واكاندا هي المحور الأساسي لأحداث هذا الفيلم بالكامل",
+    "source": null
+  },
+  {
+    "id": "1d087dfb-c3ff-48df-b067-6f1fa3580a83",
+    "from": "7a34f3e8-f745-4118-84c6-084bd19d3ee8",
+    "to": "876ac385-c59f-4dd9-b956-7af54279cf07",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "سوكوفيا هي موقع الأحداث والمعركة الأخيرة في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "0b794b86-22bf-4920-8a6a-9126e3cdc120",
+    "from": "d1d7ae48-07d9-4cfe-a969-673a675773a4",
+    "to": "e4e84e4c-7359-41af-8c17-b00d4656270f",
+    "type": "owns",
+    "direction": "directed",
+    "description": "ستيف روجرز (كابتن أمريكا) يحمل هذا الدرع منذ أول ظهور له",
+    "source": null
+  },
+  {
+    "id": "df5f6150-9432-4785-885f-105be4264884",
+    "from": "e4e84e4c-7359-41af-8c17-b00d4656270f",
+    "to": "d8c8685d-298e-4be7-8f3d-2f7b53fc852e",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لدرع كابتن أمريكا كان في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "2170717c-8c10-4bbd-8cd6-da063ed5ad15",
+    "from": "d2aeb211-abcd-46b9-998d-4ed7f0d43285",
+    "to": "d8c8685d-298e-4be7-8f3d-2f7b53fc852e",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور للتسراكت (حجر الفضاء) كان في هذا الفيلم بحوزة الجيش النازي",
+    "source": null
+  },
+  {
+    "id": "6b017dc7-444b-4fc5-95e9-f27e11399cd5",
+    "from": "d2aeb211-abcd-46b9-998d-4ed7f0d43285",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "لوكي يستخدم التسراكت لفتح بوابة لغزو الأرض في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "9bf25cb8-408e-4d71-8749-b2de4dd1515d",
+    "from": "c78f0b35-33cb-4f6c-a20a-4ca0bcf87844",
+    "to": "c04941ec-2a97-4a12-b3d3-d74524d6a66f",
+    "type": "owns",
+    "direction": "directed",
+    "description": "ثور يمتلك ستورمبريكر بعد تدمير مولنير، وتم صنعه خصيصًا له",
+    "source": null
+  },
+  {
+    "id": "ae7570ac-c365-4e75-96e1-a6192c52e7ab",
+    "from": "c04941ec-2a97-4a12-b3d3-d74524d6a66f",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لستورمبريكر كان في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "80237176-be81-43cb-8782-8c8160ac9cc7",
+    "from": "5228710c-c7df-4a69-8315-ce8151408dca",
+    "to": "e4e9c02a-5142-49fb-8a9b-f2602fcb8f85",
+    "type": "uses",
+    "direction": "directed",
+    "description": "كلينت بارتون (هوكآي) يستخدم هذا القوس كسلاحه الأساسي منذ ظهوره الأول",
+    "source": null
+  },
+  {
+    "id": "f0901fdf-90b1-4adc-b489-66453bb2609d",
+    "from": "9aab8f67-96be-4706-bdfb-60eb31aa6203",
+    "to": "42633ac3-0499-4d78-a23b-8bfdf588eb63",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "كوكب زاندار ظهر لأول مرة في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "d5b8bce8-fe7e-4bd9-9c29-3847d1e7f5b0",
+    "from": "8315d2d2-d115-4d92-980f-d681da617971",
+    "to": "1c2dcd86-acf3-44bb-be94-82a74d98c49e",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "كوكب ساكار هو موقع معظم أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "f54d400e-7093-4281-8070-9b973b5657e3",
+    "from": "869e397a-7da1-4c62-a26d-317969fe7799",
+    "to": "d323a26e-0861-41e8-8359-c3f682eb6f0d",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "البُعد الكمي (Quantum Realm) تم تقديمه لأول مرة في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "3feef11b-0d73-45af-a030-751ff4fbc88b",
+    "from": "ca40085a-d2dd-486d-aeb5-822fdb07aca6",
+    "to": "bddc03a1-7ec8-49af-82af-06cf8e88bbfd",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "بُعد المرايا تم تقديمه لأول مرة في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "6f49aa10-f8ec-42c2-bb7a-3734f0ea26eb",
+    "from": "c48e02bd-a10f-4b1e-9208-b2ae4c9bdc00",
+    "to": "08763f69-bc2a-4054-9fcd-8d70c77b0e24",
+    "type": "multiverse_link",
+    "direction": "directed",
+    "description": "هذا الفيلم تعامل بشكل مباشر مع مفهوم تعدد الأكوان وربط أرض-199999 بأكوان أخرى",
+    "source": null
+  },
+  {
+    "id": "17075b17-30e5-4592-9142-f4f30e54ebb1",
+    "from": "23e1f707-e0df-4e67-9936-d7fae09b5226",
+    "to": "d9b53cc9-3cc5-43ad-add0-ac7964c846ae",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "مفهوم الخط الزمني المقدّس هو المحور الأساسي لأحداث هذا المسلسل",
+    "source": null
+  },
+  {
+    "id": "4f85d00b-c15d-4ec5-a4af-934092c3ec17",
+    "from": "23da1d67-3563-4a2e-bbf5-d7b9f3786248",
+    "to": "898c83d2-30bb-4c38-9fb9-c12ec26fb014",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "عمالقة الجليد ظهروا كأعداء رئيسيين في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "0b0aa073-06dd-4635-8957-e51134cc44f6",
+    "from": "c2ea7d2c-0d63-4e35-a6c3-dfd1337d25c4",
+    "to": "16bbe769-a749-46f7-8d47-74b5661b3902",
+    "type": "introduced_in",
+    "direction": "directed",
+    "description": "السكرولز ظهروا لأول مرة في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "1e687ed3-8765-4cc6-b5db-88fb9ceabf0b",
+    "from": "ba3394ad-ffe1-4e11-a49b-ae7771b4871f",
+    "to": "876ac385-c59f-4dd9-b956-7af54279cf07",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "معركة سوكوفيا هي الحدث الختامي لهذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "506c80fa-fed8-4741-905e-abb67681a0a2",
+    "from": "0dc5c1b7-b0c5-4110-840b-dda2e3b0de3c",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "معركة واكاندا هي المعركة الكبرى في الفصل الأخير من هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "2ae52e95-dafe-49a6-9d25-628a3fd6ea55",
+    "from": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "to": "9e288a6a-4b6d-44d0-a1c7-cfdf2fb82fac",
+    "type": "created",
+    "direction": "directed",
+    "description": "توني ستارك صنع هذا الدرع الأول بنفسه أثناء أسره",
+    "source": null
+  },
+  {
+    "id": "8d914a61-65ec-4c6f-9919-f12e073fc0b1",
+    "from": "9e288a6a-4b6d-44d0-a1c7-cfdf2fb82fac",
+    "to": "931d2aae-ecad-4ccf-b462-ffd438f739d9",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لدرع Mark I كان في هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "53af02fc-78fb-4fbf-8297-971e91cc3369",
+    "from": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "to": "a1deb5ff-a147-46cf-9e88-fa77e4523598",
+    "type": "created",
+    "direction": "directed",
+    "description": "توني ستارك طوّر هذه التقنية وعرضها في مؤتمر علمي",
+    "source": null
+  },
+  {
+    "id": "63758892-40e3-4ec7-b656-1ea362c27225",
+    "from": "a1deb5ff-a147-46cf-9e88-fa77e4523598",
+    "to": "a8f039e2-ed57-48a5-97ab-b73ece564d65",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور لتقنية B.A.R.F. كان في مشهد استهلالي من هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "dcb91809-e7d8-464f-8666-482b78aaa3d8",
+    "from": "39128c19-7638-4409-9858-828eb3b6df87",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "first_appeared",
+    "direction": "directed",
+    "description": "أول ظهور واضح للكوينجيت كان في أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "abaadcf4-5b73-41b1-8aca-d0d740ef2a82",
+    "from": "8f737cee-a179-4cb1-93b0-940be3c23115",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "هذه السلسلة كانت المصدر الأساسي لإلهام أحداث هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "92392ae7-9b36-452b-a7b5-ea230f85c50d",
+    "from": "718a3347-7691-4385-bee5-87c2fbf323ef",
+    "to": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "روبرت داوني جونيور هو الممثل اللي جسّد شخصية توني ستارك/آيرون مان",
+    "source": null
+  },
+  {
+    "id": "84266f0b-6146-44da-85a8-ad53b0e9a628",
+    "from": "a4344f6c-eb74-4713-932f-a8f7bf7f7024",
+    "to": "d1d7ae48-07d9-4cfe-a969-673a675773a4",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "كريس إيفانز هو الممثل اللي جسّد شخصية ستيف روجرز/كابتن أمريكا",
+    "source": null
+  },
+  {
+    "id": "7d60a419-373d-49da-b81d-175467d60c6b",
+    "from": "a02dd9a0-e59b-41a2-bf23-b4810cd62dc9",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "created",
+    "direction": "directed",
+    "description": "أنتوني روسو أحد مخرجَي هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "07795545-5acf-4611-a4de-6694e3a0d160",
+    "from": "6c5f0226-e793-4268-bb82-e4311ee286d0",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "created",
+    "direction": "directed",
+    "description": "جو روسو أحد مخرجَي هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "b7135183-865c-445a-8a85-31a5a7c3ad8a",
+    "from": "bd8a669b-3e0b-4315-870a-937e576f734a",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "created",
+    "direction": "directed",
+    "description": "آلان سيلفستري ألّف الموسيقى التصويرية لهذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "2d5d0df1-8714-4a1f-81ae-2705b8c5504d",
+    "from": "8d95a108-9ecd-4d4a-bf5c-0b238d025b05",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "created",
+    "direction": "directed",
+    "description": "كريستوفر ماركوس شارك في كتابة سيناريو هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "903fdec1-ec0e-4497-b5d2-b42660727dc1",
+    "from": "80cbcbcd-1d8a-4036-8044-563f52492df4",
+    "to": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
+    "type": "created",
+    "direction": "directed",
+    "description": "ستيفن ماكفيلي شارك في كتابة سيناريو هذا الفيلم",
+    "source": null
+  },
+  {
+    "id": "3009c9a8-e10b-442f-9773-483834950bc1",
+    "from": "85cad4ed-58d2-4c20-b44b-45a76d0bd9e3",
+    "to": "931d2aae-ecad-4ccf-b462-ffd438f739d9",
+    "type": "connected_to",
+    "direction": "directed",
+    "description": "هذا المشهد ظهر في نهاية هذا الفيلم بالظبط",
+    "source": null
+  },
+  {
+    "id": "21c71d1c-c9a5-44d1-91dd-b3e09cb3b116",
+    "from": "85cad4ed-58d2-4c20-b44b-45a76d0bd9e3",
+    "to": "d0690b15-711f-4735-96e5-901f0a055327",
+    "type": "post_credit_to",
+    "direction": "directed",
+    "description": "هذا المشهد كان أول تلميح رسمي لمشروع الأفنجرز اللي تحقق لاحقًا في هذا الفيلم",
+    "source": null
+  }
+]
