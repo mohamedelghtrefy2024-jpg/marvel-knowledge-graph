@@ -1,0 +1,6 @@
+{
+  "TMDB_KEY": "b20fc3fcea82ebacc9ec743cd6eb8f98",
+  "TMDB_IMG": "https://image.tmdb.org/t/p/w500",
+  "TMDB_IMG_SMALL": "https://image.tmdb.org/t/p/w92",
+  "TMDB_API_BASE": "https://api.themoviedb.org/3"
+}

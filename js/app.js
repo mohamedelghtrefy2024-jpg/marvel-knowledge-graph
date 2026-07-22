@@ -8,6 +8,9 @@
   const statusEl = document.getElementById('status');
 
   try{
+    // 0) استنى الإعدادات (CONFIG) تتحمّل فعليًا من config/*.json قبل أي استخدام لها
+    await window.CONFIG_READY;
+
     // 1) تحميل البيانات الأساسية من ملفات JSON
     const base = await StorageLayer.loadBaseData();
 
@@ -34,9 +37,9 @@
     const renderLayer = createRenderLayer({ knowledgeLayer, businessLayer, graphLayer });
 
     // 7) تشغيل الواجهة
-    renderLayer.applyBackground();
-    renderLayer.populateGroupSelect();
-    renderLayer.initFilterBar();
+    await renderLayer.applyBackground();
+    await renderLayer.populateGroupSelect();
+    await renderLayer.initFilterBar();
     await renderLayer.renderRows();
 
     if(migrationResult.migratedNodes || migrationResult.migratedEdges){

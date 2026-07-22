@@ -1,0 +1,23 @@
+{
+  "DATA_PATHS": {
+    "nodes": "./data/nodes.json",
+    "edges": "./data/edges.json",
+    "groups": "./data/groups.json",
+    "settings": "./data/settings.json",
+    "metadata": "./data/metadata.json"
+  },
+
+  "STORAGE_KEYS": {
+    "tmdbCache": "marvelmap_cache_v2",
+    "customNodes": "marvelmap_custom_nodes_v2",
+    "customEdges": "marvelmap_custom_edges_v2",
+    "background": "marvelmap_bg_v2"
+  },
+
+  "LEGACY_STORAGE_KEYS": {
+    "tmdbCache": "marvelmap_cache_v1",
+    "customNodes": "marvelmap_custom_v1",
+    "background": "marvelmap_bg_v1",
+    "customLinks": "marvelmap_links_v1"
+  }
+}

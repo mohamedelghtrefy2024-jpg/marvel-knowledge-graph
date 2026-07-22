@@ -28,40 +28,67 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   const metricsBtn = document.getElementById('metricsBtn');
   const metricsModal = document.getElementById('metricsModal');
   const metricsBody = document.getElementById('metricsBody');
+  const exportDataBtn = document.getElementById('exportDataBtn');
+  const importDataBtn = document.getElementById('importDataBtn');
+  const importDataFileInput = document.getElementById('importDataFileInput');
 
   let pickedItem = null;
   let linkFromNode = null;
   let linkPickedTarget = null;
 
   // ---------------- حالة الفلترة (بحث + نوع) ----------------
-  const filterState = {
-    query: '',
-    activeTypes: null // null = كل الأنواع فعّالة (لسه مفيش فلترة اتطبقت)
-  };
-
-  function nodeMatchesFilter(node){
-    const matchesQuery = filterState.query === '' || node.title.toLowerCase().includes(filterState.query);
-    const matchesType = filterState.activeTypes === null || filterState.activeTypes.has(node.type);
-    return matchesQuery && matchesType;
+  // اتنقلت لـ SearchService (src/services) — بتتحمّل مرة واحدة بس (lazy + cached)
+  // عبر dynamic import، بنفس أسلوب BackgroundService فوق.
+  let searchServicePromise = null;
+  function getSearchService(){
+    if(!searchServicePromise){
+      searchServicePromise = import('../src/services/SearchService.js')
+        .then(({ SearchService })=> new SearchService({ knowledgeLayer }));
+    }
+    return searchServicePromise;
   }
 
-  function initFilterBar(){
+  // ---------------- KnowledgeService / GraphService ----------------
+  // نفس أسلوب SearchService/BackgroundService فوق: lazy + cached عبر
+  // dynamic import. من هنا، renderRows/renderGraph/openDetail/renderMetrics/
+  // populateGroupSelect بقوا بيوصلوا لطبقتي المعرفة والشبكة عبر الخدمتين
+  // دول بدل ما ينادوا knowledgeLayer/graphLayer مباشرة.
+  let knowledgeServicePromise = null;
+  function getKnowledgeService(){
+    if(!knowledgeServicePromise){
+      knowledgeServicePromise = import('../src/services/KnowledgeService.js')
+        .then(({ KnowledgeService })=> new KnowledgeService({ knowledgeLayer }));
+    }
+    return knowledgeServicePromise;
+  }
+
+  let graphServicePromise = null;
+  function getGraphService(){
+    if(!graphServicePromise){
+      graphServicePromise = import('../src/services/GraphService.js')
+        .then(({ GraphService })=> new GraphService({ graphLayer }));
+    }
+    return graphServicePromise;
+  }
+
+  async function initFilterBar(){
+    const searchService = await getSearchService();
     const typesPresent = [...new Set(knowledgeLayer.getAllNodes().map(n=> n.type))];
-    filterState.activeTypes = new Set(typesPresent);
+    searchService.initTypes(typesPresent);
 
     typeFilterChips.innerHTML = '';
     typesPresent.forEach(type=>{
       const chip = Utils.createTextEl('div', typeLabel(type), 'type-chip active');
       chip.dataset.type = type;
-      chip.onclick = ()=>{
-        if(filterState.activeTypes.has(type)){
-          filterState.activeTypes.delete(type);
-          chip.classList.remove('active');
-          chip.classList.add('inactive');
-        } else {
-          filterState.activeTypes.add(type);
+      chip.onclick = async ()=>{
+        const svc = await getSearchService();
+        svc.toggleType(type);
+        if(svc.isTypeActive(type)){
           chip.classList.add('active');
           chip.classList.remove('inactive');
+        } else {
+          chip.classList.remove('active');
+          chip.classList.add('inactive');
         }
         applyFilters();
       };
@@ -69,8 +96,9 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     });
   }
 
-  const onSearchInput = Utils.debounce(()=>{
-    filterState.query = globalSearchInput.value.trim().toLowerCase();
+  const onSearchInput = Utils.debounce(async ()=>{
+    const searchService = await getSearchService();
+    searchService.setQuery(globalSearchInput.value);
     applyFilters();
   }, 250);
   globalSearchInput.oninput = onSearchInput;
@@ -83,8 +111,50 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   }
 
   // ---------------- خلفية الموقع ----------------
-  function applyBackground(){
-    const bg = StorageLayer.loadBackground();
+  // BackgroundService بيتحمّل مرة واحدة بس (lazy + cached) عبر dynamic import،
+  // ومن هنا وأي نداء StorageLayer.*Background* المباشر بقى ممنوع (قاعدة الطبقات:
+  // UI ميلمسش Storage غير عبر خدمة).
+  // ---------------- EventBus مشترك ----------------
+  // instance واحد مشترك بين كل الخدمات اللي محتاجة تبعت أحداث (BackgroundService،
+  // ExportImportService) — lazy + cached بنفس الأسلوب.
+  let eventBusPromise = null;
+  function getEventBus(){
+    if(!eventBusPromise){
+      eventBusPromise = import('../src/core/EventBus.js').then(({ EventBus })=> new EventBus());
+    }
+    return eventBusPromise;
+  }
+
+  let backgroundServicePromise = null;
+  function getBackgroundService(){
+    if(!backgroundServicePromise){
+      backgroundServicePromise = Promise.all([
+        getEventBus(),
+        import('../src/services/BackgroundService.js')
+      ]).then(([eventBus, { BackgroundService }])=>{
+        return new BackgroundService({ storageLayer: StorageLayer, eventBus });
+      });
+    }
+    return backgroundServicePromise;
+  }
+
+  // ---------------- Export / Import ----------------
+  let exportImportServicePromise = null;
+  function getExportImportService(){
+    if(!exportImportServicePromise){
+      exportImportServicePromise = Promise.all([
+        getEventBus(),
+        import('../src/services/ExportImportService.js')
+      ]).then(([eventBus, { ExportImportService }])=>{
+        return new ExportImportService({ knowledgeLayer, storageLayer: StorageLayer, eventBus });
+      });
+    }
+    return exportImportServicePromise;
+  }
+
+  async function applyBackground(){
+    const backgroundService = await getBackgroundService();
+    const bg = backgroundService.getBackground();
     if(bg){
       document.body.style.backgroundImage = `url(${bg})`;
       document.body.classList.add('has-bg');
@@ -98,12 +168,52 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     return CONFIG.NODE_TYPE_LABELS[type] || type;
   }
 
+  // ---------------- بناء الكارت (موحّد لكل الحالات) ----------------
+  // كان فيه تكرار منطق بين عرض المجموعات وعرض بدون مجموعات، مع فرق سلوك:
+  // عرض المجموعات كان بيجيب بوستر TMDB فعليًا، وعرض بدون مجموعات كان بياخد
+  // بس نص ثابت (typeLabel) من غير أي محاولة تحميل بوستر. اتوحّد السلوك هنا:
+  // كل كارت (سواء جوه مجموعة أو لأ) بيحاول يجيب بوستر TMDB بنفس الطريقة.
+  function buildCard(node){
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const poster = document.createElement('div');
+    poster.className = 'poster placeholder';
+    poster.textContent = '...';
+
+    const titleEl = Utils.createTextEl('div', node.title, 'card-title');
+    const typeEl = Utils.createTextEl('div', typeLabel(node.type), 'card-type');
+
+    card.appendChild(poster);
+    card.appendChild(titleEl);
+    card.appendChild(typeEl);
+    card.onclick = ()=> openDetail(node);
+
+    businessLayer.fetchTmdbData(node.title, node.type).then(data=>{
+      if(data.poster){
+        const img = document.createElement('img');
+        img.className = 'poster';
+        img.src = data.poster;
+        img.alt = data.title;
+        poster.replaceWith(img);
+      } else if(node.type === 'movie' || node.type === 'tv'){
+        poster.textContent = data.title;
+      } else {
+        poster.textContent = typeLabel(node.type);
+      }
+    });
+
+    return card;
+  }
+
   // ---------------- عرض الصفوف ----------------
   async function renderRows(){
     rowsView.innerHTML = '';
+    const searchService = await getSearchService();
+    const knowledgeService = await getKnowledgeService();
     let visibleTotal = 0;
-    for(const group of knowledgeLayer.getGroups()){
-      const items = knowledgeLayer.getNodesByGroup(group.id).filter(nodeMatchesFilter);
+    for(const group of knowledgeService.getGroups()){
+      const items = knowledgeService.getNodesByGroup(group.id).filter(n=> searchService.matches(n));
       if(!items.length) continue;
       visibleTotal += items.length;
 
@@ -126,41 +236,13 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
       rowsView.appendChild(rowEl);
 
       for(const node of items){
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const poster = document.createElement('div');
-        poster.className = 'poster placeholder';
-        poster.textContent = '...';
-
-        const titleEl = Utils.createTextEl('div', node.title, 'card-title');
-        const typeEl = Utils.createTextEl('div', typeLabel(node.type), 'card-type');
-
-        card.appendChild(poster);
-        card.appendChild(titleEl);
-        card.appendChild(typeEl);
-        card.onclick = ()=> openDetail(node);
-        scrollEl.appendChild(card);
-
-        businessLayer.fetchTmdbData(node.title, node.type).then(data=>{
-          if(data.poster){
-            const img = document.createElement('img');
-            img.className = 'poster';
-            img.src = data.poster;
-            img.alt = data.title;
-            poster.replaceWith(img);
-          } else if(node.type === 'movie' || node.type === 'tv'){
-            poster.textContent = data.title;
-          } else {
-            poster.textContent = typeLabel(node.type);
-          }
-        });
+        scrollEl.appendChild(buildCard(node));
       }
     }
 
     // عقد بدون مجموعة زمنية (character, team, organization, location, artifact, event...)
     // بتتجمع في صف واحد منفصل عشان تظهر في عرض الصفوف كمان مش بس في عرض الشبكة
-    const ungrouped = knowledgeLayer.getAllNodes().filter(n=> !n.group).filter(nodeMatchesFilter);
+    const ungrouped = knowledgeService.getAllNodes().filter(n=> !n.group).filter(n=> searchService.matches(n));
     if(ungrouped.length){
       visibleTotal += ungrouped.length;
       const rowEl = document.createElement('div');
@@ -176,18 +258,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
       rowsView.appendChild(rowEl);
 
       ungrouped.forEach(node=>{
-        const card = document.createElement('div');
-        card.className = 'card';
-        const poster = document.createElement('div');
-        poster.className = 'poster placeholder';
-        poster.textContent = typeLabel(node.type);
-        const titleEl = Utils.createTextEl('div', node.title, 'card-title');
-        const typeEl = Utils.createTextEl('div', typeLabel(node.type), 'card-type');
-        card.appendChild(poster);
-        card.appendChild(titleEl);
-        card.appendChild(typeEl);
-        card.onclick = ()=> openDetail(node);
-        scrollEl.appendChild(card);
+        scrollEl.appendChild(buildCard(node));
       });
     }
 
@@ -197,10 +268,10 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
       rowsView.appendChild(empty);
     }
 
-    const totalAll = knowledgeLayer.getAllNodes().length;
-    statusEl.textContent = (filterState.query || filterState.activeTypes.size < [...new Set(knowledgeLayer.getAllNodes().map(n=>n.type))].length)
+    const totalAll = knowledgeService.getAllNodes().length;
+    statusEl.textContent = searchService.isFilterActive()
       ? `${visibleTotal} من ${totalAll} عنصر مطابق للفلترة`
-      : `${totalAll} عنصر إجمالاً عبر ${knowledgeLayer.getGroups().length} مجموعة زمنية`;
+      : `${totalAll} عنصر إجمالاً عبر ${knowledgeService.getGroups().length} مجموعة زمنية`;
   }
 
   // ---------------- تفاصيل العنصر ----------------
@@ -270,7 +341,8 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
 
     const linksList = document.createElement('div');
     linksList.id = 'linksList';
-    const relations = knowledgeLayer.getEdgesForNode(node.id);
+    const knowledgeService = await getKnowledgeService();
+    const relations = knowledgeService.getEdgesForNode(node.id);
 
     if(!relations.length){
       linksList.appendChild(Utils.createTextEl('div', 'مفيش روابط أو تلميحات مسجّلة لسه.', ''));
@@ -326,7 +398,9 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     graphView.appendChild(legend);
   }
 
-  function renderGraph(){
+  async function renderGraph(){
+    const searchService = await getSearchService();
+    const graphService = await getGraphService();
     renderGraphLegend();
     const svg = d3.select('#graphSvg');
     svg.selectAll('*').remove();
@@ -336,7 +410,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     const zoomLayer = svg.append('g');
     svg.call(d3.zoom().scaleExtent([0.2,4]).on('zoom', (e)=> zoomLayer.attr('transform', e.transform)));
 
-    const { nodesData, linksData } = graphLayer.buildGraphData();
+    const { nodesData, linksData } = graphService.buildGraphData();
 
     const sim = d3.forceSimulation(nodesData)
       .force('link', d3.forceLink(linksData).id(d=>d.id).distance(d=> d.source.isHub || d.target.isHub ? 70 : (d.isCross ? 90 : 40)))
@@ -356,7 +430,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     gnode.append('circle')
       .attr('r', d=> d.isHub ? 34 : (CONFIG.NODE_TYPE_VISUALS[d.node.type] || CONFIG.NODE_TYPE_VISUALS.default).radius)
       .attr('fill', d=> d.isHub ? 'var(--panel)' : (CONFIG.NODE_TYPE_VISUALS[d.node.type] || CONFIG.NODE_TYPE_VISUALS.default).color);
-    gnode.filter(d=> !d.isHub && !nodeMatchesFilter(d.node)).classed('dimmed', true);
+    gnode.filter(d=> !d.isHub && !searchService.matches(d.node)).classed('dimmed', true);
     gnode.append('text').text(d=> d.label.length>16 ? d.label.slice(0,16)+'…' : d.label)
       .attr('text-anchor','middle').attr('y', d=> d.isHub ? 50 : 26);
     gnode.filter(d=>!d.isHub).on('click', (e,d)=> openDetail(d.node));
@@ -368,9 +442,10 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   }
 
   // ---------------- إحصائيات الشبكة ----------------
-  function renderMetrics(){
+  async function renderMetrics(){
     metricsBody.innerHTML = '';
-    const metrics = knowledgeLayer.computeMetrics();
+    const knowledgeService = await getKnowledgeService();
+    const metrics = knowledgeService.computeMetrics();
 
     const summary = document.createElement('div');
     summary.className = 'metrics-summary';
@@ -427,8 +502,8 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     return section;
   }
 
-  metricsBtn.onclick = ()=>{
-    renderMetrics();
+  metricsBtn.onclick = async ()=>{
+    await renderMetrics();
     metricsModal.classList.add('show');
   };
   document.getElementById('metricsModalClose').onclick = ()=> metricsModal.classList.remove('show');
@@ -456,9 +531,10 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   document.getElementById('addClose').onclick = ()=> addModal.classList.remove('show');
   addModal.onclick = (e)=>{ if(e.target===addModal) addModal.classList.remove('show'); };
 
-  function populateGroupSelect(){
+  async function populateGroupSelect(){
     groupSelect.innerHTML = '';
-    knowledgeLayer.getGroups().forEach(g=>{
+    const knowledgeService = await getKnowledgeService();
+    knowledgeService.getGroups().forEach(g=>{
       const opt = document.createElement('option');
       opt.value = g.id;
       opt.textContent = g.name;
@@ -527,12 +603,13 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   document.getElementById('linkModalClose').onclick = ()=> linkModal.classList.remove('show');
   linkModal.onclick = (e)=>{ if(e.target===linkModal) linkModal.classList.remove('show'); };
 
-  linkTargetSearch.oninput = ()=>{
+  linkTargetSearch.oninput = async ()=>{
     const q = linkTargetSearch.value.trim();
     linkPickedTarget = null;
     linkTargetResults.innerHTML = '';
     if(q.length < 1) return;
-    const matches = businessLayer.searchLocalNodes(q).filter(n=> n.title !== linkFromNode.title).slice(0,15);
+    const searchService = await getSearchService();
+    const matches = searchService.searchByTitle(q, { excludeTitle: linkFromNode.title, limit: 15 });
     if(!matches.length){
       linkTargetResults.appendChild(Utils.createTextEl('div', 'مفيش نتايج', ''));
       return;
@@ -570,15 +647,56 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     const file = e.target.files[0];
     if(!file) return;
     const reader = new FileReader();
-    reader.onload = ()=>{
-      StorageLayer.saveBackground(reader.result);
-      applyBackground();
+    reader.onload = async ()=>{
+      const backgroundService = await getBackgroundService();
+      backgroundService.setBackground(reader.result);
+      await applyBackground();
     };
     reader.readAsDataURL(file);
   };
-  document.getElementById('bgResetBtn').onclick = ()=>{
-    StorageLayer.clearBackground();
-    applyBackground();
+  document.getElementById('bgResetBtn').onclick = async ()=>{
+    const backgroundService = await getBackgroundService();
+    backgroundService.clearBackground();
+    await applyBackground();
+  };
+
+  // ---------------- تصدير / استيراد بيانات المستخدم ----------------
+  exportDataBtn.onclick = async ()=>{
+    const svc = await getExportImportService();
+    const jsonString = svc.exportAsJsonString();
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const stamp = new Date().toISOString().slice(0,10);
+    a.download = `marvel-map-backup-${stamp}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  importDataBtn.onclick = ()=> importDataFileInput.click();
+  importDataFileInput.onchange = (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = async ()=>{
+      try{
+        const payload = JSON.parse(reader.result);
+        const svc = await getExportImportService();
+        const result = svc.importData(payload);
+        alert(`تم الاستيراد: ${result.importedNodes} عقدة جديدة، ${result.importedEdges} علاقة جديدة${result.backgroundRestored ? '، والخلفية اتحدّثت كمان' : ''}.`);
+        if(result.backgroundRestored) await applyBackground();
+        await renderRows();
+        if(graphView.style.display !== 'none') await renderGraph();
+      }catch(err){
+        alert('حصل خطأ أثناء الاستيراد: ' + err.message);
+      }finally{
+        importDataFileInput.value = '';
+      }
+    };
+    reader.readAsText(file);
   };
 
   return {

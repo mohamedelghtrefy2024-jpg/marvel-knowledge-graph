@@ -60,6 +60,8 @@ function createBusinessLayer(knowledgeLayer){
   }
 
   /**
+   * @deprecated استُبدلت بـ SearchService.searchByTitle (src/services/SearchService.js).
+   * اتسابت هنا للتوافق الخلفي بس — استخدم SearchService الجديدة في أي كود جديد.
    * بحث نصي محلي داخل كل عقد الخريطة (بالعنوان)، مستقل عن TMDB.
    */
   function searchLocalNodes(query){
