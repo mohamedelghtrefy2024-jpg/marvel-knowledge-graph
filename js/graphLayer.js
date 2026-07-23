@@ -50,5 +50,102 @@ function createGraphLayer(knowledgeLayer){
     return { nodesData, linksData };
   }
 
-  return { buildGraphData };
+  /**
+   * كل جيران عقدة (بعقدها الحقيقية، مش عُقد hub الوهمية بتاعة D3) — دالة
+   * مساعدة داخلية مشتركة بين الخوارزميات التلاتة تحت.
+   */
+  function realNeighbors(nodeId){
+    return knowledgeLayer.getEdgesForNode(nodeId).map(e=> e.otherNode).filter(Boolean);
+  }
+
+  /**
+   * أقصر مسار بين عقدتين (BFS، شبكة غير موزونة). بيمشي على العلاقات
+   * الحقيقية فقط (بيتجاهل تجميع hub الخاص بعرض D3).
+   * @returns {Array|null} مصفوفة عقد بترتيب المسار (من fromId لـ toId)، أو null لو مفيش مسار
+   */
+  function shortestPath(fromId, toId){
+    if(fromId === toId){
+      const n = knowledgeLayer.findNodeById(fromId);
+      return n ? [n] : null;
+    }
+    const visited = new Set([fromId]);
+    const parent = new Map();
+    const queue = [fromId];
+    let qi = 0;
+    while(qi < queue.length){
+      const current = queue[qi++];
+      if(current === toId) break;
+      for(const neighbor of realNeighbors(current)){
+        if(visited.has(neighbor.id)) continue;
+        visited.add(neighbor.id);
+        parent.set(neighbor.id, current);
+        queue.push(neighbor.id);
+      }
+    }
+    if(!visited.has(toId)) return null;
+    const pathIds = [toId];
+    let cur = toId;
+    while(cur !== fromId){
+      cur = parent.get(cur);
+      pathIds.push(cur);
+    }
+    pathIds.reverse();
+    return pathIds.map(id=> knowledgeLayer.findNodeById(id));
+  }
+
+  /**
+   * كل المكوّنات المتصلة في الشبكة (العلاقات بتتعامل كغير موجّهة لغرض
+   * الاتصال بس). مفيد لاكتشاف عُقد أو مجموعات معزولة عن باقي الشبكة.
+   * @returns {Array<Array>} مصفوفات عقد، كل مصفوفة داخلية = مكوّن متصل واحد، مرتّبة من الأكبر للأصغر
+   */
+  function connectedComponents(){
+    const visited = new Set();
+    const components = [];
+    for(const startNode of knowledgeLayer.getAllNodes()){
+      if(visited.has(startNode.id)) continue;
+      const component = [];
+      const stack = [startNode.id];
+      visited.add(startNode.id);
+      while(stack.length){
+        const currentId = stack.pop();
+        const node = knowledgeLayer.findNodeById(currentId);
+        if(node) component.push(node);
+        for(const neighbor of realNeighbors(currentId)){
+          if(visited.has(neighbor.id)) continue;
+          visited.add(neighbor.id);
+          stack.push(neighbor.id);
+        }
+      }
+      components.push(component);
+    }
+    return components.sort((a, b)=> b.length - a.length);
+  }
+
+  /**
+   * هل فيه دورة (cycle) في الشبكة؟ DFS مع تتبّع العقدة الأب (parent) عشان
+   * تجاهل رجوعنا لنفس العلاقة اللي جينا منها (ده مش cycle). لو رجعنا لعقدة
+   * زرناها قبل كده من مسار مختلف تمامًا، فدي دورة فعلية.
+   * @returns {boolean}
+   */
+  function hasCycle(){
+    const visited = new Set();
+
+    function dfs(nodeId, parentId){
+      visited.add(nodeId);
+      for(const neighbor of realNeighbors(nodeId)){
+        if(neighbor.id === parentId) continue;
+        if(visited.has(neighbor.id)) return true;
+        if(dfs(neighbor.id, nodeId)) return true;
+      }
+      return false;
+    }
+
+    for(const node of knowledgeLayer.getAllNodes()){
+      if(visited.has(node.id)) continue;
+      if(dfs(node.id, null)) return true;
+    }
+    return false;
+  }
+
+  return { buildGraphData, shortestPath, connectedComponents, hasCycle };
 }

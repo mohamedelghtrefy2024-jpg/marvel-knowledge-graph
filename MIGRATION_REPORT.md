@@ -343,3 +343,100 @@ CacheManager (يستبدل كاش TMDB اليدوي في `businessLayer.js`)، L
 ## نقطة الاستئناف بالظبط
 
 الخطوة الجاية: **CacheManager** — استبدال منطق كاش TMDB اليدوي الموجود حاليًا في `businessLayer.js` (`tmdbCache` object + `StorageLayer.loadTmdbCache/saveTmdbCache` مباشرة) بخدمة `CacheManager` عامة (get/set/has/clear + TTL اختياري)، بحيث `businessLayer.fetchTmdbData`/`searchTmdbMulti` تستخدمها بدل التعامل المباشر مع الكاش. القرار المطلوب اتخاذه الأول: هل الكاش الحالي (من غير TTL — بيفضل صالح للأبد) يفضل كده، ولا نضيف انتهاء صلاحية (TTL) دلوقتي؟
+
+---
+
+# تحديث: CacheManager + Logger/ErrorManager + Search Engine متقدم (استكمال الجلسة السادسة)
+
+## CacheManager (checkpoint 4)
+
+- القرار المتفق عليه: الكاش بيفضل بدون TTL تلقائي (زي ما كان)، مع دالة `clearCache()` صريحة للمسح اليدوي.
+- `src/services/CacheManager.js` (جديد) — `get`/`set`/`has`/`clearCache` فوق `StorageLayer`. `clearCache()` بتبث `CACHE_CLEARED` عبر `EventBus` لو محقون (مفيد مستقبلًا لزرار "تحديث بيانات TMDB").
+- `js/businessLayer.js` — `tmdbCache` المحلي و`StorageLayer.loadTmdbCache/saveTmdbCache` المباشرين اتشالوا، `createBusinessLayer(knowledgeLayer, cacheManager, errorManager)` بقت بتاخد الاتنين بالحقن.
+- `js/app.js` — `CacheManager` بيتحمّل بـ dynamic import (زي `config.js`) ويتحقن.
+
+## Logger + ErrorManager (checkpoint 5)
+
+- القرار المتفق عليه: التطبيق على كل الملفات دفعة واحدة (مش تدريجي)، مع تسجيل + تنبيه واضح للمستخدم (toast) عند الأخطاء الفعلية.
+- `js/logger.js` + `src/core/Logger.js` (جديدين، نفس الشكل) — نسختين معزولتين (classic scripts vs ES modules) لتوحيد `console.*` بنطاق (scope).
+- `src/services/ErrorManager.js` (جديد) — `report(error, {scope, userMessage})`: تسجيل عبر Logger + بث `APP_ERROR` عبر EventBus.
+- `src/core/EventBus.js` — بيستخدم Logger داخليًا بدل `console.error` مباشر (بدون اعتمادية دائرية على ErrorManager).
+- `js/storageLayer.js` — كل الـ catches الصامتة (6 مواضع: كاش TMDB، عقد/روابط مخصصة، هجرة بيانات قديمة) بقت بتسجّل تحذير.
+- `js/businessLayer.js` — فشل TMDB (عنصر واحد وسط عشرات) → `Logger.warn` بس (تجنبًا لإزعاج toast متكرر، خصوصًا إن الفشل أصلًا بيتعرض inline في الكارت). فشل حفظ فعلي (عقدة/رابط جديد) → `errorManager.report(...)` لأنه فشل حقيقي بيأثر على المستخدم.
+- `js/app.js` — `EventBus`/`ErrorManager` مشتركين بيتحقنوا في `businessLayer` و`renderLayer`.
+- `js/renderLayer.js` — عنصر `#errorToast` جديد (توست بسيط أسفل الشاشة، بيختفي تلقائي بعد 6 ثواني). فشل الاستيراد بقى بيستخدم `ErrorManager` بدل `alert()` المزعج.
+- `index.html` + `css/styles.css` — `#errorToast` وتصميمه.
+- اتأكدنا منها باختبار end-to-end حقيقي (jsdom + d3 حقيقيين، تحميل فعلي لـ `data/`+`config/`، تنفيذ فعلي لكل الـ dynamic imports عبر موديولات محمّلة بـ Node native import): 10/10.
+
+## Search Engine متقدم (checkpoint 6)
+
+- القرار المتفق عليه: الميزات الأربعة كلها (fuzzy + ranking + autocomplete dropdown مع تظليل + سجل بحث)، مطبّقة على شريط الفلترة الرئيسي **و** مودال الربط اليدوي معًا. (مودال إضافة عنصر جديد بيدوّر على TMDB API خارجيًا، مش على بيانات محلية، فمحرك الترتيب/التشابه بتاعنا مش بينطبق عليه — سيبناه زي ما هو).
+- `src/services/SearchService.js` — محرك درجات (`scoreMatch`): تطابق تام (100) > بداية العنوان (90) > احتواء (70) > تطابق مرن/fuzzy عبر مسافة Levenshtein على العنوان الكامل أو أي كلمة فيه (10-45، بحد أقصى مسافة يكبر مع طول الاستعلام). `matches()` و`searchByTitle()` بقوا بيستخدموا نفس المحرك. إضافة `recordSearch`/`getHistory`/`clearHistory` (سجل بحث بحد أقصى 8 عناصر، متخزّن عبر `StorageLayer` — مفتاح جديد `searchHistory` في `config/storage.json`).
+- `js/storageLayer.js` — `loadSearchHistory`/`saveSearchHistory` جديدين.
+- `js/utils.js` — `Utils.renderHighlighted(container, text, query)` (تظليل آمن بدون innerHTML، `<mark>` حول أول ظهور حرفي للاستعلام؛ لو التطابق fuzzy بحت من غير substring حرفي، بيتعرض النص عادي بدون تظليل).
+- `js/renderLayer.js`:
+  - شريط الفلترة الرئيسي: `#globalSearchDropdown` جديد — بيعرض أفضل 8 نتائج مرتّبة مع تظليل لما فيه استعلام، أو سجل البحث لما المربع فاضي ومركّز عليه. الضغط على نتيجة بيفتح تفاصيلها مباشرة (`openDetail`)، الضغط على عنصر من السجل بيعيد تشغيل نفس البحث. `Enter` بيسجّل الاستعلام في السجل، `Escape` بيقفل الـ dropdown.
+  - مودال الربط اليدوي (`linkTargetSearch`): نفس محرك `searchByTitle` (بقى تلقائيًا فيه fuzzy+ranking)، نتائج مظلّلة، وسجل بحث مشترك يظهر عند التركيز على مربع فاضي.
+- `index.html` + `css/styles.css` — `.search-wrap`/`#globalSearchDropdown`/`.search-dropdown-*`/`mark.search-highlight`.
+- اختبار وظيفي معزول لـ `SearchService` (ranking/fuzzy/history/persistence/cap) + اختبار end-to-end كامل (18 فحص، شامل بحث fuzzy حقيقي "thpr"→"Thor" وautocomplete وhistory جوّه متصفح jsdom حقيقي): **كله عدى**.
+- **ملاحظة جانبية اتلاحظت أثناء الاختبار (مش من التعديلات دي، وموجودة من قبل):** `applyFilters()` في `renderLayer.js` بتنادي `renderGraph()` كل مرة حتى لو عرض الجراف مخفي، لأن الفحص `graphView.style.display !== 'none'` بيتحقق من الـ inline style بس، مش القيمة المحسوبة فعليًا من الـ CSS (اللي بتحط `display:none` بشكل افتراضي). عمليًا مش مؤثر بصريًا (SVG بيتحدّث وهو مخفي)، بس فيه حساب زيادة مش لازم على كل حرف بيتكتب في شريط البحث. مش حاجة استعجلنا نصلحها دلوقتي — مجرد ملاحظة لو حبيت نرجعلها بعدين.
+
+## نقطة الاستئناف بالظبط
+
+المتبقي من الخطة: **Graph Algorithms** (shortestPath/connectedComponents/hasCycle) — يحتاج موافقة على مكان العرض الأول (مودال منفصل؟ داخل تفاصيل العقدة؟ زرار جديد في شريط الأدوات؟)، و**Plugin System** (الأساس بس، بدون plugins فعلية).
+
+---
+
+# تحديث: Graph Algorithms (استكمال الجلسة السابعة)
+
+## القرارات المتفق عليها
+
+- **shortestPath**: مودال مستقل من شريط الأدوات (تختار عقدتين بحرية من الأول)، مش زرار جوّه تفاصيل العقدة.
+- **connectedComponents + hasCycle**: مودال جديد منفصل باسم "تحليل الشبكة" (مش إضافة في مودال Metrics الموجود).
+
+## اللي اتنفذ
+
+- `js/graphLayer.js` — 3 خوارزميات جديدة، بتشتغل على العلاقات الحقيقية (`knowledgeLayer.getEdgesForNode`) مش عُقد hub الوهمية بتاعة عرض D3:
+  - `shortestPath(fromId, toId)` — BFS، بترجّع مصفوفة عقد المسار أو `null` لو مفيش اتصال.
+  - `connectedComponents()` — DFS/stack، بترجّع كل المكوّنات المتصلة (مرتّبة من الأكبر للأصغر) — مفيد لاكتشاف عزلة غير مقصودة في البيانات.
+  - `hasCycle()` — DFS مع تتبّع العقدة الأب (parent) لتفادي اعتبار نفس العلاقة رايح-جاي دورة وهمية؛ بيتعامل صح مع حالة وجود أكتر من علاقة بين نفس العقدتين (multi-edge) من غير false positive.
+- `src/services/GraphService.js` — تفويض رفيع للثلاثة (`shortestPath`/`connectedComponents`/`hasCycle`).
+- **مودال أقصر مسار** (`#shortestPathModal`, زرار `🧭 أقصر مسار`): مربعين بحث (من/إلى) بمحرك fuzzy+ranking+تظليل+سجل بحث الكامل (نفس محرك شريط الفلترة)، زرار حساب، والنتيجة بتتعرض كسلسلة عُقد قابلة للنقر (كل عنصر بيفتح تفاصيله مباشرة) مع عدد العلاقات في المسار، أو رسالة واضحة لو مفيش اتصال بين العنصرين.
+- **مودال تحليل الشبكة** (`#networkAnalysisModal`, زرار `🕸️ تحليل الشبكة`): ملخّص (عدد المكوّنات المتصلة + فيه دورة ولا لأ)، وتفاصيل كل مكوّن (حجمه + أول 8 أسماء) لو الشبكة مجزّأة لأكتر من جزء.
+- **إعادة هيكلة**: استخرجت منطق البحث المشترك (fuzzy+ranking+تظليل+سجل، كان مكرر في مودال الربط) لدالة عامة واحدة `wireNodeSearchInput(inputEl, resultsEl, onPick, {excludeTitle})`، ومودال أقصر مسار (من/إلى) بيستخدمها كمان — بدل تكرار نفس المنطق 3 مرات.
+- `index.html` + `css/styles.css` — زرارين جدد في شريط الأدوات، مودالين جدد، وأنماط جديدة (`.sp-*`, `.na-*`).
+
+## التحقق
+
+- اختبار وظيفي معزول للخوارزميات التلاتة (شبكة اصطناعية: مسار مباشر، عقدة معزولة، دورة، شبكة شجرية بدون دورة) — كله عدى.
+- اختبار end-to-end حقيقي (jsdom + d3 حقيقيين، بيانات حقيقية من المشروع): فتح المودالين، البحث واختيار عقدتين حقيقيتين ("Iron Man" → "The Avengers")، حساب المسار وعرضه كسلسلة صحيحة، وعرض ملخّص تحليل الشبكة — **26/26** فحص نجح.
+
+## نقطة الاستئناف بالظبط
+
+المتبقي من الخطة: **Plugin System** (الأساس بس، بدون plugins فعلية). محتاج توضيح نطاق قبل البدء: هل المقصود بنية تسجيل plugins (hooks/lifecycle events) عامة قابلة للتوسعة مستقبلًا من غير أي plugin فعلي دلوقتي، ولا فيه plugin أول محدد في بالك التصميم لازم يتبنى عليه؟
+
+---
+
+# تحديث: Plugin System (استكمال الجلسة الثامنة — آخر بند في الخطة)
+
+## القرار
+
+مفيش plugin محدد في بالك — الأساس بس (hooks/lifecycle events)، قابل للتوسعة مستقبلًا من غير أي plugin فعلي دلوقتي.
+
+## اللي اتنفذ
+
+- `src/core/EventBus.js` — 3 أحداث دورة حياة جديدة في `SYSTEM_EVENTS`: `APP_READY` (بعد ما التطبيق يخلص إقلاع كامل)، `NODE_ADDED`، `EDGE_ADDED` (بيتبثوا من `businessLayer.js` عند إضافة عنصر/رابط جديد، بغضّ النظر عن نجاح الحفظ في localStorage من عدمه).
+- `src/core/PluginManager.js` (جديد) — `register(plugin)` (بيرمي استثناء لو الاسم ناقص/مكرر)، `initAll(context)` (بتنادي `init()` لكل plugin مسجّل، وبتعزل فشل أي plugin عن الباقي — نفس فلسفة `EventBus.emit`)، `list()`/`get(name)`.
+- شكل الـ plugin: `{ name, version?, init(context) }` — `context` بيوصله `eventBus` + `knowledgeService` + `graphService` + `searchService` (قراءة/استعلام بس، التعديل بيحصل عبر الأحداث/الواجهة مش بالوصول المباشر).
+- `js/businessLayer.js` — بقت بتاخد `eventBus` كمعامل رابع محقون، وبتبث `node:added`/`edge:added` بعد كل إضافة ناجحة.
+- `js/app.js` — بعد نجاح الإقلاع الكامل: بيقرأ `window.MarvelMapPlugins` (مصفوفة global بيسجّل فيها أي حد plugin قبل تحميل `app.js`)، يسجّلهم في `PluginManager`، ينادي `initAll(context)`، وبعدين يبث `APP_READY` (مع قائمة الـ plugins اللي اتحمّلت في الـ payload).
+- `index.html` — نقطة تسجيل موثّقة (`window.MarvelMapPlugins = window.MarvelMapPlugins || [];`) قبل `<script src="js/app.js">`، مع مثال استخدام كامل في تعليق (معطّل افتراضيًا — مفيش أي plugin فعلي شغّال).
+
+## التحقق
+
+- اختبار وظيفي معزول لـ `PluginManager` (استقبال الأحداث، رفض الأسماء الناقصة/المكررة، `list()`، عزل فشل plugin واحد عن الباقي) — كله عدى.
+- اختبار end-to-end حقيقي: تسجيل plugin اختباري فعلي قبل الإقلاع، والتأكد إن `init()` استقبل الـ context الصح (eventBus + الخدمات التلاتة)، وإن `APP_READY` وصل للـ plugin فعليًا بعد إقلاع كامل ناجح، وإن الـ payload بتاعه بيسرد الـ plugin المسجّل — **30/30** فحص نجح.
+
+## الحالة النهائية
+
+كل بنود `MIGRATION_REPORT.md` الأصلية اتنفذت: CacheManager، Logger + ErrorManager، Search Engine متقدم، Graph Algorithms، Plugin System. مفيش نقطة استئناف معلّقة حاليًا.

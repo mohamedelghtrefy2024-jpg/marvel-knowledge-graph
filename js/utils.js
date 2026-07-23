@@ -43,5 +43,25 @@ const Utils = {
 
   cacheKey(title, type){
     return type + ':' + String(title).toLowerCase();
+  },
+
+  /**
+   * بيملأ container بنص text، مع تظليل أول ظهور لـ query جواه (case-insensitive)
+   * داخل <mark> — بأمان (بدون innerHTML، نفس قاعدة منع الـ XSS). لو query مش
+   * موجودة فعليًا كـ substring في text (حالة تطابق fuzzy بحت)، بيتحط النص عادي
+   * من غير تظليل، لأنه مفيش جزء واضح نظلّله.
+   */
+  renderHighlighted(container, text, query){
+    container.textContent = '';
+    const q = (query || '').trim();
+    if(!q){ container.appendChild(document.createTextNode(text)); return; }
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if(idx === -1){ container.appendChild(document.createTextNode(text)); return; }
+    if(idx > 0) container.appendChild(document.createTextNode(text.slice(0, idx)));
+    const mark = document.createElement('mark');
+    mark.className = 'search-highlight';
+    mark.textContent = text.slice(idx, idx + q.length);
+    container.appendChild(mark);
+    if(idx + q.length < text.length) container.appendChild(document.createTextNode(text.slice(idx + q.length)));
   }
 };

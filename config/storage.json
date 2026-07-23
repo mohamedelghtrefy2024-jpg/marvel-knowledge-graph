@@ -11,7 +11,8 @@
     "tmdbCache": "marvelmap_cache_v2",
     "customNodes": "marvelmap_custom_nodes_v2",
     "customEdges": "marvelmap_custom_edges_v2",
-    "background": "marvelmap_bg_v2"
+    "background": "marvelmap_bg_v2",
+    "searchHistory": "marvelmap_search_history_v1"
   },
 
   "LEGACY_STORAGE_KEYS": {

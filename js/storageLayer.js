@@ -26,7 +26,7 @@ const StorageLayer = {
   // ---- TMDB cache ----
   loadTmdbCache(){
     try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.tmdbCache)) || {}; }
-    catch(e){ return {}; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة كاش TMDB من localStorage، هيتم البدء بكاش فاضي', e); return {}; }
   },
   saveTmdbCache(cache){
     localStorage.setItem(CONFIG.STORAGE_KEYS.tmdbCache, JSON.stringify(cache));
@@ -35,17 +35,25 @@ const StorageLayer = {
   // ---- Custom nodes/edges المضافة من المستخدم ----
   loadCustomNodes(){
     try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.customNodes)) || []; }
-    catch(e){ return []; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة العقد المخصصة من localStorage', e); return []; }
   },
   saveCustomNodes(nodes){
     localStorage.setItem(CONFIG.STORAGE_KEYS.customNodes, JSON.stringify(nodes));
   },
   loadCustomEdges(){
     try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.customEdges)) || []; }
-    catch(e){ return []; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة الروابط المخصصة من localStorage', e); return []; }
   },
   saveCustomEdges(edges){
     localStorage.setItem(CONFIG.STORAGE_KEYS.customEdges, JSON.stringify(edges));
+  },
+
+  loadSearchHistory(){
+    try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.searchHistory)) || []; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة سجل البحث من localStorage', e); return []; }
+  },
+  saveSearchHistory(history){
+    localStorage.setItem(CONFIG.STORAGE_KEYS.searchHistory, JSON.stringify(history));
   },
 
   // ---- الخلفية ----
@@ -93,7 +101,7 @@ const StorageLayer = {
         });
         this.saveCustomNodes(newCustomNodes);
       }
-    }catch(e){ /* تجاهل بيانات قديمة تالفة */ }
+    }catch(e){ Logger.warn('storageLayer', 'فشلت هجرة عقد مخصصة قديمة (v1)، هيتم تجاهلها', e); }
 
     // روابط مخصصة قديمة (from/to/reason بالـ title)
     try{
@@ -118,7 +126,7 @@ const StorageLayer = {
         });
         this.saveCustomEdges(newCustomEdges);
       }
-    }catch(e){ /* تجاهل بيانات قديمة تالفة */ }
+    }catch(e){ Logger.warn('storageLayer', 'فشلت هجرة روابط مخصصة قديمة (v1)، هيتم تجاهلها', e); }
 
     // خلفية قديمة
     try{
@@ -126,7 +134,7 @@ const StorageLayer = {
       if(legacyBg && !this.loadBackground()){
         this.saveBackground(legacyBg);
       }
-    }catch(e){ /* تجاهل */ }
+    }catch(e){ Logger.warn('storageLayer', 'فشلت هجرة الخلفية القديمة، هيتم تجاهلها', e); }
 
     localStorage.setItem('marvelmap_migrated_v2', '1');
     return { migratedNodes, migratedEdges };

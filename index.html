@@ -17,6 +17,8 @@
       <button id="viewRowsBtn" class="active">📺 صفوف</button>
       <button id="viewGraphBtn">🕸️ شبكة</button>
       <button id="metricsBtn">📊 إحصائيات</button>
+      <button id="shortestPathBtn">🧭 أقصر مسار</button>
+      <button id="networkAnalysisBtn">🕸️ تحليل الشبكة</button>
       <button id="addNodeBtn" class="primary">➕ إضافة فيلم/مسلسل</button>
       <button id="bgBtn">🖼️ تغيير الخلفية</button>
       <button id="bgResetBtn" title="رجوع للخلفية الافتراضية">↺ إزالة الخلفية</button>
@@ -27,9 +29,13 @@
     </div>
   </header>
   <div id="status">بيتحمّل...</div>
+  <div id="errorToast" class="error-toast" role="alert" hidden></div>
 
   <div id="filterBar">
-    <input type="text" id="globalSearchInput" placeholder="🔍 ابحث بالاسم في كل عناصر الخريطة...">
+    <div class="search-wrap">
+      <input type="text" id="globalSearchInput" placeholder="🔍 ابحث بالاسم في كل عناصر الخريطة...">
+      <div id="globalSearchDropdown" class="search-dropdown" hidden></div>
+    </div>
     <div id="typeFilterChips"></div>
   </div>
 
@@ -78,10 +84,34 @@
   </div>
 </div>
 
+<div class="overlay" id="shortestPathModal">
+  <div class="modal">
+    <button class="modal-close" id="shortestPathModalClose">×</button>
+    <h3>🧭 أقصر مسار بين عنصرين</h3>
+    <label class="sp-label">من:</label>
+    <input type="text" id="spFromSearch" placeholder="دوّر باسم عنصر...">
+    <div id="spFromResults" class="sp-results"></div>
+    <label class="sp-label">إلى:</label>
+    <input type="text" id="spToSearch" placeholder="دوّر باسم عنصر...">
+    <div id="spToResults" class="sp-results"></div>
+    <button class="primary" id="spCalcBtn" style="width:100%;">🧭 احسب المسار</button>
+    <div id="spResultBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="networkAnalysisModal">
+  <div class="modal">
+    <button class="modal-close" id="networkAnalysisModalClose">×</button>
+    <h3>🕸️ تحليل الشبكة</h3>
+    <div id="networkAnalysisBody"></div>
+  </div>
+</div>
+
 <!-- ============================================================
      ترتيب تحميل الطبقات مهم: كل طبقة بتعتمد على اللي قبلها.
      config/utils → storage → knowledge → business/graph → render → app
      ============================================================ -->
+<script src="js/logger.js"></script>
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/storageLayer.js"></script>
@@ -89,6 +119,23 @@
 <script src="js/businessLayer.js"></script>
 <script src="js/graphLayer.js"></script>
 <script src="js/renderLayer.js"></script>
+<!-- ============================================================
+     نظام الـ Plugins (أساس فقط، بدون أي plugin فعلي حاليًا):
+     أي حد عايز يضيف plugin، يسجّله هنا (أو في سكريبت خارجي منفصل يتحط
+     مكان الكومنت ده) قبل ما app.js يشتغل. app.js بيقرأ من
+     window.MarvelMapPlugins ويعمل init() لكل واحد بعد ما التطبيق يجهز
+     بالكامل. التفاصيل والـ context المتاح موثّقة في src/core/PluginManager.js.
+
+     مثال (معطّل — احذف التعليق عشان تجرّبه):
+     window.MarvelMapPlugins = window.MarvelMapPlugins || [];
+     window.MarvelMapPlugins.push({
+       name: 'console-logger-example',
+       init({ eventBus }){
+         eventBus.on('node:added', ({ node })=> console.log('عقدة جديدة اتضافت:', node.title));
+       }
+     });
+     ============================================================ -->
+<script>window.MarvelMapPlugins = window.MarvelMapPlugins || [];</script>
 <script src="js/app.js"></script>
 </body>
 </html>

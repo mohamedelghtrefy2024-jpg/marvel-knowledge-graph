@@ -2,13 +2,24 @@
 // EventBus (src/core)
 // Pub/Sub بسيط: on/once/off/emit/clear. عزل أخطاء أي مشترك (handler)
 // عن الباقي — لو مشترك واحد رمى استثناء، الباقي لازم يكملوا يشتغلوا.
+//
+// ملاحظة: بتستخدم Logger مباشرة (مش ErrorManager) لتسجيل أخطاء
+// المشتركين، عشان نتجنب اعتمادية دائرية (ErrorManager.report بيبث عبر
+// نفس الـ EventBus؛ لو مشترك فاشل هو نفسه اللي بيسمع APP_ERROR ممكن
+// نلف في حلقة). EventBus هو أساس النظام، فمينفعش يعتمد على خدمة فوقه.
 // ============================================================
+
+import { Logger } from './Logger.js';
 
 export const SYSTEM_EVENTS = Object.freeze({
   BACKGROUND_CHANGED: 'background:changed',
   APP_ERROR: 'app:error',
   DATA_IMPORTED: 'data:imported',
-  DATA_EXPORTED: 'data:exported'
+  DATA_EXPORTED: 'data:exported',
+  CACHE_CLEARED: 'cache:cleared',
+  APP_READY: 'app:ready',
+  NODE_ADDED: 'node:added',
+  EDGE_ADDED: 'edge:added'
 });
 
 export class EventBus {
@@ -66,7 +77,7 @@ export class EventBus {
       try{
         entry.handler(payload);
       }catch(err){
-        console.error(`[EventBus] خطأ في مشترك للحدث "${eventName}":`, err);
+        Logger.error('EventBus', `خطأ في مشترك للحدث "${eventName}":`, err);
       }finally{
         if(entry.once) set.delete(entry);
       }

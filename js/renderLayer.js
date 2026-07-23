@@ -7,10 +7,11 @@
 // بـ textContent مش innerHTML، عشان نمنع XSS.
 // ============================================================
 
-function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
+function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus: injectedEventBus }){
 
   const rowsView = document.getElementById('rowsView');
   const statusEl = document.getElementById('status');
+  const errorToastEl = document.getElementById('errorToast');
   const graphView = document.getElementById('graphView');
   const detailOverlay = document.getElementById('detailOverlay');
   const detailBody = document.getElementById('detailBody');
@@ -24,10 +25,22 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   const linkTargetResults = document.getElementById('linkTargetResults');
   const linkReasonInput = document.getElementById('linkReasonInput');
   const globalSearchInput = document.getElementById('globalSearchInput');
+  const globalSearchDropdown = document.getElementById('globalSearchDropdown');
   const typeFilterChips = document.getElementById('typeFilterChips');
   const metricsBtn = document.getElementById('metricsBtn');
   const metricsModal = document.getElementById('metricsModal');
   const metricsBody = document.getElementById('metricsBody');
+  const shortestPathBtn = document.getElementById('shortestPathBtn');
+  const shortestPathModal = document.getElementById('shortestPathModal');
+  const spFromSearch = document.getElementById('spFromSearch');
+  const spFromResults = document.getElementById('spFromResults');
+  const spToSearch = document.getElementById('spToSearch');
+  const spToResults = document.getElementById('spToResults');
+  const spCalcBtn = document.getElementById('spCalcBtn');
+  const spResultBody = document.getElementById('spResultBody');
+  const networkAnalysisBtn = document.getElementById('networkAnalysisBtn');
+  const networkAnalysisModal = document.getElementById('networkAnalysisModal');
+  const networkAnalysisBody = document.getElementById('networkAnalysisBody');
   const exportDataBtn = document.getElementById('exportDataBtn');
   const importDataBtn = document.getElementById('importDataBtn');
   const importDataFileInput = document.getElementById('importDataFileInput');
@@ -43,7 +56,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   function getSearchService(){
     if(!searchServicePromise){
       searchServicePromise = import('../src/services/SearchService.js')
-        .then(({ SearchService })=> new SearchService({ knowledgeLayer }));
+        .then(({ SearchService })=> new SearchService({ knowledgeLayer, storageLayer: StorageLayer }));
     }
     return searchServicePromise;
   }
@@ -69,6 +82,60 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
         .then(({ GraphService })=> new GraphService({ graphLayer }));
     }
     return graphServicePromise;
+  }
+
+  /**
+   * دالة عامة بتربط أي input بمحرك SearchService (fuzzy + ترتيب + تظليل +
+   * سجل بحث مشترك) وبتعرض النتائج جوه resultsEl. مستخدمة في مودال الربط
+   * اليدوي ومودال أقصر مسار (من/إلى) — بدل تكرار نفس المنطق 3 مرات.
+   * @param {HTMLInputElement} inputEl
+   * @param {HTMLElement} resultsEl
+   * @param {(node)=>void} onPick بتتنادى لما المستخدم يختار عقدة من النتائج
+   * @param {{excludeTitle?: ()=>(string|null)}} [options] excludeTitle دالة (مش قيمة ثابتة) عشان تتقيّم وقت البحث
+   */
+  function wireNodeSearchInput(inputEl, resultsEl, onPick, { excludeTitle } = {}){
+    inputEl.oninput = async ()=>{
+      const q = inputEl.value.trim();
+      onPick(null); // أي اختيار سابق بيتلغي فورًا لحد ما يختار نتيجة جديدة (زي السلوك الأصلي)
+      resultsEl.innerHTML = '';
+      if(q.length < 1) return;
+      const searchService = await getSearchService();
+      const matches = searchService.searchByTitle(q, {
+        excludeTitle: excludeTitle ? excludeTitle() : null,
+        limit: 15
+      });
+      if(!matches.length){
+        resultsEl.appendChild(Utils.createTextEl('div', 'مفيش نتايج', ''));
+        return;
+      }
+      matches.forEach(n=>{
+        const opt = document.createElement('div');
+        opt.className = 'link-target-option';
+        Utils.renderHighlighted(opt, n.title, q);
+        opt.onclick = async ()=>{
+          resultsEl.querySelectorAll('.link-target-option').forEach(o=>o.classList.remove('picked'));
+          opt.classList.add('picked');
+          onPick(n);
+          const svc = await getSearchService();
+          svc.recordSearch(q);
+        };
+        resultsEl.appendChild(opt);
+      });
+    };
+
+    inputEl.onfocus = async ()=>{
+      if(inputEl.value.trim().length > 0) return;
+      const searchService = await getSearchService();
+      const history = searchService.getHistory();
+      resultsEl.innerHTML = '';
+      if(!history.length) return;
+      resultsEl.appendChild(Utils.createTextEl('div', 'بحث سابق', 'search-dropdown-label'));
+      history.forEach(h=>{
+        const opt = Utils.createTextEl('div', h, 'link-target-option');
+        opt.onclick = ()=>{ inputEl.value = h; inputEl.oninput(); };
+        resultsEl.appendChild(opt);
+      });
+    };
   }
 
   async function initFilterBar(){
@@ -100,8 +167,80 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
     const searchService = await getSearchService();
     searchService.setQuery(globalSearchInput.value);
     applyFilters();
+    await renderGlobalSearchDropdown();
   }, 250);
   globalSearchInput.oninput = onSearchInput;
+
+  globalSearchInput.onfocus = ()=> renderGlobalSearchDropdown();
+  globalSearchInput.onblur = ()=>{
+    // تأخير بسيط عشان نداء onclick بتاع عنصر جوّه الـ dropdown يتنفذ الأول
+    setTimeout(()=>{ globalSearchDropdown.hidden = true; }, 150);
+  };
+  globalSearchInput.onkeydown = async (e)=>{
+    if(e.key === 'Enter'){
+      const searchService = await getSearchService();
+      searchService.recordSearch(globalSearchInput.value);
+      globalSearchDropdown.hidden = true;
+    } else if(e.key === 'Escape'){
+      globalSearchDropdown.hidden = true;
+      globalSearchInput.blur();
+    }
+  };
+
+  /**
+   * بيعرض إما سجل البحث السابق (لو المربع فاضي) أو أفضل النتائج المرتّبة
+   * (لو فيه استعلام)، مع تظليل جزء التطابق. الضغط على نتيجة بيفتح تفاصيلها
+   * مباشرة؛ الضغط على عنصر من السجل بيعيد تشغيل نفس الاستعلام.
+   */
+  async function renderGlobalSearchDropdown(){
+    const searchService = await getSearchService();
+    const q = globalSearchInput.value.trim();
+    globalSearchDropdown.innerHTML = '';
+
+    if(q.length === 0){
+      const history = searchService.getHistory();
+      if(!history.length){ globalSearchDropdown.hidden = true; return; }
+      globalSearchDropdown.appendChild(Utils.createTextEl('div', 'بحث سابق', 'search-dropdown-label'));
+      history.forEach(h=>{
+        const item = Utils.createTextEl('div', h, 'search-dropdown-item');
+        item.onclick = async ()=>{
+          globalSearchInput.value = h;
+          const svc = await getSearchService();
+          svc.setQuery(h);
+          svc.recordSearch(h);
+          applyFilters();
+          globalSearchDropdown.hidden = true;
+        };
+        globalSearchDropdown.appendChild(item);
+      });
+      globalSearchDropdown.hidden = false;
+      return;
+    }
+
+    const results = searchService.searchByTitle(q, { limit: 8 });
+    if(!results.length){
+      globalSearchDropdown.appendChild(Utils.createTextEl('div', 'مفيش نتائج مطابقة', 'search-dropdown-empty'));
+      globalSearchDropdown.hidden = false;
+      return;
+    }
+    results.forEach(node=>{
+      const item = document.createElement('div');
+      item.className = 'search-dropdown-item';
+      const titleEl = document.createElement('span');
+      Utils.renderHighlighted(titleEl, node.title, q);
+      const typeEl = Utils.createTextEl('span', typeLabel(node.type), 'sdi-type');
+      item.appendChild(titleEl);
+      item.appendChild(typeEl);
+      item.onclick = async ()=>{
+        const svc = await getSearchService();
+        svc.recordSearch(q);
+        globalSearchDropdown.hidden = true;
+        openDetail(node);
+      };
+      globalSearchDropdown.appendChild(item);
+    });
+    globalSearchDropdown.hidden = false;
+  }
 
   function applyFilters(){
     renderRows();
@@ -120,10 +259,43 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   let eventBusPromise = null;
   function getEventBus(){
     if(!eventBusPromise){
-      eventBusPromise = import('../src/core/EventBus.js').then(({ EventBus })=> new EventBus());
+      eventBusPromise = injectedEventBus
+        ? Promise.resolve(injectedEventBus)
+        : import('../src/core/EventBus.js').then(({ EventBus })=> new EventBus());
     }
     return eventBusPromise;
   }
+
+  // ---------------- ErrorManager + toast الأخطاء ----------------
+  // بتستخدم نفس الـ eventBus المشترك فوق — لو app.js حقن eventBus، فأي
+  // خطأ اتبلّغ من businessLayer (عبر errorManager المحقون هناك) هيوصل
+  // هنا كمان ويتعرض كـ toast، من غير ما renderLayer يعرف حاجة عن مصدره.
+  let errorManagerPromise = null;
+  function getErrorManager(){
+    if(!errorManagerPromise){
+      errorManagerPromise = Promise.all([
+        getEventBus(),
+        import('../src/services/ErrorManager.js')
+      ]).then(([bus, { ErrorManager }])=> new ErrorManager({ eventBus: bus }));
+    }
+    return errorManagerPromise;
+  }
+
+  let errorToastTimer = null;
+  function showErrorToast(message){
+    if(!errorToastEl) return;
+    errorToastEl.textContent = message;
+    errorToastEl.hidden = false;
+    clearTimeout(errorToastTimer);
+    errorToastTimer = setTimeout(()=>{ errorToastEl.hidden = true; }, 6000);
+  }
+
+  async function initErrorToast(){
+    const bus = await getEventBus();
+    const { SYSTEM_EVENTS } = await import('../src/core/EventBus.js');
+    bus.on(SYSTEM_EVENTS.APP_ERROR, ({ userMessage })=> showErrorToast(userMessage));
+  }
+  initErrorToast();
 
   let backgroundServicePromise = null;
   function getBackgroundService(){
@@ -509,6 +681,98 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   document.getElementById('metricsModalClose').onclick = ()=> metricsModal.classList.remove('show');
   metricsModal.onclick = (e)=>{ if(e.target===metricsModal) metricsModal.classList.remove('show'); };
 
+  // ---------------- أقصر مسار بين عنصرين ----------------
+  let spFromPicked = null;
+  let spToPicked = null;
+
+  wireNodeSearchInput(spFromSearch, spFromResults, (n)=>{ spFromPicked = n; });
+  wireNodeSearchInput(spToSearch, spToResults, (n)=>{ spToPicked = n; }, {
+    excludeTitle: ()=> spFromPicked ? spFromPicked.title : null
+  });
+
+  shortestPathBtn.onclick = ()=>{
+    spFromPicked = null; spToPicked = null;
+    spFromSearch.value = ''; spToSearch.value = '';
+    spFromResults.innerHTML = ''; spToResults.innerHTML = '';
+    spResultBody.innerHTML = '';
+    shortestPathModal.classList.add('show');
+    spFromSearch.focus();
+  };
+  document.getElementById('shortestPathModalClose').onclick = ()=> shortestPathModal.classList.remove('show');
+  shortestPathModal.onclick = (e)=>{ if(e.target===shortestPathModal) shortestPathModal.classList.remove('show'); };
+
+  spCalcBtn.onclick = async ()=>{
+    spResultBody.innerHTML = '';
+    if(!spFromPicked || !spToPicked){
+      spResultBody.appendChild(Utils.createTextEl('div', 'لازم تختار عنصر "من" وعنصر "إلى" الأول (من نتائج البحث).', 'sp-no-path'));
+      return;
+    }
+    const graphService = await getGraphService();
+    const path = graphService.shortestPath(spFromPicked.id, spToPicked.id);
+    if(!path){
+      spResultBody.appendChild(Utils.createTextEl(
+        'div',
+        `مفيش مسار متصل بين "${spFromPicked.title}" و"${spToPicked.title}" في الشبكة الحالية.`,
+        'sp-no-path'
+      ));
+      return;
+    }
+    const chain = document.createElement('div');
+    chain.className = 'sp-path-chain';
+    path.forEach((node, i)=>{
+      if(i > 0) chain.appendChild(Utils.createTextEl('span', '←', 'sp-path-arrow'));
+      const chip = Utils.createTextEl('span', node.title, 'sp-path-node');
+      chip.onclick = ()=>{ shortestPathModal.classList.remove('show'); openDetail(node); };
+      chain.appendChild(chip);
+    });
+    spResultBody.appendChild(Utils.createTextEl('div', `المسافة: ${path.length - 1} علاقة`, 'sp-label'));
+    spResultBody.appendChild(chain);
+  };
+
+  // ---------------- تحليل الشبكة (مكوّنات متصلة + كشف دورات) ----------------
+  async function renderNetworkAnalysis(){
+    networkAnalysisBody.innerHTML = '';
+    const graphService = await getGraphService();
+    const hasCycle = graphService.hasCycle();
+    const components = graphService.connectedComponents();
+
+    const summary = document.createElement('div');
+    summary.className = 'metrics-summary';
+    [
+      { num: components.length, label: components.length === 1 ? 'مكوّن متصل واحد (الشبكة كلها متصلة)' : 'مكوّنات متصلة منفصلة' },
+      { num: hasCycle ? 'نعم' : 'لا', label: 'فيه دورة (cycle) في الشبكة؟' }
+    ].forEach(item=>{
+      const div = document.createElement('div');
+      div.className = 'metrics-summary-item';
+      div.appendChild(Utils.createTextEl('div', String(item.num), 'num'));
+      div.appendChild(Utils.createTextEl('div', item.label, 'label'));
+      summary.appendChild(div);
+    });
+    networkAnalysisBody.appendChild(summary);
+
+    if(components.length > 1){
+      const section = document.createElement('div');
+      section.className = 'metrics-section';
+      section.appendChild(Utils.createTextEl('h4', `تفاصيل المكوّنات (${components.length}) — الشبكة مجزّأة لأجزاء غير متصلة ببعض`));
+      components.forEach((component, i)=>{
+        const item = document.createElement('div');
+        item.className = 'na-component-item';
+        item.appendChild(Utils.createTextEl('div', `مكوّن ${i + 1} — ${component.length} عنصر`, 'na-component-size'));
+        const namesPreview = component.slice(0, 8).map(n=> n.title).join('، ') + (component.length > 8 ? ' ...' : '');
+        item.appendChild(Utils.createTextEl('div', namesPreview, 'na-component-members'));
+        section.appendChild(item);
+      });
+      networkAnalysisBody.appendChild(section);
+    }
+  }
+
+  networkAnalysisBtn.onclick = async ()=>{
+    await renderNetworkAnalysis();
+    networkAnalysisModal.classList.add('show');
+  };
+  document.getElementById('networkAnalysisModalClose').onclick = ()=> networkAnalysisModal.classList.remove('show');
+  networkAnalysisModal.onclick = (e)=>{ if(e.target===networkAnalysisModal) networkAnalysisModal.classList.remove('show'); };
+
   // ---------------- تبديل العرض ----------------
   const viewRowsBtn = document.getElementById('viewRowsBtn');
   const viewGraphBtn = document.getElementById('viewGraphBtn');
@@ -603,27 +867,9 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
   document.getElementById('linkModalClose').onclick = ()=> linkModal.classList.remove('show');
   linkModal.onclick = (e)=>{ if(e.target===linkModal) linkModal.classList.remove('show'); };
 
-  linkTargetSearch.oninput = async ()=>{
-    const q = linkTargetSearch.value.trim();
-    linkPickedTarget = null;
-    linkTargetResults.innerHTML = '';
-    if(q.length < 1) return;
-    const searchService = await getSearchService();
-    const matches = searchService.searchByTitle(q, { excludeTitle: linkFromNode.title, limit: 15 });
-    if(!matches.length){
-      linkTargetResults.appendChild(Utils.createTextEl('div', 'مفيش نتايج', ''));
-      return;
-    }
-    matches.forEach(n=>{
-      const opt = Utils.createTextEl('div', n.title, 'link-target-option');
-      opt.onclick = ()=>{
-        linkTargetResults.querySelectorAll('.link-target-option').forEach(o=>o.classList.remove('picked'));
-        opt.classList.add('picked');
-        linkPickedTarget = n;
-      };
-      linkTargetResults.appendChild(opt);
-    });
-  };
+  wireNodeSearchInput(linkTargetSearch, linkTargetResults, (n)=>{ linkPickedTarget = n; }, {
+    excludeTitle: ()=> linkFromNode ? linkFromNode.title : null
+  });
 
   document.getElementById('confirmLinkBtn').onclick = ()=>{
     if(!linkPickedTarget || !linkReasonInput.value.trim()){
@@ -691,7 +937,11 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer }){
         await renderRows();
         if(graphView.style.display !== 'none') await renderGraph();
       }catch(err){
-        alert('حصل خطأ أثناء الاستيراد: ' + err.message);
+        const errorManager = await getErrorManager();
+        errorManager.report(err, {
+          scope: 'renderLayer:import',
+          userMessage: 'تعذّر استيراد الملف: ' + err.message
+        });
       }finally{
         importDataFileInput.value = '';
       }

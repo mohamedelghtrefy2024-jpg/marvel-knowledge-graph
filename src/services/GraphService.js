@@ -19,4 +19,16 @@ export class GraphService {
   buildGraphData(){
     return this._graphLayer.buildGraphData();
   }
+
+  shortestPath(fromId, toId){
+    return this._graphLayer.shortestPath(fromId, toId);
+  }
+
+  connectedComponents(){
+    return this._graphLayer.connectedComponents();
+  }
+
+  hasCycle(){
+    return this._graphLayer.hasCycle();
+  }
 }

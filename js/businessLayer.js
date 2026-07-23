@@ -4,16 +4,14 @@
 // يعتمد على StorageLayer وKnowledgeLayer، ولا يلمس DOM إطلاقًا.
 // ============================================================
 
-function createBusinessLayer(knowledgeLayer){
-  let tmdbCache = StorageLayer.loadTmdbCache();
-
+function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBus){
   async function fetchTmdbData(title, type){
     // النوع الوحيد المدعوم من TMDB هو movie/tv؛ أي نوع تاني (character, artifact...) مفيش له بيانات TMDB
     if(type !== 'movie' && type !== 'tv'){
       return { title, poster: null, overview: '', date: '', id: null };
     }
     const key = Utils.cacheKey(title, type);
-    if(tmdbCache[key]) return tmdbCache[key];
+    if(cacheManager.has(key)) return cacheManager.get(key);
 
     const endpoint = type === 'tv' ? 'search/tv' : 'search/movie';
     try{
@@ -33,10 +31,10 @@ function createBusinessLayer(knowledgeLayer){
         date: item.release_date || item.first_air_date || '',
         id: item.id
       } : { title, poster: null, overview: 'مفيش بيانات متاحة من TMDB لهذا العنوان.', date: '', id: null };
-      tmdbCache[key] = result;
-      StorageLayer.saveTmdbCache(tmdbCache);
+      cacheManager.set(key, result);
       return result;
     }catch(e){
+      Logger.warn('businessLayer', `فشل الاتصال بـ TMDB لعنصر "${title}"`, e);
       return { title, poster: null, overview: 'تعذّر الاتصال بـ TMDB.', date: '', id: null };
     }
   }
@@ -55,6 +53,7 @@ function createBusinessLayer(knowledgeLayer){
           poster: r.poster_path ? CONFIG.TMDB_IMG_SMALL + r.poster_path : null
         }));
     }catch(e){
+      Logger.warn('businessLayer', `فشل بحث TMDB متعدد بالنص "${query}"`, e);
       return null; // null يعني خطأ اتصال، مختلف عن [] (لا نتائج)
     }
   }
@@ -80,9 +79,17 @@ function createBusinessLayer(knowledgeLayer){
       attributes: {}
     };
     knowledgeLayer.addCustomNode(node);
-    const custom = StorageLayer.loadCustomNodes();
-    custom.push(node);
-    StorageLayer.saveCustomNodes(custom);
+    try{
+      const custom = StorageLayer.loadCustomNodes();
+      custom.push(node);
+      StorageLayer.saveCustomNodes(custom);
+    }catch(e){
+      errorManager.report(e, {
+        scope: 'businessLayer:addMovieOrTvNode',
+        userMessage: 'العنصر ظهر على الشاشة بس تعذّر حفظه — لو عملت تحديث للصفحة ممكن يختفي (مساحة التخزين في المتصفح ممتلئة؟).'
+      });
+    }
+    if(eventBus) eventBus.emit('node:added', { node }); // = SYSTEM_EVENTS.NODE_ADDED في src/core/EventBus.js
     return node;
   }
 
@@ -97,9 +104,17 @@ function createBusinessLayer(knowledgeLayer){
       source: null
     };
     knowledgeLayer.addCustomEdge(edge);
-    const custom = StorageLayer.loadCustomEdges();
-    custom.push(edge);
-    StorageLayer.saveCustomEdges(custom);
+    try{
+      const custom = StorageLayer.loadCustomEdges();
+      custom.push(edge);
+      StorageLayer.saveCustomEdges(custom);
+    }catch(e){
+      errorManager.report(e, {
+        scope: 'businessLayer:addManualEdge',
+        userMessage: 'الرابط ظهر على الشاشة بس تعذّر حفظه — لو عملت تحديث للصفحة ممكن يختفي (مساحة التخزين في المتصفح ممتلئة؟).'
+      });
+    }
+    if(eventBus) eventBus.emit('edge:added', { edge }); // = SYSTEM_EVENTS.EDGE_ADDED في src/core/EventBus.js
     return edge;
   }
 

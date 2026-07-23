@@ -28,13 +28,22 @@
     // 5) فحص سلامة البيانات (لا يوقف التشغيل، فقط تحذير في الـ console)
     const issues = knowledgeLayer.validateIntegrity();
     if(issues.length){
-      console.warn(`[data-integrity] تم اكتشاف ${issues.length} ملاحظة:`, issues);
+      Logger.warn('data-integrity', `تم اكتشاف ${issues.length} ملاحظة:`, issues);
     }
 
     // 6) تجهيز باقي الطبقات
-    const businessLayer = createBusinessLayer(knowledgeLayer);
+    // EventBus instance واحد مشترك بين كل الطبقات (businessLayer + renderLayer)
+    // عشان أخطاء ErrorManager المُبلَّغة من أي طبقة توصل لنفس المشترك (toast) في renderLayer.
+    const { EventBus } = await import('../src/core/EventBus.js');
+    const eventBus = new EventBus();
+    const { ErrorManager } = await import('../src/services/ErrorManager.js');
+    const errorManager = new ErrorManager({ eventBus });
+
+    const { CacheManager } = await import('../src/services/CacheManager.js');
+    const cacheManager = new CacheManager({ storageLayer: StorageLayer, eventBus });
+    const businessLayer = createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBus);
     const graphLayer = createGraphLayer(knowledgeLayer);
-    const renderLayer = createRenderLayer({ knowledgeLayer, businessLayer, graphLayer });
+    const renderLayer = createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus });
 
     // 7) تشغيل الواجهة
     await renderLayer.applyBackground();
@@ -43,10 +52,33 @@
     await renderLayer.renderRows();
 
     if(migrationResult.migratedNodes || migrationResult.migratedEdges){
-      console.info(`[migration] تم ترحيل ${migrationResult.migratedNodes} عقدة و ${migrationResult.migratedEdges} علاقة من النسخة القديمة.`);
+      Logger.info('migration', `تم ترحيل ${migrationResult.migratedNodes} عقدة و ${migrationResult.migratedEdges} علاقة من النسخة القديمة.`);
     }
+
+    // 8) نظام الـ plugins (أساس فقط، بدون أي plugin فعلي حاليًا) — أي
+    // plugin اتسجّل مسبقًا في window.MarvelMapPlugins (عبر سكريبت قبل
+    // app.js) بيتحمّل init() بتاعته هنا، بعد ما التطبيق بقى جاهز فعليًا.
+    const { PluginManager } = await import('../src/core/PluginManager.js');
+    const pluginManager = new PluginManager({ eventBus });
+    const { KnowledgeService } = await import('../src/services/KnowledgeService.js');
+    const { GraphService } = await import('../src/services/GraphService.js');
+    const { SearchService } = await import('../src/services/SearchService.js');
+    const pluginContext = {
+      knowledgeService: new KnowledgeService({ knowledgeLayer }),
+      graphService: new GraphService({ graphLayer }),
+      searchService: new SearchService({ knowledgeLayer, storageLayer: StorageLayer })
+    };
+    (window.MarvelMapPlugins || []).forEach(plugin=>{
+      try{ pluginManager.register(plugin); }
+      catch(e){ Logger.error('plugin-registration', e); }
+    });
+    await pluginManager.initAll(pluginContext);
+    eventBus.emit('app:ready', { pluginsLoaded: pluginManager.list() }); // = SYSTEM_EVENTS.APP_READY
   }catch(err){
-    console.error(err);
+    // فشل هنا معناه إن التحميل الأساسي (nodes/edges/config) نفسه فشل — renderLayer
+    // لسه مش موجود أصلًا في الحالة دي، فمفيش toast ممكن نعرضه؛ statusEl هو
+    // القناة الوحيدة المتاحة لإبلاغ المستخدم في هذه اللحظة تحديدًا.
+    Logger.error('app:bootstrap', err);
     statusEl.textContent = 'حصل خطأ أثناء تحميل البيانات. تفاصيل الخطأ في الـ console.';
   }
 })();
