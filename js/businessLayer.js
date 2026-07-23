@@ -76,7 +76,8 @@ function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBu
       title,
       group,
       tmdbId: null,
-      attributes: {}
+      attributes: {},
+      createdAt: Date.now()
     };
     knowledgeLayer.addCustomNode(node);
     try{
@@ -101,7 +102,8 @@ function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBu
       type: type || 'connected_to',
       direction: 'directed',
       description,
-      source: null
+      source: null,
+      createdAt: Date.now()
     };
     knowledgeLayer.addCustomEdge(edge);
     try{

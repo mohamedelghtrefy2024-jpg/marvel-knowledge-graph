@@ -83,12 +83,23 @@ export class SearchService {
     this._storageLayer = storageLayer || null;
     this._query = '';
     this._activeTypes = null; // null = لسه initTypes ما اتنادتش، كل الأنواع فعّالة
+    this._activeGroups = null; // null = لسه initGroups ما اتنادتش، كل المجموعات فعّالة (بما فيها بدون مجموعة)
+    this._minConnections = 0;
     this._history = this._storageLayer ? this._storageLayer.loadSearchHistory() : [];
   }
 
   /** بتتنادى مرة عند بناء شريط الفلاتر — بتفعّل كل الأنواع الموجودة فعليًا. */
   initTypes(typesPresent){
     this._activeTypes = new Set(typesPresent);
+  }
+
+  /**
+   * بتتنادى مرة عند بناء الفلاتر المتقدمة — بتفعّل كل المجموعات الزمنية
+   * الموجودة فعليًا، زائد المفتاح الخاص '__none__' اللي بيمثّل "بدون مجموعة
+   * زمنية" (شخصيات/منظمات/إلخ).
+   */
+  initGroups(groupIds){
+    this._activeGroups = new Set(groupIds);
   }
 
   setQuery(rawQuery){
@@ -108,19 +119,65 @@ export class SearchService {
     return this._activeTypes === null || this._activeTypes.has(type);
   }
 
-  /** بتستخدم نفس محرك الدرجات (scoreMatch) — أي تطابق fuzzy بقى بيعتبر matches() = true. */
-  matches(node){
-    const matchesQuery = this._query === '' || scoreMatch(node.title, this._query) > 0;
-    const matchesType = this._activeTypes === null || this._activeTypes.has(node.type);
-    return matchesQuery && matchesType;
+  toggleGroup(groupKey){
+    if(this._activeGroups === null) return;
+    if(this._activeGroups.has(groupKey)){
+      this._activeGroups.delete(groupKey);
+    } else {
+      this._activeGroups.add(groupKey);
+    }
   }
 
-  /** بيرجّع true لو فيه فلترة فعليًا شغّالة (بحث نصي أو نوع مستبعد). */
+  isGroupActive(groupKey){
+    return this._activeGroups === null || this._activeGroups.has(groupKey);
+  }
+
+  /** حد أدنى لعدد العلاقات (degree) عشان العقدة تظهر — 0 = من غير فلترة. */
+  setMinConnections(count){
+    this._minConnections = Math.max(0, Number(count) || 0);
+  }
+
+  getMinConnections(){
+    return this._minConnections;
+  }
+
+  /**
+   * تطابق "شبه دلالي": بيدوّر مش بس في عنوان العقدة، لكن كمان في وصف
+   * (description) أي علاقة متصلة بيها — يعني بحث زي "نيك فيوري" أو "حجر
+   * الزمن" ممكن يلاقي عقدة عنوانها مش فيه الكلمة دي أصلًا، لو العلاقة اللي
+   * بتوصلها بعقدة تانية بتوصف الحدث ده. ده مش NLP حقيقي (مفيش استنتاج علاقات
+   * أو فهم سياق)، لكنه فعليًا بيوسّع نطاق البحث لمحتوى العلاقات مش العناوين بس.
+   */
+  _matchesSemantically(node, query){
+    if(scoreMatch(node.title, query) > 0) return true;
+    const edges = this._knowledgeLayer.getEdgesForNode(node.id);
+    return edges.some(({ edge })=> edge.description && edge.description.toLowerCase().includes(query));
+  }
+
+  /** بتستخدم نفس محرك الدرجات (scoreMatch) — أي تطابق fuzzy بقى بيعتبر matches() = true. */
+  matches(node){
+    const matchesQuery = this._query === '' || this._matchesSemantically(node, this._query);
+    const matchesType = this._activeTypes === null || this._activeTypes.has(node.type);
+    const groupKey = node.group || '__none__';
+    const matchesGroup = this._activeGroups === null || this._activeGroups.has(groupKey);
+    const matchesConnections = this._minConnections === 0
+      || this._knowledgeLayer.getEdgesForNode(node.id).length >= this._minConnections;
+    return matchesQuery && matchesType && matchesGroup && matchesConnections;
+  }
+
+  /** بيرجّع true لو فيه فلترة فعليًا شغّالة (بحث نصي، نوع مستبعد، مجموعة مستبعدة، أو حد أدنى علاقات). */
   isFilterActive(){
     if(this._query) return true;
-    if(this._activeTypes === null) return false;
-    const allTypes = new Set(this._knowledgeLayer.getAllNodes().map(n=> n.type));
-    return this._activeTypes.size < allTypes.size;
+    if(this._minConnections > 0) return true;
+    if(this._activeTypes !== null){
+      const allTypes = new Set(this._knowledgeLayer.getAllNodes().map(n=> n.type));
+      if(this._activeTypes.size < allTypes.size) return true;
+    }
+    if(this._activeGroups !== null){
+      const allGroups = new Set(this._knowledgeLayer.getAllNodes().map(n=> n.group || '__none__'));
+      if(this._activeGroups.size < allGroups.size) return true;
+    }
+    return false;
   }
 
   /**

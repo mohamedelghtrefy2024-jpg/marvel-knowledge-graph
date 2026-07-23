@@ -50,6 +50,7 @@
     await renderLayer.populateGroupSelect();
     await renderLayer.initFilterBar();
     await renderLayer.renderRows();
+    await renderLayer.renderDashboard();
 
     if(migrationResult.migratedNodes || migrationResult.migratedEdges){
       Logger.info('migration', `تم ترحيل ${migrationResult.migratedNodes} عقدة و ${migrationResult.migratedEdges} علاقة من النسخة القديمة.`);

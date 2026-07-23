@@ -56,6 +56,24 @@ const StorageLayer = {
     localStorage.setItem(CONFIG.STORAGE_KEYS.searchHistory, JSON.stringify(history));
   },
 
+  // ---- المفضّلة (Bookmarks) — Dashboard ----
+  loadBookmarks(){
+    try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.bookmarks)) || []; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة المفضّلة من localStorage', e); return []; }
+  },
+  saveBookmarks(bookmarkIds){
+    localStorage.setItem(CONFIG.STORAGE_KEYS.bookmarks, JSON.stringify(bookmarkIds));
+  },
+
+  // ---- سجل مشاهدة العناصر (Continue Exploring / Recent History) — Dashboard ----
+  loadViewHistory(){
+    try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.viewHistory)) || []; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة سجل المشاهدة من localStorage', e); return []; }
+  },
+  saveViewHistory(history){
+    localStorage.setItem(CONFIG.STORAGE_KEYS.viewHistory, JSON.stringify(history));
+  },
+
   // ---- الخلفية ----
   loadBackground(){
     return localStorage.getItem(CONFIG.STORAGE_KEYS.background);

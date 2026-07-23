@@ -44,6 +44,25 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
   const exportDataBtn = document.getElementById('exportDataBtn');
   const importDataBtn = document.getElementById('importDataBtn');
   const importDataFileInput = document.getElementById('importDataFileInput');
+  const dashboardView = document.getElementById('dashboardView');
+  const filterBar = document.getElementById('filterBar');
+  const toggleAdvancedFiltersBtn = document.getElementById('toggleAdvancedFiltersBtn');
+  const advancedFiltersPanel = document.getElementById('advancedFiltersPanel');
+  const groupFilterChips = document.getElementById('groupFilterChips');
+  const minConnectionsInput = document.getElementById('minConnectionsInput');
+  const resetAdvancedFiltersBtn = document.getElementById('resetAdvancedFiltersBtn');
+  const dashSearchInput = document.getElementById('dashSearchInput');
+  const dashSearchDropdown = document.getElementById('dashSearchDropdown');
+  const dashStatsBody = document.getElementById('dashStatsBody');
+  const dashHealthBody = document.getElementById('dashHealthBody');
+  const dashStatusBody = document.getElementById('dashStatusBody');
+  const dashRecentAddedBody = document.getElementById('dashRecentAddedBody');
+  const dashRecentViewedBody = document.getElementById('dashRecentViewedBody');
+  const dashBookmarksBody = document.getElementById('dashBookmarksBody');
+  const dashRandomBody = document.getElementById('dashRandomBody');
+  const dashRandomBtn = document.getElementById('dashRandomBtn');
+  const dashGraphOverviewBody = document.getElementById('dashGraphOverviewBody');
+  const dashOpenGraphBtn = document.getElementById('dashOpenGraphBtn');
 
   let pickedItem = null;
   let linkFromNode = null;
@@ -82,6 +101,16 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
         .then(({ GraphService })=> new GraphService({ graphLayer }));
     }
     return graphServicePromise;
+  }
+
+  // ---------------- DashboardService (PART 04 — Phase A) ----------------
+  let dashboardServicePromise = null;
+  function getDashboardService(){
+    if(!dashboardServicePromise){
+      dashboardServicePromise = import('../src/services/DashboardService.js')
+        .then(({ DashboardService })=> new DashboardService({ knowledgeLayer, storageLayer: StorageLayer }));
+    }
+    return dashboardServicePromise;
   }
 
   /**
@@ -161,7 +190,64 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
       };
       typeFilterChips.appendChild(chip);
     });
+
+    // ---- فلاتر متقدمة: المجموعة الزمنية (PART 04 — Phase B) ----
+    const groups = knowledgeLayer.getGroups();
+    const hasUngrouped = knowledgeLayer.getAllNodes().some(n=> !n.group);
+    const groupKeys = groups.map(g=> g.id).concat(hasUngrouped ? ['__none__'] : []);
+    searchService.initGroups(groupKeys);
+
+    groupFilterChips.innerHTML = '';
+    groups.forEach(group=>{
+      const chip = Utils.createTextEl('div', group.name, 'type-chip active');
+      chip.onclick = async ()=>{
+        const svc = await getSearchService();
+        svc.toggleGroup(group.id);
+        chip.classList.toggle('active', svc.isGroupActive(group.id));
+        chip.classList.toggle('inactive', !svc.isGroupActive(group.id));
+        applyFilters();
+      };
+      groupFilterChips.appendChild(chip);
+    });
+    if(hasUngrouped){
+      const chip = Utils.createTextEl('div', 'بدون مجموعة زمنية', 'type-chip active');
+      chip.onclick = async ()=>{
+        const svc = await getSearchService();
+        svc.toggleGroup('__none__');
+        chip.classList.toggle('active', svc.isGroupActive('__none__'));
+        chip.classList.toggle('inactive', !svc.isGroupActive('__none__'));
+        applyFilters();
+      };
+      groupFilterChips.appendChild(chip);
+    }
   }
+
+  toggleAdvancedFiltersBtn.onclick = ()=>{
+    advancedFiltersPanel.hidden = !advancedFiltersPanel.hidden;
+    toggleAdvancedFiltersBtn.classList.toggle('active', !advancedFiltersPanel.hidden);
+  };
+
+  minConnectionsInput.onchange = async ()=>{
+    const svc = await getSearchService();
+    svc.setMinConnections(Number(minConnectionsInput.value));
+    applyFilters();
+  };
+
+  resetAdvancedFiltersBtn.onclick = async ()=>{
+    globalSearchInput.value = '';
+    minConnectionsInput.value = '0';
+    const svc = await getSearchService();
+    svc.setQuery('');
+    svc.setMinConnections(0);
+    [...typeFilterChips.children].forEach(chip=>{
+      chip.classList.add('active'); chip.classList.remove('inactive');
+    });
+    [...groupFilterChips.children].forEach(chip=>{
+      chip.classList.add('active'); chip.classList.remove('inactive');
+    });
+    await initFilterBar(); // بيعيد تفعيل كل الأنواع/المجموعات في searchService نفسه
+    applyFilters();
+  };
 
   const onSearchInput = Utils.debounce(async ()=>{
     const searchService = await getSearchService();
@@ -240,6 +326,203 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
       globalSearchDropdown.appendChild(item);
     });
     globalSearchDropdown.hidden = false;
+  }
+
+  // ================= Dashboard (PART 04 — Phase A) =================
+
+  /**
+   * بحث سريع (Quick Search) في الـ Dashboard — نفس منطق renderGlobalSearchDropdown
+   * بالظبط (fuzzy + ترتيب + تظليل + سجل بحث مشترك)، لكن من غير تطبيق أي فلترة
+   * على شريط الأدوات: الاختيار هنا بيفتح تفاصيل العنصر مباشرة بس.
+   */
+  async function renderDashSearchDropdown(){
+    const searchService = await getSearchService();
+    const q = dashSearchInput.value.trim();
+    dashSearchDropdown.innerHTML = '';
+
+    if(q.length === 0){
+      const history = searchService.getHistory();
+      if(!history.length){ dashSearchDropdown.hidden = true; return; }
+      dashSearchDropdown.appendChild(Utils.createTextEl('div', 'بحث سابق', 'search-dropdown-label'));
+      history.forEach(h=>{
+        const item = Utils.createTextEl('div', h, 'search-dropdown-item');
+        item.onclick = ()=>{ dashSearchInput.value = h; renderDashSearchDropdown(); };
+        dashSearchDropdown.appendChild(item);
+      });
+      dashSearchDropdown.hidden = false;
+      return;
+    }
+
+    const results = searchService.searchByTitle(q, { limit: 8 });
+    if(!results.length){
+      dashSearchDropdown.appendChild(Utils.createTextEl('div', 'مفيش نتائج مطابقة', 'search-dropdown-empty'));
+      dashSearchDropdown.hidden = false;
+      return;
+    }
+    results.forEach(node=>{
+      const item = document.createElement('div');
+      item.className = 'search-dropdown-item';
+      const titleEl = document.createElement('span');
+      Utils.renderHighlighted(titleEl, node.title, q);
+      const typeEl = Utils.createTextEl('span', typeLabel(node.type), 'sdi-type');
+      item.appendChild(titleEl);
+      item.appendChild(typeEl);
+      item.onclick = async ()=>{
+        const svc = await getSearchService();
+        svc.recordSearch(q);
+        dashSearchDropdown.hidden = true;
+        dashSearchInput.value = '';
+        openDetail(node);
+      };
+      dashSearchDropdown.appendChild(item);
+    });
+    dashSearchDropdown.hidden = false;
+  }
+
+  dashSearchInput.oninput = Utils.debounce(()=> renderDashSearchDropdown(), 250);
+  dashSearchInput.onfocus = ()=> renderDashSearchDropdown();
+  dashSearchInput.onblur = ()=>{
+    setTimeout(()=>{ dashSearchDropdown.hidden = true; }, 150);
+  };
+  dashSearchInput.onkeydown = (e)=>{
+    if(e.key === 'Escape'){ dashSearchDropdown.hidden = true; dashSearchInput.blur(); }
+  };
+
+  /** عنصر قابل للنقر يفتح تفاصيله (مستخدم في أكتر من ويدجت في الـ Dashboard). */
+  function buildDashListItem(node, extraLabel){
+    const item = document.createElement('div');
+    item.className = 'dash-list-item';
+    item.appendChild(Utils.createTextEl('span', node.title));
+    item.appendChild(Utils.createTextEl('span', extraLabel || typeLabel(node.type), 'dli-type'));
+    item.onclick = ()=> openDetail(node);
+    return item;
+  }
+
+  function renderDashRandom(dashboardService){
+    dashRandomBody.innerHTML = '';
+    const node = dashboardService.getRandomNode();
+    if(!node){
+      dashRandomBody.appendChild(Utils.createTextEl('div', 'مفيش عناصر بعد.', 'dash-empty'));
+      return;
+    }
+    const wrap = document.createElement('div');
+    wrap.className = 'dash-list-item';
+    const textWrap = document.createElement('div');
+    textWrap.appendChild(Utils.createTextEl('div', node.title, 'dash-random-title'));
+    textWrap.appendChild(Utils.createTextEl('div', typeLabel(node.type), 'dash-random-type'));
+    wrap.appendChild(textWrap);
+    wrap.onclick = ()=> openDetail(node);
+    dashRandomBody.appendChild(wrap);
+  }
+
+  dashRandomBtn.onclick = async ()=>{
+    const dashboardService = await getDashboardService();
+    renderDashRandom(dashboardService);
+  };
+
+  dashOpenGraphBtn.onclick = ()=> viewGraphBtn.click();
+
+  /**
+   * بناء كل ويدجتات الـ Dashboard. بتتنادى مرة عند الإقلاع، وبعد أي حدث ممكن
+   * يغيّر محتواها (إضافة عنصر/رابط جديد، أو فتح تفاصيل عنصر — عشان "آخر ما
+   * استكشفته" يتحدّث فورًا).
+   */
+  async function renderDashboard(){
+    const dashboardService = await getDashboardService();
+
+    // ---- إحصائيات المعرفة ----
+    const stats = dashboardService.getKnowledgeStats();
+    dashStatsBody.innerHTML = '';
+    [
+      { label: 'إجمالي العقد', value: stats.totalNodes },
+      { label: 'إجمالي العلاقات', value: stats.totalEdges },
+      { label: 'مجموعات زمنية', value: stats.totalGroups },
+      { label: 'أنواع عقد مختلفة', value: Object.keys(stats.nodesByType).length }
+    ].forEach(row=>{
+      const div = document.createElement('div');
+      div.className = 'dash-stat-row';
+      div.appendChild(Utils.createTextEl('span', row.label, 'dash-stat-label'));
+      div.appendChild(Utils.createTextEl('span', String(row.value), 'dash-stat-value'));
+      dashStatsBody.appendChild(div);
+    });
+    const fullStatsBtn = Utils.createTextEl('div', 'إحصائيات تفصيلية كاملة ↗', 'dash-list-item');
+    fullStatsBtn.onclick = async ()=>{ await renderMetrics(); metricsModal.classList.add('show'); };
+    dashStatsBody.appendChild(fullStatsBtn);
+
+    // ---- صحة البيانات ----
+    const issues = dashboardService.getIntegrityReport();
+    dashHealthBody.innerHTML = '';
+    if(!issues.length){
+      dashHealthBody.appendChild(Utils.createTextEl('div', '✅ لا توجد أي مشاكل سلامة بيانات مكتشفة.', 'dash-health-ok'));
+    } else {
+      dashHealthBody.appendChild(Utils.createTextEl('div', `⚠️ ${issues.length} ملاحظة سلامة بيانات (راجع الـ console للتفاصيل).`, 'dash-health-warn'));
+    }
+
+    // ---- حالة النظام ----
+    const status = dashboardService.getSystemStatus();
+    dashStatusBody.innerHTML = '';
+    [
+      { label: 'عناصر أساسية', value: status.totalNodes },
+      { label: 'مجموعات زمنية', value: status.totalGroups },
+      { label: 'عناصر أضفتها بنفسك', value: status.customNodesCount },
+      { label: 'روابط أضفتها بنفسك', value: status.customEdgesCount }
+    ].forEach(row=>{
+      const div = document.createElement('div');
+      div.className = 'dash-stat-row';
+      div.appendChild(Utils.createTextEl('span', row.label, 'dash-stat-label'));
+      div.appendChild(Utils.createTextEl('span', String(row.value), 'dash-stat-value'));
+      dashStatusBody.appendChild(div);
+    });
+
+    // ---- آخر إضافاتك (عقد وروابط مخصّصة، الأحدث أولًا) ----
+    const { nodes: recentNodes, edges: recentEdges } = dashboardService.getRecentAdditions({ limit: 5 });
+    dashRecentAddedBody.innerHTML = '';
+    if(!recentNodes.length && !recentEdges.length){
+      dashRecentAddedBody.appendChild(Utils.createTextEl('div', 'لسه ما ضفتش أي عنصر أو رابط بنفسك.', 'dash-empty'));
+    } else {
+      recentNodes.forEach(n=> dashRecentAddedBody.appendChild(buildDashListItem(n, 'عنصر جديد')));
+      recentEdges.forEach(e=>{
+        const fromNode = knowledgeLayer.findNodeById(e.from);
+        const toNode = knowledgeLayer.findNodeById(e.to);
+        if(!fromNode || !toNode) return;
+        const item = document.createElement('div');
+        item.className = 'dash-list-item';
+        item.appendChild(Utils.createTextEl('span', `${fromNode.title} ↔ ${toNode.title}`));
+        item.appendChild(Utils.createTextEl('span', 'رابط جديد', 'dli-type'));
+        item.onclick = ()=> openDetail(fromNode);
+        dashRecentAddedBody.appendChild(item);
+      });
+    }
+
+    // ---- آخر ما استكشفته ----
+    const viewed = dashboardService.getRecentlyViewed({ limit: 6 });
+    dashRecentViewedBody.innerHTML = '';
+    if(!viewed.length){
+      dashRecentViewedBody.appendChild(Utils.createTextEl('div', 'لسه ما فتحتش تفاصيل أي عنصر.', 'dash-empty'));
+    } else {
+      viewed.forEach(n=> dashRecentViewedBody.appendChild(buildDashListItem(n)));
+    }
+
+    // ---- المفضّلة ----
+    const bookmarked = dashboardService.getBookmarkedNodes();
+    dashBookmarksBody.innerHTML = '';
+    if(!bookmarked.length){
+      dashBookmarksBody.appendChild(Utils.createTextEl('div', 'مفيش عناصر في المفضّلة لسه — افتح تفاصيل أي عنصر وضغط ⭐.', 'dash-empty'));
+    } else {
+      bookmarked.forEach(n=> dashBookmarksBody.appendChild(buildDashListItem(n)));
+    }
+
+    // ---- اكتشاف عشوائي ----
+    renderDashRandom(dashboardService);
+
+    // ---- نظرة عامة على الشبكة ----
+    dashGraphOverviewBody.innerHTML = '';
+    const topConnected = stats.topConnected && stats.topConnected[0];
+    dashGraphOverviewBody.appendChild(Utils.createTextEl('div', `${stats.totalNodes} عقدة، ${stats.totalEdges} علاقة`, 'dash-stat-row'));
+    if(topConnected){
+      const item = buildDashListItem(topConnected.node, `الأكتر ارتباطًا (${topConnected.degree})`);
+      dashGraphOverviewBody.appendChild(item);
+    }
   }
 
   function applyFilters(){
@@ -454,7 +737,11 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
     detailBody.appendChild(loading);
     detailOverlay.classList.add('show');
 
-    const data = await businessLayer.fetchTmdbData(node.title, node.type);
+    const [data, dashboardService] = await Promise.all([
+      businessLayer.fetchTmdbData(node.title, node.type),
+      getDashboardService()
+    ]);
+    dashboardService.recordView(node.id);
     const isMedia = node.type === 'movie' || node.type === 'tv';
 
     detailBody.innerHTML = '';
@@ -478,7 +765,23 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
 
     const bodyDiv = document.createElement('div');
     bodyDiv.className = 'detail-body';
-    bodyDiv.appendChild(Utils.createTextEl('h2', node.title));
+    const titleRow = document.createElement('div');
+    titleRow.style.cssText = 'display:flex;align-items:center;gap:10px;';
+    titleRow.appendChild(Utils.createTextEl('h2', node.title));
+    const bookmarkBtn = document.createElement('button');
+    bookmarkBtn.className = 'small-btn bookmark-btn';
+    const paintBookmarkBtn = ()=>{
+      const isBookmarked = dashboardService.isBookmarked(node.id);
+      bookmarkBtn.textContent = isBookmarked ? '⭐ في المفضّلة' : '☆ أضف للمفضّلة';
+      bookmarkBtn.classList.toggle('active', isBookmarked);
+    };
+    paintBookmarkBtn();
+    bookmarkBtn.onclick = ()=>{
+      dashboardService.toggleBookmark(node.id);
+      paintBookmarkBtn();
+    };
+    titleRow.appendChild(bookmarkBtn);
+    bodyDiv.appendChild(titleRow);
     const metaText = isMedia
       ? `${typeLabel(node.type)} ${data.date ? '· ' + data.date : ''}`
       : typeLabel(node.type);
@@ -498,6 +801,31 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
     hero.appendChild(bodyDiv);
     detailBody.appendChild(hero);
 
+    const knowledgeService = await getKnowledgeService();
+    const relations = knowledgeService.getEdgesForNode(node.id);
+
+    // ---- الإحصائيات (Smart Node Page — PART 04 Phase B) ----
+    const statsSection = document.createElement('div');
+    statsSection.className = 'detail-stats-section';
+    statsSection.appendChild(Utils.createTextEl('h3', '📊 إحصائيات العنصر'));
+    const statsGrid = document.createElement('div');
+    statsGrid.className = 'detail-stats-grid';
+    const typeBreakdown = {};
+    relations.forEach(({ otherNode })=>{
+      if(!otherNode) return;
+      typeBreakdown[otherNode.type] = (typeBreakdown[otherNode.type] || 0) + 1;
+    });
+    const statLines = [`إجمالي العلاقات: ${relations.length}`];
+    Object.entries(typeBreakdown).forEach(([type, count])=>{
+      statLines.push(`${typeLabel(type)}: ${count}`);
+    });
+    if(node.createdAt){
+      statLines.push(`أُضيفت بواسطتك في: ${new Date(node.createdAt).toLocaleDateString('ar-EG')}`);
+    }
+    statLines.forEach(line=> statsGrid.appendChild(Utils.createTextEl('div', line, 'detail-stat-chip')));
+    statsSection.appendChild(statsGrid);
+    detailBody.appendChild(statsSection);
+
     // ---- روابط وتلميحات ----
     const linksSection = document.createElement('div');
     linksSection.className = 'detail-links-section';
@@ -513,8 +841,6 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
 
     const linksList = document.createElement('div');
     linksList.id = 'linksList';
-    const knowledgeService = await getKnowledgeService();
-    const relations = knowledgeService.getEdgesForNode(node.id);
 
     if(!relations.length){
       linksList.appendChild(Utils.createTextEl('div', 'مفيش روابط أو تلميحات مسجّلة لسه.', ''));
@@ -773,15 +1099,27 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
   document.getElementById('networkAnalysisModalClose').onclick = ()=> networkAnalysisModal.classList.remove('show');
   networkAnalysisModal.onclick = (e)=>{ if(e.target===networkAnalysisModal) networkAnalysisModal.classList.remove('show'); };
 
-  // ---------------- تبديل العرض ----------------
+  // ---------------- تبديل العرض (الرئيسية/صفوف/شبكة) ----------------
+  const viewDashboardBtn = document.getElementById('viewDashboardBtn');
   const viewRowsBtn = document.getElementById('viewRowsBtn');
   const viewGraphBtn = document.getElementById('viewGraphBtn');
+  function setActiveTab(activeBtn){
+    [viewDashboardBtn, viewRowsBtn, viewGraphBtn].forEach(btn=> btn.classList.toggle('active', btn === activeBtn));
+  }
+  viewDashboardBtn.onclick = async ()=>{
+    setActiveTab(viewDashboardBtn);
+    dashboardView.style.display='block'; filterBar.style.display='none';
+    rowsView.style.display='none'; graphView.style.display='none';
+    await renderDashboard();
+  };
   viewRowsBtn.onclick = ()=>{
-    viewRowsBtn.classList.add('active'); viewGraphBtn.classList.remove('active');
+    setActiveTab(viewRowsBtn);
+    dashboardView.style.display='none'; filterBar.style.display='flex';
     rowsView.style.display='block'; graphView.style.display='none';
   };
   viewGraphBtn.onclick = ()=>{
-    viewGraphBtn.classList.add('active'); viewRowsBtn.classList.remove('active');
+    setActiveTab(viewGraphBtn);
+    dashboardView.style.display='none'; filterBar.style.display='flex';
     rowsView.style.display='none'; graphView.style.display='block';
     renderGraph();
   };
@@ -851,6 +1189,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
     addModal.classList.remove('show');
     renderRows();
     if(graphView.style.display !== 'none') renderGraph();
+    if(dashboardView.style.display !== 'none') renderDashboard();
   };
 
   // ---------------- ربط عقدتين يدويًا ----------------
@@ -885,6 +1224,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
     linkModal.classList.remove('show');
     openDetail(linkFromNode);
     if(graphView.style.display !== 'none') renderGraph();
+    if(dashboardView.style.display !== 'none') renderDashboard();
   };
 
   // ---------------- الخلفية ----------------
@@ -955,6 +1295,7 @@ function createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus
     renderGraph,
     populateGroupSelect,
     openDetail,
-    initFilterBar
+    initFilterBar,
+    renderDashboard
   };
 }

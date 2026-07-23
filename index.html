@@ -14,7 +14,8 @@
   <header>
     <h1>خريطة <span>مارفل</span> المعرفية</h1>
     <div class="toolbar">
-      <button id="viewRowsBtn" class="active">📺 صفوف</button>
+      <button id="viewDashboardBtn" class="active">🏠 الرئيسية</button>
+      <button id="viewRowsBtn">📺 صفوف</button>
       <button id="viewGraphBtn">🕸️ شبكة</button>
       <button id="metricsBtn">📊 إحصائيات</button>
       <button id="shortestPathBtn">🧭 أقصر مسار</button>
@@ -31,15 +32,78 @@
   <div id="status">بيتحمّل...</div>
   <div id="errorToast" class="error-toast" role="alert" hidden></div>
 
-  <div id="filterBar">
+  <div id="filterBar" style="display:none;">
     <div class="search-wrap">
-      <input type="text" id="globalSearchInput" placeholder="🔍 ابحث بالاسم في كل عناصر الخريطة...">
+      <input type="text" id="globalSearchInput" placeholder="🔍 ابحث بالاسم أو بمحتوى العلاقات في كل عناصر الخريطة...">
       <div id="globalSearchDropdown" class="search-dropdown" hidden></div>
     </div>
     <div id="typeFilterChips"></div>
+    <button id="toggleAdvancedFiltersBtn" class="small-btn">🔧 فلاتر متقدمة</button>
+    <div id="advancedFiltersPanel" hidden>
+      <div class="adv-filter-group">
+        <span class="adv-filter-label">المجموعة الزمنية:</span>
+        <div id="groupFilterChips"></div>
+      </div>
+      <div class="adv-filter-group">
+        <label for="minConnectionsInput" class="adv-filter-label">أقل عدد علاقات:</label>
+        <select id="minConnectionsInput">
+          <option value="0">بدون حد أدنى</option>
+          <option value="2">علاقتين أو أكتر</option>
+          <option value="4">4 علاقات أو أكتر</option>
+          <option value="6">6 علاقات أو أكتر</option>
+        </select>
+      </div>
+      <button id="resetAdvancedFiltersBtn" class="small-btn">↺ إعادة تعيين كل الفلاتر</button>
+    </div>
   </div>
 
-  <div id="rowsView"></div>
+  <div id="dashboardView">
+    <div class="dash-grid">
+      <div class="dash-widget dash-widget-wide">
+        <h3>🔍 بحث سريع</h3>
+        <div class="search-wrap">
+          <input type="text" id="dashSearchInput" placeholder="دوّر عن أي عنصر في الخريطة كلها...">
+          <div id="dashSearchDropdown" class="search-dropdown" hidden></div>
+        </div>
+      </div>
+      <div class="dash-widget">
+        <h3>📊 إحصائيات المعرفة</h3>
+        <div id="dashStatsBody" class="dash-body"></div>
+      </div>
+      <div class="dash-widget">
+        <h3>🩺 صحة البيانات</h3>
+        <div id="dashHealthBody" class="dash-body"></div>
+      </div>
+      <div class="dash-widget">
+        <h3>⚙️ حالة النظام</h3>
+        <div id="dashStatusBody" class="dash-body"></div>
+      </div>
+      <div class="dash-widget">
+        <h3>🆕 آخر إضافاتك</h3>
+        <div id="dashRecentAddedBody" class="dash-body"></div>
+      </div>
+      <div class="dash-widget">
+        <h3>🕓 آخر ما استكشفته</h3>
+        <div id="dashRecentViewedBody" class="dash-body"></div>
+      </div>
+      <div class="dash-widget">
+        <h3>⭐ المفضّلة</h3>
+        <div id="dashBookmarksBody" class="dash-body"></div>
+      </div>
+      <div class="dash-widget">
+        <h3>🎲 اكتشاف عشوائي</h3>
+        <div id="dashRandomBody" class="dash-body"></div>
+        <button id="dashRandomBtn" class="small-btn">🎲 عنصر تاني</button>
+      </div>
+      <div class="dash-widget">
+        <h3>🕸️ نظرة عامة على الشبكة</h3>
+        <div id="dashGraphOverviewBody" class="dash-body"></div>
+        <button id="dashOpenGraphBtn" class="small-btn">افتح عرض الشبكة كامل ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rowsView" style="display:none;"></div>
   <div id="graphView"><svg id="graphSvg"></svg></div>
 </div>
 
