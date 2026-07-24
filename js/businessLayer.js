@@ -89,7 +89,8 @@ function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBu
       color: null,
       confidenceScore: null,
       knowledgeScore: null,
-      aliases: []
+      aliases: [],
+      storyOrder: null // Timeline Intelligence (بند 1.7) — ترتيب زمني داخل القصة، منفصل عن group
     };
     knowledgeLayer.addCustomNode(node);
     try{

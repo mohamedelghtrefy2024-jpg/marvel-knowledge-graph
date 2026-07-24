@@ -68,6 +68,69 @@ function createGraphLayer(knowledgeLayer){
   }
 
   /**
+   * درجة تشابه بين عقدتين (Similarity Engine — PART 03 بند 1.4).
+   * **قرار موثّق (MIGRATION_REPORT.md)**: صيغة مباشرة بدون أي مكتبة خارجية
+   * (ممنوع NLP/embeddings)، حساب فقط على البيانات الموجودة فعليًا في الشبكة:
+   *   score = (commonNeighborsCount * 0.5) + (sameGroup ? 0.3 : 0) + (sameType ? 0.2 : 0)
+   * الحد الأقصى النظري لـ commonNeighborsCount غير معروف مسبقًا (يعتمد على حجم
+   * الشبكة)، فبنطبّعه نسبةً لأكبر عدد ممكن من الجيران المشتركين بين العقدتين
+   * (min(|neighbors(a)|, |neighbors(b)|))، عشان النتيجة النهائية تفضل دايمًا
+   * بين 0 و1 بالظبط.
+   * **حالة `computeSimilarity(x, x)`**: بترجع 1 دايمًا (عقدة متطابقة مع نفسها
+   * = أقصى تشابه ممكن) — قرار صريح، مفيش استثناء أو رمي خطأ.
+   * @returns {number} قيمة بين 0 و1 (0 = مفيش أي قاسم مشترك، 1 = أقصى تشابه)
+   */
+  function computeSimilarity(idA, idB){
+    if(idA === idB) return 1;
+    const a = knowledgeLayer.findNodeById(idA);
+    const b = knowledgeLayer.findNodeById(idB);
+    if(!a || !b) return 0;
+
+    const neighborsA = realNeighbors(idA);
+    const neighborsB = realNeighbors(idB);
+    const maxPossibleCommon = Math.min(neighborsA.length, neighborsB.length);
+    const common = commonNeighbors(idA, idB);
+    const normalizedCommon = maxPossibleCommon > 0 ? (common.length / maxPossibleCommon) : 0;
+
+    const sameGroup = !!(a.group && b.group && a.group === b.group);
+    const sameType = !!(a.type && b.type && a.type === b.type);
+
+    const score = (normalizedCommon * 0.5) + (sameGroup ? 0.3 : 0) + (sameType ? 0.2 : 0);
+    return Math.min(1, Math.max(0, score));
+  }
+
+  /**
+   * توصيات عُقد ذات صلة بعقدة معينة (Recommendation Engine — PART 03 بند 1.5).
+   * بيستخدم computeSimilarity (بند 1.4) على كل عُقد الشبكة، فارز تنازليًا،
+   * ومرجّع أعلى N بس. **قرار نطاق موثّق (MIGRATION_REPORT.md)**:
+   * - **Top-N هو الأساس** (مش عتبة أدنى فقط) — الاستخدام العملي (قائمة توصيات
+   *   في الواجهة) محتاج عدد محدود، والعتبة وحدها ممكن ترجّع صفر أو مئات.
+   * - **minScore عتبة أمان ثانوية**: أي نتيجة تحت العتبة بتتشال حتى لو كانت
+   *   من أعلى N — أحسن نرجّع نتايج أقل من نرجّع عقد مالهاش علاقة حقيقية.
+   * - **العقد المرتبطة بعلاقة حقيقية فعلًا (edge موجود) بتتستبعد بالكامل**:
+   *   الهدف اكتشاف علاقات محتملة/عقد ذات صلة *غير موجودة أصلًا* في الشبكة،
+   *   مش تكرار حاجة معروفة بالفعل.
+   * @param {string} nodeId
+   * @param {{topN?: number, minScore?: number}} [options]
+   * @returns {Array<{node: object, score: number}>} مرتّبة تنازليًا حسب score
+   */
+  function recommendNodesFor(nodeId, { topN = 5, minScore = 0.2 } = {}){
+    const target = knowledgeLayer.findNodeById(nodeId);
+    if(!target) return [];
+
+    const connectedIds = new Set(realNeighbors(nodeId).map(n=> n.id));
+
+    const scored = knowledgeLayer.getAllNodes()
+      .filter(n=> n.id !== nodeId)
+      .filter(n=> !connectedIds.has(n.id))
+      .map(n=> ({ node: n, score: computeSimilarity(nodeId, n.id) }))
+      .filter(entry=> entry.score >= minScore)
+      .sort((x, y)=> y.score - x.score);
+
+    return scored.slice(0, topN);
+  }
+
+  /**
    * أقصر مسار بين عقدتين (BFS، شبكة غير موزونة). بيمشي على العلاقات
    * الحقيقية فقط (بيتجاهل تجميع hub الخاص بعرض D3).
    * @returns {Array|null} مصفوفة عقد بترتيب المسار (من fromId لـ toId)، أو null لو مفيش مسار
@@ -218,5 +281,5 @@ function createGraphLayer(knowledgeLayer){
     return suggestions;
   }
 
-  return { buildGraphData, shortestPath, connectedComponents, hasCycle, commonNeighbors, nodesWithinDistance, suggestMissingEdges };
+  return { buildGraphData, shortestPath, connectedComponents, hasCycle, commonNeighbors, computeSimilarity, recommendNodesFor, nodesWithinDistance, suggestMissingEdges };
 }
