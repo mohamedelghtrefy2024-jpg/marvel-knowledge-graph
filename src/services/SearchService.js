@@ -85,6 +85,7 @@ export class SearchService {
     this._activeTypes = null; // null = لسه initTypes ما اتنادتش، كل الأنواع فعّالة
     this._activeGroups = null; // null = لسه initGroups ما اتنادتش، كل المجموعات فعّالة (بما فيها بدون مجموعة)
     this._minConnections = 0;
+    this._minWeight = 0; // الحد الأدنى لقوة العلاقة (weight) — بيفلتر العلاقات في Graph Explorer، مش العقد
     this._history = this._storageLayer ? this._storageLayer.loadSearchHistory() : [];
   }
 
@@ -141,6 +142,20 @@ export class SearchService {
     return this._minConnections;
   }
 
+  /** حد أدنى لقوة (weight) العلاقة عشان تظهر في Graph Explorer — 0 = من غير فلترة. */
+  setMinWeight(weight){
+    this._minWeight = Math.max(0, Number(weight) || 0);
+  }
+
+  getMinWeight(){
+    return this._minWeight;
+  }
+
+  /** بيرجّع true لو العلاقة (edge) لازم تظهر حسب فلتر الحد الأدنى للقوة. علاقات من غير weight رقمي بتظهر دايمًا. */
+  edgeMatchesWeight(edge){
+    return this._minWeight === 0 || typeof edge.weight !== 'number' || edge.weight >= this._minWeight;
+  }
+
   /**
    * تطابق "شبه دلالي": بيدوّر مش بس في عنوان العقدة، لكن كمان في وصف
    * (description) أي علاقة متصلة بيها — يعني بحث زي "نيك فيوري" أو "حجر
@@ -169,6 +184,7 @@ export class SearchService {
   isFilterActive(){
     if(this._query) return true;
     if(this._minConnections > 0) return true;
+    if(this._minWeight > 0) return true;
     if(this._activeTypes !== null){
       const allTypes = new Set(this._knowledgeLayer.getAllNodes().map(n=> n.type));
       if(this._activeTypes.size < allTypes.size) return true;

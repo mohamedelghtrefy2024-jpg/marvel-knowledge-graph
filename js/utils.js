@@ -63,5 +63,16 @@ const Utils = {
     mark.textContent = text.slice(idx, idx + q.length);
     container.appendChild(mark);
     if(idx + q.length < text.length) container.appendChild(document.createTextNode(text.slice(idx + q.length)));
+  },
+
+  /**
+   * بيمسح كل ظهور لـ title جوه text (case-insensitive) ويستبدله بـ "؟؟؟" —
+   * مستخدمة في وضع المحقق (Detective Mode — PART 04 Phase E) عشان الدليل
+   * (وصف علاقة حقيقي) ميكشفش اسم العقدة الغامضة نفسه لو ظهر جوه النص.
+   */
+  maskTitle(text, title){
+    if(!text || !title) return text;
+    const escaped = String(title).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return text.replace(new RegExp(escaped, 'gi'), '؟؟؟');
   }
 };

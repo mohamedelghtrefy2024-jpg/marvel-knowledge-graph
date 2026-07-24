@@ -5,7 +5,17 @@
     "title": "Captain America: The First Avenger",
     "group": "g40s",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "3f9bd474-f523-417f-be0f-b7c4c4995df5",
@@ -13,7 +23,17 @@
     "title": "Agent Carter",
     "group": "g40s",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "16bbe769-a749-46f7-8d47-74b5661b3902",
@@ -21,7 +41,17 @@
     "title": "Captain Marvel",
     "group": "g90s",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "931d2aae-ecad-4ccf-b462-ffd438f739d9",
@@ -29,7 +59,17 @@
     "title": "Iron Man",
     "group": "g1012",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a4f3a50d-af6a-4cc1-8f59-ec0a59de93b9",
@@ -37,7 +77,17 @@
     "title": "Iron Man 2",
     "group": "g1012",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "01a6852c-c891-4f08-982f-99c910fc04fe",
@@ -45,7 +95,17 @@
     "title": "The Incredible Hulk",
     "group": "g1012",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "0460b3a3-aa02-4806-be06-4fe4fe55d3df",
@@ -53,7 +113,17 @@
     "title": "Captain America: The Winter Soldier",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "3b91a2f6-d43d-42c2-8135-83f6168321f8",
@@ -61,7 +131,17 @@
     "title": "Daredevil",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "898c83d2-30bb-4c38-9fb9-c12ec26fb014",
@@ -69,7 +149,17 @@
     "title": "Thor",
     "group": "g1012",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d0690b15-711f-4735-96e5-901f0a055327",
@@ -77,7 +167,17 @@
     "title": "The Avengers",
     "group": "g1012",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "b6ad6930-21ba-4a3e-bfc3-8b70a36cc8ee",
@@ -85,7 +185,17 @@
     "title": "Iron Man 3",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "688ffdca-33d3-4480-a0d4-46ce563780e5",
@@ -93,7 +203,17 @@
     "title": "Thor: The Dark World",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "4cf74f3d-5fa7-411e-a0ca-473123c6f828",
@@ -101,7 +221,17 @@
     "title": "Agents of S.H.I.E.L.D.",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "42633ac3-0499-4d78-a23b-8bfdf588eb63",
@@ -109,7 +239,17 @@
     "title": "Guardians of the Galaxy",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "876ac385-c59f-4dd9-b956-7af54279cf07",
@@ -117,7 +257,17 @@
     "title": "Avengers: Age of Ultron",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d323a26e-0861-41e8-8359-c3f682eb6f0d",
@@ -125,7 +275,17 @@
     "title": "Ant-Man",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "1cf66c6a-20a0-4370-bfe7-120f59ccfe40",
@@ -133,7 +293,17 @@
     "title": "Jessica Jones",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "0d8ee461-f8ad-4241-b91a-984cc38294de",
@@ -141,7 +311,17 @@
     "title": "Black Widow",
     "group": "g1315",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a8f039e2-ed57-48a5-97ab-b73ece564d65",
@@ -149,7 +329,17 @@
     "title": "Captain America: Civil War",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "bddc03a1-7ec8-49af-82af-06cf8e88bbfd",
@@ -157,7 +347,17 @@
     "title": "Doctor Strange",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "3cc790c6-5d3f-4256-bb33-caecafb683d3",
@@ -165,7 +365,17 @@
     "title": "Ant-Man and the Wasp",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "3ad92bf7-32e2-4ac5-89bb-b5a5191b6389",
@@ -173,7 +383,17 @@
     "title": "Avengers: Endgame",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "8702aa1e-b155-4bf6-b5ad-b1772698e852",
@@ -181,7 +401,17 @@
     "title": "WandaVision",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d9b53cc9-3cc5-43ad-add0-ac7964c846ae",
@@ -189,7 +419,17 @@
     "title": "Loki",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "9a88d80b-ab72-41ab-ab23-a4f21d91566b",
@@ -197,7 +437,17 @@
     "title": "Shang-Chi and the Legend of the Ten Rings",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "7c70d170-075d-48e1-a81a-8e6fa908905f",
@@ -205,7 +455,17 @@
     "title": "She-Hulk: Attorney at Law",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "c51ea516-6ff1-4192-a1a9-4606fe09edb2",
@@ -213,7 +473,17 @@
     "title": "Hawkeye",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "7ec178ee-1433-4b17-a89c-c8288cfce9b3",
@@ -221,7 +491,17 @@
     "title": "Luke Cage",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "41ea7114-8ce0-4521-bf9f-ab152d2949ea",
@@ -229,7 +509,17 @@
     "title": "Iron Fist",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "3170180d-f69e-4529-8710-6e7b7a1cf04e",
@@ -237,7 +527,17 @@
     "title": "Guardians of the Galaxy Vol. 2",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "eb3ad664-1808-4409-9712-08b3dd0decc4",
@@ -245,7 +545,17 @@
     "title": "The Defenders",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "1c2dcd86-acf3-44bb-be94-82a74d98c49e",
@@ -253,7 +563,17 @@
     "title": "Thor: Ragnarok",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "cb629411-a925-48be-920a-7bc710ac8d33",
@@ -261,7 +581,17 @@
     "title": "The Punisher",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "4d6dcc43-5f21-46a0-adf7-7f2117c22ef7",
@@ -269,7 +599,17 @@
     "title": "Black Panther",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "058f307a-1a0e-4ca2-955b-96c53010f7b0",
@@ -277,7 +617,17 @@
     "title": "Avengers: Infinity War",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "ef5edc3f-6fdd-44b6-b840-2d02d519c617",
@@ -285,7 +635,17 @@
     "title": "Spider-Man: Far From Home",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "463d45fa-7477-45d7-b774-8da1d5a35993",
@@ -293,7 +653,17 @@
     "title": "The Falcon and the Winter Soldier",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "e6c3f14e-f859-409d-8fcf-33bb397db818",
@@ -301,7 +671,17 @@
     "title": "What If...?",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "2f8ec40d-79b0-41a2-a3ea-eb2d7792f16b",
@@ -309,7 +689,17 @@
     "title": "Moon Knight",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "b2fe0368-f863-49d6-98fa-5f464d59fedf",
@@ -317,7 +707,17 @@
     "title": "Ms. Marvel",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "b6cc773a-3849-4215-b1f5-343a7332e959",
@@ -325,7 +725,17 @@
     "title": "Eternals",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "08763f69-bc2a-4054-9fcd-8d70c77b0e24",
@@ -333,7 +743,17 @@
     "title": "Spider-Man: No Way Home",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "ba2edd8e-c023-4c4e-b6e0-717abc297668",
@@ -341,7 +761,17 @@
     "title": "Doctor Strange in the Multiverse of Madness",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "000d99a3-16ab-4723-9402-3e33515c4bc1",
@@ -349,7 +779,17 @@
     "title": "Secret Invasion",
     "group": "g1823",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d095c7b0-8788-4911-bf09-501689330f40",
@@ -357,7 +797,17 @@
     "title": "Ant-Man and the Wasp: Quantumania",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "75a322a9-160a-45aa-8bcf-ac08f56ad108",
@@ -365,7 +815,17 @@
     "title": "Guardians of the Galaxy Vol. 3",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "ee70f0ab-2de2-4b10-8c9d-1e47c18fbe1a",
@@ -373,7 +833,17 @@
     "title": "The Marvels",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "415a7f4a-d978-443d-812d-ee5a6a7c3a96",
@@ -381,7 +851,17 @@
     "title": "Echo",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "6a9bcab5-9023-43d4-a2e6-216adf78ee3a",
@@ -389,7 +869,17 @@
     "title": "Agatha All Along",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a515937f-819d-488e-bc11-e701302367ea",
@@ -397,7 +887,17 @@
     "title": "Daredevil: Born Again",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "32c57b15-2667-4033-98f9-6f1161ac0960",
@@ -405,7 +905,17 @@
     "title": "Captain America: Brave New World",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d76bf745-6520-498d-a3a1-2a0ae2c50fd5",
@@ -413,7 +923,17 @@
     "title": "Thunderbolts",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "e4e7d198-f279-4820-a77d-b1a10cbedee7",
@@ -421,7 +941,17 @@
     "title": "Ironheart",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "72a24cf8-d0da-43ee-810b-1d4cc04a24f9",
@@ -429,7 +959,17 @@
     "title": "Deadpool & Wolverine",
     "group": "g2425",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a65f9681-c828-4642-901c-5749b782cf0d",
@@ -437,7 +977,17 @@
     "title": "The Fantastic Four: First Steps",
     "group": "galt",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "84716cd8-486f-4719-aa2f-a8e82acef16d",
@@ -445,7 +995,17 @@
     "title": "Venom",
     "group": "gssu",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "f6e66fe5-0e5c-45a2-9d0c-6e70d0087add",
@@ -453,7 +1013,17 @@
     "title": "Venom: Let There Be Carnage",
     "group": "gssu",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "7d4d2e42-aa41-4374-b0d1-51a8a15de8e9",
@@ -461,7 +1031,17 @@
     "title": "Venom: The Last Dance",
     "group": "gssu",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "900c09c9-f557-44c1-8bee-72c8a2637856",
@@ -469,7 +1049,17 @@
     "title": "Morbius",
     "group": "gssu",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "63ee633f-9196-4230-b437-f3ca8738ebd9",
@@ -477,7 +1067,17 @@
     "title": "Spider-Man: Brand New Day",
     "group": "gup",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a5104ffc-0bcd-4189-9d5d-632ae300614f",
@@ -485,7 +1085,17 @@
     "title": "Avengers: Doomsday",
     "group": "gup",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "ff44bf6f-2440-4cdb-9d71-6ea377f2f1fb",
@@ -493,7 +1103,17 @@
     "title": "Avengers: Secret Wars",
     "group": "gup",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "70f0a090-ae7f-473b-9bd8-b2cb422eaad1",
@@ -506,7 +1126,17 @@
         "Iron Man"
       ],
       "affiliation": "Avengers"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d1d7ae48-07d9-4cfe-a969-673a675773a4",
@@ -519,7 +1149,17 @@
         "Captain America"
       ],
       "affiliation": "Avengers"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "c78f0b35-33cb-4f6c-a20a-4ca0bcf87844",
@@ -532,7 +1172,17 @@
         "Thor"
       ],
       "affiliation": "Avengers"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "1a26319b-ca3f-4214-beb4-96c023924428",
@@ -545,7 +1195,17 @@
         "The Mad Titan"
       ],
       "affiliation": "Black Order"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "c0fe41d3-c150-4226-a5ad-37e6cbfb1c35",
@@ -555,7 +1215,17 @@
     "tmdbId": null,
     "attributes": {
       "founded": "2012"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "1b6c8b16-b2bc-4c77-9abf-9f98e611e3a7",
@@ -565,7 +1235,17 @@
     "tmdbId": null,
     "attributes": {
       "fullName": "Strategic Homeland Intervention, Enforcement and Logistics Division"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "264780d6-5361-4755-8b7d-81fd7039f821",
@@ -575,7 +1255,17 @@
     "tmdbId": null,
     "attributes": {
       "city": "New York City"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "493bdaf2-1912-4b36-b3df-19f07a2579cf",
@@ -585,7 +1275,17 @@
     "tmdbId": null,
     "attributes": {
       "realm": "Nine Realms"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "fd522942-ae5a-42f7-84cb-8583ed481042",
@@ -595,7 +1295,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "مطرقة ثور السحرية"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "653652f6-94a3-4066-8d1b-0ebae1629bf3",
@@ -605,7 +1315,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "القفاز الذي يحمل حجارة اللانهاية"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "26fc8ef9-d6a4-4284-ad1b-62211720f418",
@@ -615,7 +1335,17 @@
     "tmdbId": null,
     "attributes": {
       "year": "2012"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "95667737-461d-497c-9ec9-29e25eee123a",
@@ -623,7 +1353,17 @@
     "title": "Spider-Man: Homecoming",
     "group": "g1618",
     "tmdbId": null,
-    "attributes": {}
+    "attributes": {},
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d2f05022-5ef2-4fa4-88b5-9291c59aebfe",
@@ -636,7 +1376,17 @@
         "Hulk"
       ],
       "affiliation": "Avengers"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "9aee4ff7-fe02-4d05-a868-5577d8cd9727",
@@ -649,7 +1399,17 @@
         "Black Widow"
       ],
       "affiliation": "Avengers"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "5228710c-c7df-4a69-8315-ce8151408dca",
@@ -662,7 +1422,17 @@
         "Hawkeye"
       ],
       "affiliation": "Avengers"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "958c63aa-a29c-4590-aee6-755cd845d70b",
@@ -672,7 +1442,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "مدير شيلد ومؤسس مبادرة الأفنجرز"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "751ee8e5-f165-4098-b71f-4a21047adc0a",
@@ -682,7 +1462,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "منظمة سرية معادية، اخترقت شيلد من الداخل لعقود"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "1b85ba7e-b315-4acd-97eb-b8504ac8cab5",
@@ -692,7 +1482,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "شركة توني ستارك للأسلحة والتكنولوجيا"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "9bce4944-3fdb-4d23-a376-8e1add4898d5",
@@ -702,7 +1502,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "دولة أفريقية متقدمة تكنولوجيًا، مخفية عن العالم الخارجي"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "7a34f3e8-f745-4118-84c6-084bd19d3ee8",
@@ -712,7 +1522,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "دولة أوروبية شرقية خيالية، موقع المعركة الأخيرة في أحداث Age of Ultron"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "e4e84e4c-7359-41af-8c17-b00d4656270f",
@@ -722,7 +1542,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "الدرع المصنوع من الفيبرانيوم، سلاح ستيف روجرز الأساسي"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "d2aeb211-abcd-46b9-998d-4ed7f0d43285",
@@ -732,7 +1562,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "حجر اللانهاية الأزرق (Space Stone) محفوظ داخل مكعب"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "c04941ec-2a97-4a12-b3d3-d74524d6a66f",
@@ -742,7 +1582,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "فأس ثور الجديد، تم صنعه في نيدافيلير"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "e4e9c02a-5142-49fb-8a9b-f2602fcb8f85",
@@ -752,7 +1602,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "قوس كلينت بارتون الأساسي المخصص"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "9aab8f67-96be-4706-bdfb-60eb31aa6203",
@@ -762,7 +1622,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "كوكب متقدم، مقر Nova Corps"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "8315d2d2-d115-4d92-980f-d681da617971",
@@ -772,7 +1642,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "كوكب نفايات يحكمه The Grandmaster، ساحة مصارعة الهالك وثور"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "869e397a-7da1-4c62-a26d-317969fe7799",
@@ -782,7 +1662,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "بُعد دون-ذري، المصدر الأساسي للسفر عبر الزمن في Endgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "ca40085a-d2dd-486d-aeb5-822fdb07aca6",
@@ -792,7 +1682,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "بُعد بديل يستخدمه السحرة للقتال دون التأثير على العالم الحقيقي"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "c48e02bd-a10f-4b1e-9208-b2ae4c9bdc00",
@@ -802,7 +1702,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "التصنيف الرسمي للكون السينمائي الأساسي لمارفل (MCU)، حسب نظام ترقيم الأكوان المتعددة لمارفل"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "23e1f707-e0df-4e67-9936-d7fae09b5226",
@@ -812,7 +1722,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "مفهوم الخط الزمني المقدّس اللي كانت TVA بتحميه من أي تفرعات، تم تقديمه في مسلسل Loki"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "23da1d67-3563-4a2e-bbf5-d7b9f3786248",
@@ -822,7 +1742,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "كائنات من جوتونهايم، أعداء أسجارد التاريخيين"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "c2ea7d2c-0d63-4e35-a6c3-dfd1337d25c4",
@@ -832,7 +1762,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "كائنات فضائية قادرة على تغيير الشكل"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "ba3394ad-ffe1-4e11-a49b-ae7771b4871f",
@@ -842,7 +1782,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "المعركة الأخيرة ضد أولترون"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "0dc5c1b7-b0c5-4110-840b-dda2e3b0de3c",
@@ -852,7 +1802,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "المعركة الكبرى ضد جيش ثانوس"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "9e288a6a-4b6d-44d0-a1c7-cfdf2fb82fac",
@@ -862,7 +1822,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "أول درع صنعه توني ستارك، في الأسر"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a1deb5ff-a147-46cf-9e88-fa77e4523598",
@@ -872,7 +1842,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "تقنية إعادة تكوين الذكريات بصريًا، عرضها توني ستارك في مؤتمر MIT"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "39128c19-7638-4409-9858-828eb3b6df87",
@@ -882,7 +1862,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "الطائرة النفاثة الأساسية لفريق الأفنجرز"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "8f737cee-a179-4cb1-93b0-940be3c23115",
@@ -892,7 +1882,17 @@
     "tmdbId": null,
     "attributes": {
       "description": "سلسلة كوميكس من إنتاج Jim Starlin، المصدر الأساسي اللي استوحيت منه أحداث Infinity War و Endgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "718a3347-7691-4385-bee5-87c2fbf323ef",
@@ -902,7 +1902,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "مثّل شخصية توني ستارك/آيرون مان"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a4344f6c-eb74-4713-932f-a8f7bf7f7024",
@@ -912,7 +1922,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "مثّل شخصية ستيف روجرز/كابتن أمريكا"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "a02dd9a0-e59b-41a2-bf23-b4810cd62dc9",
@@ -922,7 +1942,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "أحد مخرجَي Infinity War و Endgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "6c5f0226-e793-4268-bb82-e4311ee286d0",
@@ -932,7 +1962,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "أحد مخرجَي Infinity War و Endgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "bd8a669b-3e0b-4315-870a-937e576f734a",
@@ -942,7 +1982,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "ملحّن الموسيقى التصويرية لـ The Avengers و Endgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "8d95a108-9ecd-4d4a-bf5c-0b238d025b05",
@@ -952,7 +2002,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "شارك في كتابة سيناريو Winter Soldier وCivil War وInfinity War وEndgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "80cbcbcd-1d8a-4036-8044-563f52492df4",
@@ -962,7 +2022,17 @@
     "tmdbId": null,
     "attributes": {
       "role": "شارك في كتابة سيناريو Winter Soldier وCivil War وInfinity War وEndgame"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   },
   {
     "id": "85cad4ed-58d2-4c20-b44b-45a76d0bd9e3",
@@ -972,6 +2042,16 @@
     "tmdbId": null,
     "attributes": {
       "description": "نيك فيوري بيظهر لتوني ستارك ويتكلم عن 'مبادرة الأفنجرز'"
-    }
+    },
+    "description": null,
+    "shortDescription": null,
+    "status": "active",
+    "createdAt": null,
+    "updatedAt": null,
+    "tags": [],
+    "color": null,
+    "confidenceScore": null,
+    "knowledgeScore": null,
+    "aliases": []
   }
 ]

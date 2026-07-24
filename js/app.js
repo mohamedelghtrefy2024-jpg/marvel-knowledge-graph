@@ -25,6 +25,10 @@
     StorageLayer.loadCustomNodes().forEach(n=> knowledgeLayer.addCustomNode(n));
     StorageLayer.loadCustomEdges().forEach(e=> knowledgeLayer.addCustomEdge(e));
 
+    // 4.5) تطبيق أي تعديل يدوي سابق على مصدر علاقة (Evidence System — MARVEL-FIX-MASTER-PROMPT.md بند 1.1)
+    const edgeSourceOverrides = StorageLayer.loadEdgeSourceOverrides();
+    Object.entries(edgeSourceOverrides).forEach(([edgeId, source])=> knowledgeLayer.setEdgeSource(edgeId, source));
+
     // 5) فحص سلامة البيانات (لا يوقف التشغيل، فقط تحذير في الـ console)
     const issues = knowledgeLayer.validateIntegrity();
     if(issues.length){
@@ -43,7 +47,8 @@
     const cacheManager = new CacheManager({ storageLayer: StorageLayer, eventBus });
     const businessLayer = createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBus);
     const graphLayer = createGraphLayer(knowledgeLayer);
-    const renderLayer = createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, eventBus });
+    const timelineLayer = createTimelineLayer(knowledgeLayer);
+    const renderLayer = createRenderLayer({ knowledgeLayer, businessLayer, graphLayer, timelineLayer, eventBus });
 
     // 7) تشغيل الواجهة
     await renderLayer.applyBackground();

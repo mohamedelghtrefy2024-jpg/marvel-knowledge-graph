@@ -35,6 +35,19 @@ function createKnowledgeLayer(){
     edges.push(edge);
   }
 
+  /**
+   * تعديل مصدر (source) علاقة موجودة فعليًا (in-memory) — مستخدمة من
+   * businessLayer.updateEdgeSource وبعملية تطبيق الـ overrides في app.js
+   * وقت الإقلاع. بترجع العلاقة المعدَّلة، أو null لو مش موجودة.
+   */
+  function setEdgeSource(edgeId, source){
+    const edge = edges.find(e=> e.id === edgeId);
+    if(!edge) return null;
+    edge.source = source;
+    edge.updatedAt = Date.now();
+    return edge;
+  }
+
   function findNodeById(id){
     return nodesById.get(id) || null;
   }
@@ -45,6 +58,10 @@ function createKnowledgeLayer(){
 
   function getAllNodes(){
     return nodes;
+  }
+
+  function getAllEdges(){
+    return edges;
   }
 
   function getGroups(){
@@ -72,6 +89,70 @@ function createKnowledgeLayer(){
       }
     });
     return result;
+  }
+
+  /** إيجاد علاقة بمعرّفها — مستخدمة في Relationship Inspector (PART 04 Phase D) */
+  function findEdgeById(id){
+    return edges.find(e=> e.id === id) || null;
+  }
+
+  /** عدد العلاقات الحقيقية (بالاتجاهين) الخاصة بعقدة — تفويض على getEdgesForNode. */
+  function getNodeDegree(nodeId){
+    return getEdgesForNode(nodeId).length;
+  }
+
+  /**
+   * أول علاقة حقيقية مباشرة بين عقدتين (بغض النظر عن الاتجاه) — مستخدمة
+   * في وضع الحكاية (Story Mode — PART 04 Phase E) عشان نحوّل كل خطوة في
+   * أقصر مسار لجملة سرد حقيقية بدل مجرد سهم بين اسمين.
+   */
+  function findEdgeBetween(idA, idB){
+    return edges.find(e=> (e.from === idA && e.to === idB) || (e.from === idB && e.to === idA)) || null;
+  }
+
+  /**
+   * وضع المحقق (Detective Mode — PART 04 Phase E): يختار عقدة عشوائية
+   * "غامضة" بدرجة ارتباط كافية عشان يبقى فيه أدلة حقيقية تكفي. لو مفيش
+   * عقد بالحد الأدنى المطلوب، بيقلل الحد تدريجيًا (منين مفيش عقد أصلًا
+   * بالصدفة) بدل ما يرجّع null من غير داعي.
+   */
+  function pickMysteryNode(minDegree = 2){
+    for(let threshold = minDegree; threshold >= 0; threshold--){
+      const candidates = nodes.filter(n=> getNodeDegree(n.id) >= threshold);
+      if(candidates.length) return candidates[Math.floor(Math.random() * candidates.length)];
+    }
+    return null;
+  }
+
+  /**
+   * أدلة عقدة غامضة (Detective Mode): وصف كل علاقة حقيقية ليها، بعد إخفاء
+   * عنوان العقدة نفسها من نص الوصف (لو ظهر فيه) عشان الدليل ميكشفش
+   * الإجابة مباشرة. علاقات من غير وصف مسجّل بتتجاهل (مفيش دليل نص فيها).
+   */
+  function getClues(nodeId){
+    const node = findNodeById(nodeId);
+    if(!node) return [];
+    return getEdgesForNode(nodeId)
+      .filter(({ edge })=> edge.description)
+      .map(({ edge, otherNode })=> ({
+        edgeId: edge.id,
+        text: Utils.maskTitle(edge.description, node.title),
+        otherType: otherNode ? otherNode.type : null
+      }));
+  }
+
+  /**
+   * كل العقد اللي مالهاش أي علاقة حقيقية مسجّلة (لا واردة ولا صادرة) —
+   * "فجوات" في شبكة المعرفة. مستخدمة في Knowledge Health Monitor الموسّع
+   * (PART 04 Phase D).
+   */
+  function findOrphanNodes(){
+    const connectedIds = new Set();
+    edges.forEach(e=>{
+      if(e.from) connectedIds.add(e.from);
+      if(e.to) connectedIds.add(e.to);
+    });
+    return nodes.filter(n=> !connectedIds.has(n.id));
   }
 
   /**
@@ -143,17 +224,99 @@ function createKnowledgeLayer(){
     };
   }
 
+  /**
+   * تحليلات المعرفة (Knowledge Analytics — PART 04 Phase D): كثافة الشبكة،
+   * متوسط الارتباط، الكثافة الزمنية (توزيع العناصر عبر المجموعات)، أكثر
+   * أعضاء الطاقم الحقيقي ارتباطًا بأفلام/مسلسلات، ونسبة المحتوى المُضاف يدويًا.
+   * مختلفة عمدًا عن computeMetrics (توزيع أنواع + أكثر العقد ارتباطًا بشكل عام)
+   * وعن تحليل الشبكة الحالي (مكوّنات متصلة + دورات) — تركّز هنا على مضمون
+   * المعرفة نفسها مش بنية الشبكة الخام.
+   */
+  function computeAnalytics(){
+    const totalNodes = nodes.length;
+    const totalEdges = edges.length;
+    const maxPossibleEdges = totalNodes > 1 ? (totalNodes * (totalNodes - 1)) / 2 : 0;
+    const density = maxPossibleEdges ? (totalEdges / maxPossibleEdges) * 100 : 0;
+    const avgDegree = totalNodes ? (totalEdges * 2) / totalNodes : 0;
+
+    const temporalDensity = groups.map(group=>{
+      const count = getNodesByGroup(group.id).length;
+      return { group, count, pct: totalNodes ? (count / totalNodes) * 100 : 0 };
+    });
+
+    const CREW_TYPES = ['actor', 'director', 'writer', 'composer'];
+    const MEDIA_TYPES = ['movie', 'tv'];
+    const topByRole = {};
+    CREW_TYPES.forEach(role=>{
+      topByRole[role] = nodes.filter(n=> n.type === role)
+        .map(n=> ({ node: n, mediaCount: getEdgesForNode(n.id).filter(({ otherNode })=> otherNode && MEDIA_TYPES.includes(otherNode.type)).length }))
+        .filter(c=> c.mediaCount > 0)
+        .sort((a,b)=> b.mediaCount - a.mediaCount)
+        .slice(0, 3);
+    });
+
+    return {
+      density,
+      avgDegree,
+      temporalDensity,
+      topByRole,
+      customRatio: {
+        nodes: { custom: nodes.filter(n=> n.createdAt).length, total: totalNodes },
+        edges: { custom: edges.filter(e=> e.createdAt).length, total: totalEdges }
+      }
+    };
+  }
+
+  /**
+   * تقرير سلامة موسّع (Knowledge Health Monitor — PART 04 Phase D): بدل
+   * عدّاد المشاكل الخام (validateIntegrity)، بيصنّف المشاكل حسب النوع،
+   * وبيضيف كشف "العقد المعزولة" (orphan nodes) ونسبة تغطية الشبكة (%
+   * العقد اللي ليها علاقة حقيقية واحدة على الأقل).
+   */
+  function computeHealthReport(){
+    const issues = validateIntegrity();
+    const issuesByCategory = { 'نوع عقدة غير معتمد': 0, 'معرّف مكرر': 0, 'عنوان مكرر': 0, 'علاقة تشاور على عقدة مفقودة': 0, 'نوع علاقة غير معتمد': 0 };
+    issues.forEach(issue=>{
+      if(issue.includes('نوع عقدة غير معتمد')) issuesByCategory['نوع عقدة غير معتمد']++;
+      else if(issue.includes('معرّف (id) مكرر')) issuesByCategory['معرّف مكرر']++;
+      else if(issue.includes('عنوان مكرر')) issuesByCategory['عنوان مكرر']++;
+      else if(issue.includes('تشاور على عقدة')) issuesByCategory['علاقة تشاور على عقدة مفقودة']++;
+      else if(issue.includes('نوع علاقة غير معتمد')) issuesByCategory['نوع علاقة غير معتمد']++;
+    });
+    const orphanNodes = findOrphanNodes();
+    const coveragePct = nodes.length ? ((nodes.length - orphanNodes.length) / nodes.length) * 100 : 100;
+    // علاقات ضعيفة (weight <= 2) — يعتمد على حقل weight اللي اتضاف في ترحيل PART03 Schema Migration.
+    // العلاقات القديمة من غير weight (لو وُجدت) بتتجاهل هنا (undefined <= 2 غلط)، مش بتتحسب ضعيفة غلط.
+    const weakRelations = edges.filter(e=> typeof e.weight === 'number' && e.weight <= 2);
+    // تغطية الأدلة (Evidence Coverage) — MARVEL-FIX-MASTER-PROMPT.md بند 1.1: "كام %
+    // من العلاقات ليها مصدر مسجّل فعليًا". مختلفة تمامًا عن coveragePct (تغطية العقد
+    // غير المعزولة) — دي بتحسب العلاقات نفسها بغض النظر عن حالة العقد.
+    const edgesWithSource = edges.filter(e=> !!e.source);
+    const evidenceCoveragePct = edges.length ? (edgesWithSource.length / edges.length) * 100 : 100;
+    return { issues, issuesByCategory, orphanNodes, coveragePct, weakRelations, evidenceCoveragePct };
+  }
+
   return {
     setData,
     addCustomNode,
     addCustomEdge,
+    setEdgeSource,
     findNodeById,
     findNodeByTitle,
+    findEdgeById,
+    getNodeDegree,
+    findEdgeBetween,
+    pickMysteryNode,
+    getClues,
     getAllNodes,
+    getAllEdges,
     getGroups,
     getNodesByGroup,
     getEdgesForNode,
+    findOrphanNodes,
     validateIntegrity,
-    computeMetrics
+    computeMetrics,
+    computeAnalytics,
+    computeHealthReport
   };
 }

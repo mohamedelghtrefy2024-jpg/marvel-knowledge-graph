@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<a href="#mainContent" class="skip-link">تخطّي إلى المحتوى الرئيسي</a>
 <div id="app">
   <header>
     <h1>خريطة <span>مارفل</span> المعرفية</h1>
@@ -17,9 +18,16 @@
       <button id="viewDashboardBtn" class="active">🏠 الرئيسية</button>
       <button id="viewRowsBtn">📺 صفوف</button>
       <button id="viewGraphBtn">🕸️ شبكة</button>
+      <button id="viewTimelineBtn">📅 الخط الزمني</button>
       <button id="metricsBtn">📊 إحصائيات</button>
       <button id="shortestPathBtn">🧭 أقصر مسار</button>
       <button id="networkAnalysisBtn">🕸️ تحليل الشبكة</button>
+      <button id="comparisonBtn">⚖️ مقارنة عنصرين</button>
+      <button id="analyticsBtn">📈 تحليلات المعرفة</button>
+      <button id="detectiveBtn">🕵️ وضع المحقق</button>
+      <button id="storyBtn">📜 وضع الحكاية</button>
+      <button id="researchBtn">🔬 بحث متعمق</button>
+      <button id="replayBtn">⏮️ إعادة تشغيل رحلتك</button>
       <button id="addNodeBtn" class="primary">➕ إضافة فيلم/مسلسل</button>
       <button id="bgBtn">🖼️ تغيير الخلفية</button>
       <button id="bgResetBtn" title="رجوع للخلفية الافتراضية">↺ إزالة الخلفية</button>
@@ -27,11 +35,15 @@
       <button id="exportDataBtn" title="نزّل نسخة احتياطية من إضافاتك (عناصر/روابط/خلفية)">⬇️ تصدير بياناتي</button>
       <button id="importDataBtn" title="استرجاع نسخة احتياطية سابقة">⬆️ استيراد بيانات</button>
       <input type="file" id="importDataFileInput" accept="application/json" hidden>
+      <button id="exportCenterBtn" title="صدّر الخريطة كلها بصيغ CSV / Markdown / GraphML">📦 مركز التصدير</button>
+      <button id="aiAssistantBtn" title="لوحة المساعد الذكي (قيد التطوير)">🤖 المساعد الذكي</button>
+      <button id="inferenceBtn" title="اقتراحات علاقات محتملة بناءً على جيران مشتركين">🧠 مقترحات علاقات</button>
     </div>
   </header>
-  <div id="status">بيتحمّل...</div>
+  <div id="status" role="status" aria-live="polite">بيتحمّل...</div>
   <div id="errorToast" class="error-toast" role="alert" hidden></div>
 
+  <main id="mainContent" tabindex="-1">
   <div id="filterBar" style="display:none;">
     <div class="search-wrap">
       <input type="text" id="globalSearchInput" placeholder="🔍 ابحث بالاسم أو بمحتوى العلاقات في كل عناصر الخريطة...">
@@ -51,6 +63,15 @@
           <option value="2">علاقتين أو أكتر</option>
           <option value="4">4 علاقات أو أكتر</option>
           <option value="6">6 علاقات أو أكتر</option>
+        </select>
+      </div>
+      <div class="adv-filter-group">
+        <label for="minWeightInput" class="adv-filter-label">الحد الأدنى لقوة العلاقة:</label>
+        <select id="minWeightInput">
+          <option value="0">بدون حد أدنى</option>
+          <option value="4">4/10 أو أكتر</option>
+          <option value="6">6/10 أو أكتر</option>
+          <option value="8">8/10 أو أكتر</option>
         </select>
       </div>
       <button id="resetAdvancedFiltersBtn" class="small-btn">↺ إعادة تعيين كل الفلاتر</button>
@@ -104,19 +125,42 @@
   </div>
 
   <div id="rowsView" style="display:none;"></div>
-  <div id="graphView"><svg id="graphSvg"></svg></div>
+  <div id="graphView">
+    <div class="graph-toolbar">
+      <select id="graphViewModeSelect" title="نمط عرض الشبكة">
+        <option value="force">🕸️ حر (متجمّع حسب الزمن)</option>
+        <option value="radial">🎯 دائري حسب النوع</option>
+        <option value="columns">📊 أعمدة حسب الزمن</option>
+      </select>
+      <button id="toggleLayersBtn" class="small-btn">🗂️ الطبقات</button>
+    </div>
+    <div id="graphLayersPanel" hidden></div>
+    <svg id="graphSvg"></svg>
+  </div>
+  <div id="timelineView" style="display:none;">
+    <div class="timeline-toolbar">
+      <label class="timeline-toggle-label">
+        <input type="checkbox" id="timelineShowUngroupedToggle">
+        إظهار العناصر بدون مجموعة زمنية
+      </label>
+    </div>
+    <div id="timelineScroll">
+      <svg id="timelineSvg"></svg>
+    </div>
+  </div>
+  </main>
 </div>
 
 <div class="overlay" id="detailOverlay">
   <div class="modal">
-    <button class="modal-close" id="detailClose">×</button>
+    <button class="modal-close" aria-label="إغلاق" id="detailClose">×</button>
     <div id="detailBody"></div>
   </div>
 </div>
 
 <div class="overlay" id="addModal">
   <div class="modal">
-    <button class="modal-close" id="addClose">×</button>
+    <button class="modal-close" aria-label="إغلاق" id="addClose">×</button>
     <h3>إضافة فيلم أو مسلسل جديد</h3>
     <input type="text" id="searchInput" placeholder="اكتب اسم الفيلم أو المسلسل بالإنجليزي...">
     <div id="searchResults"></div>
@@ -131,7 +175,7 @@
 
 <div class="overlay" id="linkModal">
   <div class="modal">
-    <button class="modal-close" id="linkModalClose">×</button>
+    <button class="modal-close" aria-label="إغلاق" id="linkModalClose">×</button>
     <h3>🔗 اربط "<span id="linkFromTitle"></span>" بعقدة تانية</h3>
     <input type="text" id="linkTargetSearch" placeholder="دوّر باسم عنصر موجود في الخريطة...">
     <div id="linkTargetResults"></div>
@@ -142,7 +186,7 @@
 
 <div class="overlay" id="metricsModal">
   <div class="modal">
-    <button class="modal-close" id="metricsModalClose">×</button>
+    <button class="modal-close" aria-label="إغلاق" id="metricsModalClose">×</button>
     <h3>📊 إحصائيات الشبكة</h3>
     <div id="metricsBody"></div>
   </div>
@@ -150,7 +194,7 @@
 
 <div class="overlay" id="shortestPathModal">
   <div class="modal">
-    <button class="modal-close" id="shortestPathModalClose">×</button>
+    <button class="modal-close" aria-label="إغلاق" id="shortestPathModalClose">×</button>
     <h3>🧭 أقصر مسار بين عنصرين</h3>
     <label class="sp-label">من:</label>
     <input type="text" id="spFromSearch" placeholder="دوّر باسم عنصر...">
@@ -165,9 +209,114 @@
 
 <div class="overlay" id="networkAnalysisModal">
   <div class="modal">
-    <button class="modal-close" id="networkAnalysisModalClose">×</button>
+    <button class="modal-close" aria-label="إغلاق" id="networkAnalysisModalClose">×</button>
     <h3>🕸️ تحليل الشبكة</h3>
     <div id="networkAnalysisBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="inferenceModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="inferenceModalClose">×</button>
+    <h3>🧠 مقترحات علاقات محتملة</h3>
+    <p class="ie-hint">اقتراحات بناءً على عدد الجيران الحقيقيين المشتركين — كل اقتراح محتاج موافقتك الصريحة، مفيش أي إضافة تلقائية.</p>
+    <div id="inferenceBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="comparisonModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="comparisonModalClose">×</button>
+    <h3>⚖️ مقارنة بين عنصرين</h3>
+    <label class="sp-label">العنصر الأول:</label>
+    <input type="text" id="cmpASearch" placeholder="دوّر باسم عنصر...">
+    <div id="cmpAResults" class="sp-results"></div>
+    <label class="sp-label">العنصر التاني:</label>
+    <input type="text" id="cmpBSearch" placeholder="دوّر باسم عنصر...">
+    <div id="cmpBResults" class="sp-results"></div>
+    <button class="primary" id="cmpCalcBtn" style="width:100%;">⚖️ قارن</button>
+    <div id="cmpResultBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="analyticsModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="analyticsModalClose">×</button>
+    <h3>📈 تحليلات المعرفة</h3>
+    <div id="analyticsBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="relationshipModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="relationshipModalClose">×</button>
+    <h3>🔍 فحص العلاقة</h3>
+    <div id="relationshipBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="detectiveModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="detectiveModalClose">×</button>
+    <h3>🕵️ وضع المحقق</h3>
+    <div id="detectiveBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="storyModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="storyModalClose">×</button>
+    <h3>📜 وضع الحكاية</h3>
+    <label class="sp-label">من:</label>
+    <input type="text" id="storyFromSearch" placeholder="دوّر باسم عنصر...">
+    <div id="storyFromResults" class="sp-results"></div>
+    <label class="sp-label">إلى:</label>
+    <input type="text" id="storyToSearch" placeholder="دوّر باسم عنصر...">
+    <div id="storyToResults" class="sp-results"></div>
+    <button class="primary" id="storyCalcBtn" style="width:100%;">📜 احكي القصة</button>
+    <div id="storyResultBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="researchModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="researchModalClose">×</button>
+    <h3>🔬 بحث متعمّق عن عنصر</h3>
+    <input type="text" id="researchSearch" placeholder="دوّر باسم عنصر...">
+    <div id="researchResults" class="sp-results"></div>
+    <div id="researchBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="replayModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="replayModalClose">×</button>
+    <h3>⏮️ إعادة تشغيل رحلتك</h3>
+    <div id="replayBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="exportCenterModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="exportCenterModalClose">×</button>
+    <h3>📦 مركز التصدير</h3>
+    <p class="ec-hint">بيصدّر الخريطة كاملة (كل العقد والعلاقات، الأصلية والمخصّصة) — مختلف عن "⬆️ تصدير بياناتي" اللي بينزّل بس إضافاتك الشخصية كنسخة احتياطية.</p>
+    <div id="exportCenterBody" class="ec-buttons">
+      <button id="exportCsvBtn" class="small-btn">📄 CSV (عقد + علاقات)</button>
+      <button id="exportMarkdownBtn" class="small-btn">📝 تقرير Markdown</button>
+      <button id="exportGraphmlBtn" class="small-btn">🕸️ GraphML</button>
+    </div>
+    <p class="ec-hint">صيغ PDF / Neo4j / SQLite مش متاحة حاليًا — بتحتاج مكتبات أو قواعد بيانات خارجية مش جزء من المشروع. بديل PDF: استخدم "طباعة" من المتصفح على تقرير الـ Markdown بعد فتحه.</p>
+  </div>
+</div>
+
+<div class="overlay" id="aiAssistantModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="إغلاق" id="aiAssistantModalClose">×</button>
+    <h3>🤖 المساعد الذكي</h3>
+    <p class="ec-hint">لوحة أساسية فقط (hook) لسه مش متصلة بأي نموذج ذكاء اصطناعي فعلي — مكانها جاهز لأي تكامل مستقبلي.</p>
+    <input type="text" id="aiAssistantInput" placeholder="هتتفعّل قريبًا..." disabled>
+    <button id="aiAssistantSendBtn" class="primary" style="width:100%;" disabled>🤖 إرسال (غير مفعّل بعد)</button>
   </div>
 </div>
 
@@ -182,6 +331,7 @@
 <script src="js/knowledgeLayer.js"></script>
 <script src="js/businessLayer.js"></script>
 <script src="js/graphLayer.js"></script>
+<script src="js/timelineLayer.js"></script>
 <script src="js/renderLayer.js"></script>
 <!-- ============================================================
      نظام الـ Plugins (أساس فقط، بدون أي plugin فعلي حاليًا):

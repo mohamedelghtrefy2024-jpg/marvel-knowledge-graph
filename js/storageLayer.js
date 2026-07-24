@@ -74,6 +74,26 @@ const StorageLayer = {
     localStorage.setItem(CONFIG.STORAGE_KEYS.viewHistory, JSON.stringify(history));
   },
 
+  // ---- تعديلات يدوية على مصدر (source) علاقات موجودة فعليًا (Evidence System) ----
+  // شكل التخزين: { [edgeId]: sourceString }. بيتطبّق على البيانات المحمّلة في app.js
+  // وقت الإقلاع (بعد setData)، من غير أي تعديل على data/edges.json نفسه.
+  loadEdgeSourceOverrides(){
+    try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.edgeSourceOverrides)) || {}; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة تعديلات مصدر العلاقات من localStorage', e); return {}; }
+  },
+  saveEdgeSourceOverrides(overrides){
+    localStorage.setItem(CONFIG.STORAGE_KEYS.edgeSourceOverrides, JSON.stringify(overrides));
+  },
+
+  // ---- اقتراحات محرك الاستنتاج المتجاهَلة (Inference Engine) ----
+  loadDismissedSuggestions(){
+    try{ return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.dismissedSuggestions)) || []; }
+    catch(e){ Logger.warn('storageLayer', 'فشل قراءة الاقتراحات المتجاهَلة من localStorage', e); return []; }
+  },
+  saveDismissedSuggestions(ids){
+    localStorage.setItem(CONFIG.STORAGE_KEYS.dismissedSuggestions, JSON.stringify(ids));
+  },
+
   // ---- الخلفية ----
   loadBackground(){
     return localStorage.getItem(CONFIG.STORAGE_KEYS.background);

@@ -19,7 +19,8 @@ export const SYSTEM_EVENTS = Object.freeze({
   CACHE_CLEARED: 'cache:cleared',
   APP_READY: 'app:ready',
   NODE_ADDED: 'node:added',
-  EDGE_ADDED: 'edge:added'
+  EDGE_ADDED: 'edge:added',
+  EDGE_UPDATED: 'edge:updated'
 });
 
 export class EventBus {

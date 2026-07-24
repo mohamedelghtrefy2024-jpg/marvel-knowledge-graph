@@ -33,6 +33,11 @@ export class DashboardService {
     return this._knowledgeLayer.validateIntegrity();
   }
 
+  /** تقرير سلامة موسّع (Knowledge Health Monitor — PART 04 Phase D): تصنيف + عقد معزولة + نسبة تغطية. */
+  getHealthReport(){
+    return this._knowledgeLayer.computeHealthReport();
+  }
+
   /**
    * حالة النظام: أعداد أساسية تفيد كنظرة سريعة على صحة/حجم البيانات.
    * (مفيش تتبع فعلي لحجم الكاش أو التخزين — localStorage مفيهوش API

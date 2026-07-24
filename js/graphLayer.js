@@ -43,7 +43,7 @@ function createGraphLayer(knowledgeLayer){
         const pairKey = [a,b].sort().join('|') + '|' + edge.id;
         if(seenPairs.has(pairKey)) return;
         seenPairs.add(pairKey);
-        linksData.push({ source: a, target: b, isCross: true, edgeType: edge.type });
+        linksData.push({ source: a, target: b, isCross: true, edgeType: edge.type, edgeId: edge.id, edgeWeight: typeof edge.weight === 'number' ? edge.weight : null });
       });
     });
 
@@ -56,6 +56,15 @@ function createGraphLayer(knowledgeLayer){
    */
   function realNeighbors(nodeId){
     return knowledgeLayer.getEdgesForNode(nodeId).map(e=> e.otherNode).filter(Boolean);
+  }
+
+  /**
+   * الجيران المشتركين بين عقدتين (Comparison Engine — PART 04 Phase D).
+   * @returns {Array} عُقد مرتبطة حقيقيًا بالعقدتين الاتنين معًا
+   */
+  function commonNeighbors(idA, idB){
+    const neighborsA = new Set(realNeighbors(idA).map(n=> n.id));
+    return realNeighbors(idB).filter(n=> neighborsA.has(n.id));
   }
 
   /**
@@ -147,5 +156,67 @@ function createGraphLayer(knowledgeLayer){
     return false;
   }
 
-  return { buildGraphData, shortestPath, connectedComponents, hasCycle };
+  /**
+   * كل العقد اللي على بعد <= maxDistance علاقة حقيقية من عقدة البداية،
+   * مجمّعة حسب المسافة (BFS طبقة بطبقة) — وضع البحث المتعمق (Research Mode
+   * — PART 04 Phase E). عقدة البداية نفسها مش متضمّنة في النتيجة.
+   * @returns {Array<{node:object, distance:number}>}
+   */
+  function nodesWithinDistance(nodeId, maxDistance = 2){
+    const visited = new Set([nodeId]);
+    let frontier = [nodeId];
+    const result = [];
+    for(let d = 1; d <= maxDistance && frontier.length; d++){
+      const nextFrontier = [];
+      for(const currentId of frontier){
+        for(const neighbor of realNeighbors(currentId)){
+          if(visited.has(neighbor.id)) continue;
+          visited.add(neighbor.id);
+          nextFrontier.push(neighbor.id);
+          result.push({ node: neighbor, distance: d });
+        }
+      }
+      frontier = nextFrontier;
+    }
+    return result;
+  }
+
+  /**
+   * محرك استنتاج بسيط وقابل للتفسير (Inference Engine — MARVEL-FIX-MASTER-PROMPT Stage 1):
+   * بيقترح علاقات محتملة (لسه مش موجودة) بين زوجين من العقد ليهم عدد كافٍ من
+   * الجيران الحقيقيين المشتركين. **قرار نطاق موثّق**: مفيش أي اقتراح بيتضاف
+   * تلقائيًا للبيانات — الدالة دي بترجع اقتراحات بس، والإضافة الفعلية بتحصل
+   * فقط لو المستخدم وافق صراحة (عبر addManualEdge الموجودة بالفعل، من واجهة
+   * منفصلة). مفيش ML حقيقي هنا — قاعدة واحدة عالية الدقة (جيران مشتركين) بدل
+   * قواعد متعددة ممكن تولّد ضوضاء كتير على شبكة بحجم 108 عقدة.
+   * @returns {Array} مصفوفة اقتراحات {id, fromId, fromTitle, toId, toTitle, commonNeighborTitles, count}
+   *          مرتّبة تنازليًا حسب عدد الجيران المشتركين
+   */
+  function suggestMissingEdges({ minCommonNeighbors = 2 } = {}){
+    const allNodes = knowledgeLayer.getAllNodes();
+    const suggestions = [];
+    for(let i = 0; i < allNodes.length; i++){
+      for(let j = i + 1; j < allNodes.length; j++){
+        const a = allNodes[i], b = allNodes[j];
+        if(knowledgeLayer.findEdgeBetween(a.id, b.id)) continue; // موجودة بالفعل
+        const common = commonNeighbors(a.id, b.id);
+        if(common.length >= minCommonNeighbors){
+          const [firstId, secondId] = [a.id, b.id].sort();
+          suggestions.push({
+            id: `sug_${firstId}_${secondId}`,
+            fromId: a.id,
+            fromTitle: a.title,
+            toId: b.id,
+            toTitle: b.title,
+            commonNeighborTitles: common.map(n=> n.title),
+            count: common.length
+          });
+        }
+      }
+    }
+    suggestions.sort((x, y)=> y.count - x.count);
+    return suggestions;
+  }
+
+  return { buildGraphData, shortestPath, connectedComponents, hasCycle, commonNeighbors, nodesWithinDistance, suggestMissingEdges };
 }

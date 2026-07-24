@@ -31,4 +31,8 @@ export class GraphService {
   hasCycle(){
     return this._graphLayer.hasCycle();
   }
+
+  commonNeighbors(idA, idB){
+    return this._graphLayer.commonNeighbors(idA, idB);
+  }
 }

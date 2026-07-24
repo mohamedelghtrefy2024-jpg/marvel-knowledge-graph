@@ -48,4 +48,20 @@ export class KnowledgeService {
   validateIntegrity(){
     return this._knowledgeLayer.validateIntegrity();
   }
+
+  findEdgeById(id){
+    return this._knowledgeLayer.findEdgeById(id);
+  }
+
+  findOrphanNodes(){
+    return this._knowledgeLayer.findOrphanNodes();
+  }
+
+  computeAnalytics(){
+    return this._knowledgeLayer.computeAnalytics();
+  }
+
+  computeHealthReport(){
+    return this._knowledgeLayer.computeHealthReport();
+  }
 }

@@ -15,6 +15,14 @@
     "parallel_to", "same_time", "future_of", "past_of", "connected_to"
   ],
 
+  "EDGE_WEIGHT_BY_TYPE": {
+    "post_credit_to": 9, "first_appeared": 8, "introduced_in": 8, "last_appeared": 8,
+    "member_of": 7, "created": 7, "owns": 6, "uses": 6, "enemy_of": 6,
+    "cameo": 5, "connected_to": 5, "located_in": 5, "originated_from": 5,
+    "multiverse_link": 4, "references": 4
+  },
+  "EDGE_WEIGHT_DEFAULT": 5,
+
   "NODE_TYPE_LABELS": {
     "movie": "🎬 فيلم",
     "tv": "📺 مسلسل",
@@ -66,5 +74,14 @@
     "writer":       { "color": "#e6c15c", "radius": 10 },
     "post_credit_scene": { "color": "#8f8f8f", "radius": 9 },
     "default":      { "color": "#8a8f9e", "radius": 12 }
+  },
+
+  "LAYER_GROUPS": {
+    "media":      { "label": "🎬 الوسائط", "types": ["movie", "tv", "comic"] },
+    "story":      { "label": "⚡ أحداث الحبكة", "types": ["event", "battle", "post_credit_scene", "timeline"] },
+    "characters": { "label": "🦸 الشخصيات والفرق", "types": ["character", "team", "organization", "species"] },
+    "places":     { "label": "🌌 الأماكن والأكوان", "types": ["location", "planet", "universe", "dimension"] },
+    "objects":    { "label": "💠 الأدوات والتقنية", "types": ["artifact", "weapon", "technology", "vehicle"] },
+    "crew":       { "label": "🎭 الطاقم الحقيقي", "types": ["actor", "director", "writer", "composer"] }
   }
 }

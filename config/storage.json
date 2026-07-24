@@ -14,7 +14,9 @@
     "background": "marvelmap_bg_v2",
     "searchHistory": "marvelmap_search_history_v1",
     "bookmarks": "marvelmap_bookmarks_v1",
-    "viewHistory": "marvelmap_view_history_v1"
+    "viewHistory": "marvelmap_view_history_v1",
+    "dismissedSuggestions": "marvelmap_dismissed_suggestions_v1",
+    "edgeSourceOverrides": "marvelmap_edge_source_overrides_v1"
   },
 
   "LEGACY_STORAGE_KEYS": {

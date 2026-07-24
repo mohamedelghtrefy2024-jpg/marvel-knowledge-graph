@@ -14,6 +14,16 @@
     --font-body: 'Tajawal', sans-serif;
   }
   *{ box-sizing:border-box; }
+  .skip-link{
+    position:absolute; right:8px; top:-48px; z-index:1000;
+    background:var(--gold); color:#151515; padding:10px 16px; border-radius:8px;
+    font-weight:700; text-decoration:none; transition:top .15s ease;
+  }
+  .skip-link:focus{ top:8px; }
+  :focus-visible{ outline:2px solid var(--gold-2); outline-offset:2px; }
+  .ec-hint{ color:var(--muted); font-size:13px; line-height:1.6; margin:8px 0; }
+  .ec-buttons{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+  #aiAssistantInput{ width:100%; margin-bottom:10px; }
   body{
     margin:0; background:var(--bg); color:var(--text); font-family:var(--font-body);
     min-height:100vh; background-size:cover; background-position:center; background-attachment:fixed;
@@ -129,6 +139,7 @@
   .dash-list-item .dli-type{ font-size:11px; color:var(--muted); flex-shrink:0; }
   .dash-health-ok{ color:#7fd68a; font-weight:700; }
   .dash-health-warn{ color:var(--gold-2); font-weight:700; }
+  .dash-health-detail{ color:var(--muted); font-size:12.5px; padding-inline-start:6px; }
   .dash-random-title{ font-size:14px; font-weight:700; }
   .dash-random-type{ font-size:12px; color:var(--muted); }
 
@@ -197,6 +208,37 @@
   .hub circle{ stroke:var(--gold); }
   .hub text{ fill:var(--gold-2); font-weight:700; font-size:13px; }
 
+  /* ---- Graph toolbar (view mode + layers) — Phase C ---- */
+  .graph-toolbar{
+    position:absolute; top:14px; right:14px; z-index:6; display:flex; gap:8px; align-items:flex-start;
+  }
+  .graph-toolbar select{
+    font-family:var(--font-body); border-radius:8px; border:1px solid var(--line); background:var(--panel);
+    color:var(--text); padding:8px 12px; font-size:12.5px; cursor:pointer;
+  }
+  #graphLayersPanel{
+    position:absolute; top:58px; right:14px; z-index:6; background:rgba(23,27,38,0.95);
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px; display:flex;
+    flex-direction:column; gap:8px; font-size:12.5px; color:var(--text); backdrop-filter:blur(4px); min-width:220px;
+  }
+  .layer-toggle-row{ display:flex; align-items:center; gap:8px; cursor:pointer; }
+  .layer-toggle-row input{ cursor:pointer; }
+
+  /* ---- Timeline Explorer — Phase C ---- */
+  #timelineView{ height:calc(100vh - 130px); display:flex; flex-direction:column; }
+  .timeline-toolbar{ padding:10px 20px; border-bottom:1px solid var(--line); }
+  .timeline-toggle-label{ font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; cursor:pointer; }
+  #timelineScroll{ flex:1; overflow:auto; }
+  #timelineSvg{ display:block; }
+  .timeline-col-title{ fill:var(--gold-2); font-size:13px; font-weight:700; font-family:var(--font-body); }
+  .timeline-col-count{ fill:var(--muted); font-size:10.5px; }
+  .timeline-axis{ stroke:var(--line); stroke-width:1px; }
+  .timeline-arc{ fill:none; stroke:var(--line); stroke-width:1.2px; opacity:0.55; }
+  .timeline-arc.active{ stroke:var(--gold); stroke-width:2px; opacity:1; }
+  .timeline-arc.dimmed{ opacity:0.08; }
+  .tnode circle{ stroke:var(--bg); stroke-width:1.2px; cursor:pointer; }
+  .timeline-node-label{ fill:var(--text); font-size:11px; font-family:var(--font-body); pointer-events:none; }
+
   /* ---- Modal (details) ---- */
   .overlay{
     display:none; position:fixed; inset:0; background:rgba(5,6,10,0.82); z-index:200;
@@ -238,6 +280,34 @@
   .link-item:hover{ border-color:var(--gold); }
   .link-item-title{ font-weight:700; font-size:13.5px; color:var(--gold-2); }
   .link-item-reason{ font-size:12.5px; color:var(--muted); margin-top:4px; line-height:1.6; }
+  .link-item-inspect{ float:inline-end; cursor:pointer; opacity:0.6; padding:0 4px; }
+  .link-item-inspect:hover{ opacity:1; }
+
+  /* ---- Relationship Inspector — Phase D ---- */
+  .ri-header{ display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .ri-node-chip{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 14px; cursor:pointer; font-weight:700; color:var(--gold-2); }
+  .ri-node-chip:hover{ border-color:var(--gold); }
+  .ri-arrow{ color:var(--muted); font-size:18px; }
+  .ri-meta{ font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  .ri-description{ font-size:13.5px; color:var(--text); margin:10px 0; line-height:1.7; }
+  .ri-source-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+  .ri-source-row .ri-meta{ margin-bottom:0; }
+  .ri-source-input{ flex:1; min-width:180px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:6px 10px; color:var(--text); font-size:12.5px; }
+  .ri-other-section{ margin-top:16px; border-top:1px solid var(--line); padding-top:12px; }
+  .ri-other-item{ padding:8px 10px; border-radius:8px; cursor:pointer; font-size:12.5px; color:var(--muted); }
+  .ri-other-item:hover{ background:var(--panel); }
+
+  /* ---- Comparison Engine — Phase D ---- */
+  .cmp-columns{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  .cmp-col h4{ color:var(--gold-2); margin-bottom:8px; }
+  .cmp-shared-section{ margin-top:16px; border-top:1px solid var(--line); padding-top:12px; }
+  .cmp-shared-item{ padding:6px 10px; border-radius:8px; cursor:pointer; font-size:12.5px; }
+  .cmp-shared-item:hover{ background:var(--panel); }
+
+  /* ---- Knowledge Analytics — Phase D ---- */
+  .an-summary-row{ display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; }
+  .an-role-block{ margin-top:14px; }
+  .an-role-block h5{ color:var(--gold-2); font-size:13px; margin-bottom:6px; }
 
   /* ---- Add link modal ---- */
   #linkModal .modal{ max-width:520px; padding:24px; }
@@ -298,3 +368,57 @@
   }
   .na-component-item .na-component-size{ font-weight:700; color:var(--gold-2); font-size:13px; }
   .na-component-item .na-component-members{ font-size:12.5px; color:var(--muted); margin-top:4px; line-height:1.7; }
+
+  /* ---- أوضاع الاستكشاف — Phase E ---- */
+  #detectiveModal .modal{ max-width:560px; padding:24px; }
+  #detectiveModal h3{ margin-top:0; font-family:var(--font-display); color:var(--gold-2); }
+  #storyModal .modal{ max-width:640px; padding:24px; }
+  #storyModal h3{ margin-top:0; font-family:var(--font-display); color:var(--gold-2); }
+  #storyModal input[type=text]{
+    width:100%; padding:10px 12px; margin:6px 0; background:var(--panel); border:1px solid var(--line);
+    color:var(--text); border-radius:8px; font-family:var(--font-body); font-size:14px;
+  }
+  #researchModal .modal{ max-width:640px; padding:24px; }
+  #researchModal h3{ margin-top:0; font-family:var(--font-display); color:var(--gold-2); }
+  #researchModal input[type=text]{
+    width:100%; padding:10px 12px; margin:6px 0; background:var(--panel); border:1px solid var(--line);
+    color:var(--text); border-radius:8px; font-family:var(--font-body); font-size:14px;
+  }
+  #replayModal .modal{ max-width:520px; padding:24px; }
+  #replayModal h3{ margin-top:0; font-family:var(--font-display); color:var(--gold-2); }
+
+  .detective-clue-list{ display:flex; flex-direction:column; gap:8px; margin:12px 0; }
+  .detective-clue-item{
+    background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+    font-size:13px; line-height:1.7; display:flex; gap:8px;
+  }
+  .detective-clue-num{ color:var(--gold-2); font-weight:700; flex-shrink:0; }
+  .detective-guess-wrap{ margin-top:14px; }
+  .detective-guess-wrap input[type=text]{
+    width:100%; padding:10px 12px; margin:6px 0; background:var(--panel); border:1px solid var(--line);
+    color:var(--text); border-radius:8px; font-family:var(--font-body); font-size:14px;
+  }
+  .detective-result{ padding:12px; border-radius:8px; margin:10px 0; font-size:13.5px; font-weight:700; }
+  .detective-result-correct{ background:rgba(94,201,120,0.15); color:#5ec978; }
+  .detective-result-wrong{ background:rgba(214,37,44,0.15); color:var(--red-2); }
+
+  .story-step{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:12px; }
+  .story-step-num{ font-size:11px; color:var(--muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em; }
+
+  .replay-nav{ display:flex; gap:10px; margin-top:16px; }
+  .replay-nav button{ flex:1; }
+
+  /* ---- Inference Engine (مقترحات علاقات) ---- */
+  #inferenceModal .modal{ max-width:640px; }
+  .ie-hint{ font-size:12.5px; color:var(--muted); margin:6px 0 14px; line-height:1.6; }
+  #inferenceBody{ display:flex; flex-direction:column; gap:10px; max-height:60vh; overflow-y:auto; }
+  .ie-suggestion-item{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+  }
+  .ie-suggestion-pair{ font-weight:700; color:var(--gold-2); font-size:14px; margin-bottom:6px; }
+  .ie-suggestion-reason{ font-size:12.5px; color:var(--muted); line-height:1.7; margin-bottom:10px; }
+  .ie-suggestion-actions{ display:flex; gap:8px; }
+  .ie-suggestion-actions button{ flex:1; padding:6px 10px; font-size:12.5px; }
+  .ie-suggestion-actions .ie-accept{ background:var(--gold); color:#0a0a0a; font-weight:700; }
+  .ie-suggestion-actions .ie-dismiss{ background:transparent; border:1px solid var(--line); color:var(--muted); }
+  .ie-empty{ padding:16px; text-align:center; color:var(--muted); background:var(--panel); border-radius:8px; }

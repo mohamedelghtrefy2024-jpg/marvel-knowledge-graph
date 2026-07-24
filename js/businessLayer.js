@@ -77,7 +77,19 @@ function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBu
       group,
       tmdbId: null,
       attributes: {},
-      createdAt: Date.now()
+      // ---- حقول Schema Migration (MARVEL-FIX-MASTER-PROMPT.md بند 0.1) ----
+      // كل عقدة جديدة (حتى المُضافة يدويًا من المستخدم) لازم تاخد نفس شكل
+      // العقد الـ108 الأصلية بعد الترحيل، مش مجموعة فرعية من الحقول.
+      description: null,
+      shortDescription: null,
+      status: 'active',
+      createdAt: Date.now(),
+      updatedAt: null,
+      tags: [],
+      color: null,
+      confidenceScore: null,
+      knowledgeScore: null,
+      aliases: []
     };
     knowledgeLayer.addCustomNode(node);
     try{
@@ -95,15 +107,20 @@ function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBu
   }
 
   function addManualEdge({ fromNodeId, toNodeId, description, type }){
+    const edgeType = type || 'connected_to';
     const edge = {
       id: Utils.generateId(),
       from: fromNodeId,
       to: toNodeId,
-      type: type || 'connected_to',
+      type: edgeType,
       direction: 'directed',
       description,
       source: null,
-      createdAt: Date.now()
+      weight: (CONFIG.EDGE_WEIGHT_BY_TYPE && CONFIG.EDGE_WEIGHT_BY_TYPE[edgeType]) || CONFIG.EDGE_WEIGHT_DEFAULT || 5,
+      confidence: 100,
+      evidenceType: 'manual_research',
+      createdAt: Date.now(),
+      updatedAt: null
     };
     knowledgeLayer.addCustomEdge(edge);
     try{
@@ -120,11 +137,37 @@ function createBusinessLayer(knowledgeLayer, cacheManager, errorManager, eventBu
     return edge;
   }
 
+  /**
+   * تسجيل/تعديل مصدر (source) علاقة موجودة فعليًا (سواء أصلية أو مُضافة يدويًا) —
+   * Evidence System (MARVEL-FIX-MASTER-PROMPT.md بند 1.1: واجهة "إضافة مصدر").
+   * بيتخزّن كـ override منفصل في localStorage (`edgeSourceOverrides`) بدل ما
+   * يعدّل `data/edges.json` نفسه مباشرة — نفس مبدأ "بدون تعديل البيانات
+   * الأصلية" المتبع في المشروع كله، وبيتطبّق تلقائيًا عند كل تحميل (app.js).
+   */
+  function updateEdgeSource(edgeId, source){
+    const trimmed = (source || '').trim();
+    const edge = knowledgeLayer.setEdgeSource(edgeId, trimmed || null);
+    if(!edge) return null;
+    try{
+      const overrides = StorageLayer.loadEdgeSourceOverrides();
+      overrides[edgeId] = trimmed || null;
+      StorageLayer.saveEdgeSourceOverrides(overrides);
+    }catch(e){
+      errorManager.report(e, {
+        scope: 'businessLayer:updateEdgeSource',
+        userMessage: 'المصدر اتحدّث على الشاشة بس تعذّر حفظه — لو عملت تحديث للصفحة ممكن يرجع للقيمة القديمة.'
+      });
+    }
+    if(eventBus) eventBus.emit('edge:updated', { edge }); // = SYSTEM_EVENTS.EDGE_UPDATED في src/core/EventBus.js
+    return edge;
+  }
+
   return {
     fetchTmdbData,
     searchTmdbMulti,
     searchLocalNodes,
     addMovieOrTvNode,
-    addManualEdge
+    addManualEdge,
+    updateEdgeSource
   };
 }

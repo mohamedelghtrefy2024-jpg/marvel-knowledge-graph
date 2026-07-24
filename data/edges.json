@@ -6,7 +6,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: نيك فيوري بيعرض على ستيف مهمة إنقاذ العالم — تمهيد مباشر لفيلم The Avengers.",
-    "source": null
+    "source": "Captain America: The First Avenger و The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "86e0d319-3347-419d-a0b4-1ed6b8f87539",
@@ -15,7 +20,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: نيك فيوري بيقابل توني ستارك ويكشفله عن \"مبادرة الأفنجرز\" — أول لبنة رسمية للكون السينمائي المشترك.",
-    "source": null
+    "source": "Iron Man و The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "a6ad9143-488d-4e84-af3a-8d411bf62d45",
@@ -24,7 +34,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: العميل كولسون بيلاقي مطرقة ثور مغروزة في حفرة بالصحراء — تمهيد مباشر لفيلم Thor.",
-    "source": null
+    "source": "Iron Man 2 و Thor",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "4005874d-56b2-4523-822a-7db29d8744b0",
@@ -33,7 +48,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "توني ستارك بيظهر في آخر مشهد بيتكلم مع الجنرال روس عن \"فريق\" بيتكوّن — أول تلميح لفكرة الأفنجرز.",
-    "source": null
+    "source": "The Incredible Hulk و Iron Man 2",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "7c7f5e3b-6cc1-4452-b749-b1e7394bc567",
@@ -42,7 +62,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "سقوط شيلد في الفيلم ده أثّر مباشرة على أحداث المسلسل بالكامل، وغيّر مصير منظمة شيلد فيه من الأساس.",
-    "source": null
+    "source": "Captain America: The Winter Soldier و Agents of S.H.I.E.L.D.",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "49b7560d-6a2d-4df3-bbbc-9b4a67b7bafa",
@@ -51,7 +76,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "استكمال مباشر لنفس الشخصية والخط القصصي بعد سنين، دلوقتي رسميًا جوه MCU.",
-    "source": null
+    "source": "Daredevil و Daredevil: Born Again",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "8471558b-f5ff-41a3-b444-963fe4428aa7",
@@ -60,7 +90,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مات ميردوك (ديردفيل) بينضم لجيسيكا جونز ولوك كيدج وآيرون فيست في The Defenders، بعد إحداث كل مسلسل منفصل.",
-    "source": null
+    "source": "Daredevil و The Defenders",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "3cad535f-47d5-414f-bbaf-cfa3528352fa",
@@ -69,7 +104,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "فرانك كاسل (بانيشر) اتقدّم لأول مرة كشخصية رئيسية في الموسم التاني من Daredevil، قبل ما ياخد مسلسله المستقل بالكامل.",
-    "source": null
+    "source": "Daredevil و The Punisher",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "0b4e55fb-1e3f-427a-90e2-4fd822044f43",
@@ -78,7 +118,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: نيك فيوري بيوري إريك سيلفيج التسراكت، وسيلفيج ده أصلاً تحت سيطرة لوكي — الخيط اللي بيوصل لأحداث The Avengers.",
-    "source": null
+    "source": "Thor و The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "0919b3ab-3919-4ad9-a247-6f91ba26ed79",
@@ -87,7 +132,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: الأسجارديون بيسلّموا الأثير (حجر الواقع) للكولكتور عشان يحفظه — بيظهر بعد كده جوه متحف الكولكتور نفسه في مشهد Guardians.",
-    "source": null
+    "source": "Thor: The Dark World و Guardians of the Galaxy",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "4ac96b90-4ac7-4493-ace1-3b25944e8e44",
@@ -96,7 +146,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: كوزمو الكلب الفضائي وهوارد الدك بيظهروا جوه أنقاض متحف الكولكتور — نفس الشخصيات والمكان بيكملوا في الجزء التاني.",
-    "source": null
+    "source": "Guardians of the Galaxy و Guardians of the Galaxy Vol. 2",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "bbad7606-84a2-499c-bb7f-13e4d4482fb8",
@@ -105,7 +160,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: تانوس نفسه بيلبس قفاز اللانهاية الفاضي ويقرر يدور بنفسه على حجارة اللانهاية — بداية خط تانوس المباشر لـ Infinity War.",
-    "source": null
+    "source": "Avengers: Age of Ultron و Avengers: Infinity War",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cbc2591e-2548-4bff-9f65-706828782413",
@@ -114,7 +174,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: ستيف وسام محتاجين مساعدة سكوت لانج (آنت مان) عشان \"الاتفاقية\" مانعاهم يتواصلوا مع توني — نفس المشهد ده بيتوسع ويتفصل في Civil War.",
-    "source": null
+    "source": "Ant-Man و Captain America: Civil War",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "dc56eef2-7068-4d4d-8d18-e9aaa7eb601c",
@@ -123,7 +188,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "جيسيكا جونز بتنضم لديردفيل ولوك كيدج وآيرون فيست يشكّلوا فريق The Defenders سوا.",
-    "source": null
+    "source": "Jessica Jones و The Defenders",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "9ee45ef6-38d9-4225-8bf5-e58a06767c2f",
@@ -132,7 +202,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: فالنتينا دي فونتين بتجنّد يلينا بيلوفا وتقنعها إن كلينت بارتون (هوكآي) هو المسؤول عن موت ناتاشا — ده بالظبط اللي بيحرّك حبكة مسلسل Hawkeye.",
-    "source": null
+    "source": "Black Widow و Hawkeye",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "5c0c6c1e-e07d-4ae3-bb17-1f48621d6711",
@@ -141,7 +216,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "الفيلم قدّم شخصية تي'تشالا/بلاك بانثر لأول مرة وأسس لخلفيته، قبل ما ياخد فيلمه المستقل.",
-    "source": null
+    "source": "Captain America: Civil War و Black Panther",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ae114389-3568-48a3-aa24-6e508c1b4ee6",
@@ -150,7 +230,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "توني ستارك جنّد بيتر باركر في هذا الفيلم بالظبط، وده نقطة البداية لقصة سبايدرمان في MCU.",
-    "source": null
+    "source": "Captain America: Civil War و Spider-Man: Homecoming",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "e02cc58f-7efe-484a-9264-9fb304984554",
@@ -159,7 +244,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "دكتور سترينج بيظهر في مشهد قصير بيساعد ثور يلاقي أودين، بيربط الفيلمين زمنيًا.",
-    "source": null
+    "source": "Doctor Strange و Thor: Ragnarok",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "77d8c80c-ca8d-42cb-b59f-4a0cf06aa183",
@@ -168,7 +258,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "نهاية الفيلم (سكوت لانج عالق في العالم الكمي وقت الطفرة) هي المدخل المباشر لخطة \"رحلة الزمن\" في Endgame.",
-    "source": null
+    "source": "Ant-Man and the Wasp و Avengers: Endgame",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "b64a95c3-b437-4b24-9959-e6373b808983",
@@ -177,7 +272,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "كارول دانفرز بتظهر بداية الفيلم استجابة لبيجر نيك فيوري اللي شفناه في نهاية Captain Marvel بالظبط.",
-    "source": null
+    "source": "Avengers: Endgame و Captain Marvel",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cc7e8abc-86d4-4c53-a8e0-d5f68196d46d",
@@ -186,7 +286,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "واندا بعد أحداث ويستفيو بتبقى الشرير الرئيسي في الفيلم، واستخدامها لكتاب دارك هولد بيبدأ من هنا.",
-    "source": null
+    "source": "WandaVision و Doctor Strange in the Multiverse of Madness",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "a12b4654-eb16-482f-a8f4-89483cc72297",
@@ -195,7 +300,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "فكرة المالتيفيرس والمتغيرات (Variants) اللي بيقدمها المسلسل بتبقى الأساس اللي مبني عليه الفيلم.",
-    "source": null
+    "source": "Loki و Doctor Strange in the Multiverse of Madness",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "125abf6f-a8fb-4847-8879-653bd3199dff",
@@ -204,7 +314,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "هيئة TVA (سلطة الفارق الزمني) اللي اتعرفنا عليها هنا بتظهر تاني بدور محوري في الفيلم.",
-    "source": null
+    "source": "Loki و Deadpool & Wolverine",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "44ddce2f-b7eb-481b-8b15-b5017f78f683",
@@ -213,7 +328,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "الخواتم العشرة اللي شفناها في نهاية الفيلم بتترشح تلعب دور في أحداث Doomsday حسب التلميحات الرسمية.",
-    "source": null
+    "source": "Shang-Chi and the Legend of the Ten Rings و Avengers: Doomsday",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "06b8d8de-2368-46de-be90-46e21ccd7615",
@@ -222,7 +342,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مات ميردوك/ديردفيل بيظهر كضيف في المسلسل، وده أول ظهور رسمي ليه جوه MCU بعد نتفليكس.",
-    "source": null
+    "source": "She-Hulk: Attorney at Law و Daredevil: Born Again",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "0335be51-5f0b-4b2d-b13a-c531f28248a0",
@@ -231,7 +356,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "كينجبن (ويلسون فيسك) اتقدّم كشرير رئيسي هنا كأول ظهور رسمي ليه في MCU (خارج نتفليكس)، وخطه بيكمل ويتوسع في Born Again.",
-    "source": null
+    "source": "Hawkeye و Daredevil: Born Again",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "496ec906-7ec1-4318-b760-de62e0487e55",
@@ -240,7 +370,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مايا لوبيز (إيكو) شخصية أساسية في المسلسل بتنتقم من كينجبن، وحصل بينهم مواجهة في آخر حلقة — دي البداية المباشرة لمسلسل Echo اللي بيكمل قصتها.",
-    "source": null
+    "source": "Hawkeye و Echo",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f7b05de5-d440-461b-bfa6-122adadbd20b",
@@ -249,7 +384,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "لوك كيدج بينضم للفريق الرباعي (ديردفيل، جيسيكا جونز، آيرون فيست) في The Defenders.",
-    "source": null
+    "source": "Luke Cage و The Defenders",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "2bc3d8d4-20ec-4106-b287-5a8180d44c1a",
@@ -258,7 +398,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "داني راند (آيرون فيست) بيبقى العضو الرابع في فريق The Defenders، وقصته بتقود لخط \"ذا هاند\" الأساسي في المسلسل.",
-    "source": null
+    "source": "Iron Fist و The Defenders",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cf9f435e-a88d-4560-bd5e-0536f9cf931d",
@@ -267,7 +412,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: سفينة ثور بتتقابل مع سفينة تانوس العملاقة (Sanctuary II) — بداية أحداث Infinity War مباشرة.",
-    "source": null
+    "source": "Thor: Ragnarok و Avengers: Infinity War",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "9be3fa07-5d04-4b1f-9871-904d20b8e977",
@@ -276,7 +426,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "فرانك كاسل (بانيشر) اتقدّم أصلاً كشخصية جوه مسلسل Daredevil قبل ما ياخد مسلسله المستقل، وبيرجع تاني رسميًا في Born Again.",
-    "source": null
+    "source": "The Punisher و Daredevil: Born Again",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "6a2fda85-1ca9-4ee7-b280-8304267c1f60",
@@ -285,7 +440,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: نيك فيوري قبل ما يتلاشى بيبعت إشارة استغاثة برمز كابتن مارفل — تمهيد مباشر لفيلمها.",
-    "source": null
+    "source": "Avengers: Infinity War و Captain Marvel",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "adc4fe27-e018-48e5-981a-4abfcdb9dc03",
@@ -294,7 +454,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "المسلسل بيوري رحلة سام ويلسون وهو بيقبل يبقى كابتن أمريكا الجديد، وبيقدّم جواكين توريس اللي بيبقى الفالكون الجديد في الفيلم.",
-    "source": null
+    "source": "The Falcon and the Winter Soldier و Captain America: Brave New World",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "1d6b55f3-f8be-432c-b127-e014a28d992e",
@@ -303,7 +468,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "كابتن كارتر (نسخة بديلة من بيجي كارتر بقوى الجندي الخارق) بتظهر فعليًا في الفيلم كعضوة في الإلوميناتي، وكمان وحش جارجانتوس اللي ظهر في حلقة \"سترينج سوبريم\" بيتكرر ظهوره في الفيلم.",
-    "source": null
+    "source": "What If...? و Doctor Strange in the Multiverse of Madness",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f533ef41-f278-4768-bf81-94ffb4a43f2f",
@@ -312,7 +482,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: سوار كمالة بيلمع فجأة وبتتبادل الأماكن مع كارول دانفرز (كابتن مارفل) — بداية أحداث The Marvels مباشرة، وموثّق إن نفس مخرجة الفيلم صوّرت المشهد ده بنفسها.",
-    "source": null
+    "source": "Ms. Marvel و The Marvels",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "7614eddc-b746-480a-bed1-a93fa8749bfc",
@@ -321,7 +496,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر يعرض أول تريلر لفيلم دكتور سترينج التاني مباشرة — إعلان رسمي عن الفيلم الجاي.",
-    "source": null
+    "source": "Spider-Man: No Way Home و Doctor Strange in the Multiverse of Madness",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "488c010b-ef63-44b4-8a8b-7199962bd6bf",
@@ -330,7 +510,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر بيوري لوكي وموبيوس في معرض شيكاغو 1893 بيتفرجوا على فيكتور تايملي (نسخة تانية من كانج) — نفس المشهد ده بالظبط بيتعرض بتفصيل أكتر في حلقة الموسم التاني من Loki.",
-    "source": null
+    "source": "Ant-Man and the Wasp: Quantumania و Loki",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "e93930b7-e226-4bbb-a720-f205c1bfae5c",
@@ -339,7 +524,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "المسلسل بيكمل شفا كينجبن من الطلقة اللي اتصابها في نهاية Hawkeye، وعلاقته المعقدة بمايا لوبيز — الخلفية المباشرة لظهوره في Born Again.",
-    "source": null
+    "source": "Echo و Daredevil: Born Again",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "3b9bb4d5-a68f-47d9-88b5-969306f643e5",
@@ -348,7 +538,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر: صامويل ستيرنز بيحذّر سام ويلسون من هجوم جاي من \"عوالم تانية\" — تلميح مباشر لتصادم الكون الرئيسي بالمالتيفيرس، وفالنتينا دي فونتين (شريرة الفيلمين) بتفضل مديرة CIA لحد أحداث Thunderbolts.",
-    "source": null
+    "source": "Captain America: Brave New World و Thunderbolts",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cfcaec75-305b-4b06-a3d3-e8371b03427c",
@@ -357,7 +552,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد التتر (بعد 4 سنين من أحداث الفيلم): دكتور دووم بيظهر جالس مع فرانكلين ريتشاردز الطفل، وبتنتهي بجملة \"الفانتاستيك فور هيرجعوا في Avengers: Doomsday\" — تأكيد رسمي من كيفن فايج نفسه.",
-    "source": null
+    "source": "The Fantastic Four: First Steps و Avengers: Doomsday",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "8ff990f3-e0e9-4e38-ac57-195e73539612",
@@ -366,7 +566,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مشهد ما بعد تتر Thunderbolts بيوري نسخة مصغّرة من نفس مشهد سفينة الفانتاستيك فور وهي بتوصل لكون الأرض 616 الرئيسي — تمهيد لانضمامهم الفعلي.",
-    "source": null
+    "source": "The Fantastic Four: First Steps و Thunderbolts",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "744bb779-8931-45fd-98cd-cd410d02da93",
@@ -375,7 +580,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "في مشهد ما بعد التتر، إيدي بروك ينتقل عبر تعويذة دكتور سترينج لحظيًا لكون مارفل الرسمي (MCU)، يشوف خبر عن هوية سبايدرمان، قبل ما ينسحب تاني لكونه — أول تلميح رسمي إن عالم فينوم وMCU أكوان متوازية في نفس المالتيفيرس.",
-    "source": null
+    "source": "Venom: Let There Be Carnage و Spider-Man: No Way Home",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "fccad2e1-d8c0-4e09-ade8-c657571b6335",
@@ -384,7 +594,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "في مشاهد ما بعد التتر، موربيوس بيشوف إعلانات عن سبايدرمان في عالمه بعد ما فيتشر (الرجل الطائر) بييجي من كون تاني — تلميح مباشر لتداخل الأكوان بين عالم سوني وMCU.",
-    "source": null
+    "source": "Morbius و Spider-Man: No Way Home",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "47112712-da76-4572-b39c-4667fa43c628",
@@ -393,7 +608,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "قصة من جزئين رسميًا مؤكدة من مارفل ستوديوز — Doomsday هو الجزء الأول، وSecret Wars هو الخاتمة المباشرة ليه.",
-    "source": null
+    "source": "Avengers: Doomsday و Avengers: Secret Wars",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "af16217e-8a19-43c5-877b-9cf0cbd2cee3",
@@ -402,7 +622,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "توني ستارك عضو مؤسس في فريق الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "c2f4dc76-e2f4-4ae3-9c32-eeb1c9ae5311",
@@ -411,7 +636,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "ستيف روجرز عضو مؤسس في فريق الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f12001da-c1ed-402b-8251-813f054086a4",
@@ -420,7 +650,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "ثور عضو مؤسس في فريق الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "7765d188-7393-4476-a2cb-8ab058f0cb6c",
@@ -429,7 +664,12 @@
     "type": "enemy_of",
     "direction": "undirected",
     "description": "ثانوس هو الخصم الرئيسي للأفنجرز في أحداث Infinity War و Endgame",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "17725380-5af7-44b4-9309-fcfde46f021b",
@@ -438,7 +678,12 @@
     "type": "owns",
     "direction": "directed",
     "description": "ثور يمتلك مطرقة مولنير",
-    "source": null
+    "source": "Thor",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "23b6342f-ffc1-49c3-b968-baa997abbf09",
@@ -447,7 +692,12 @@
     "type": "uses",
     "direction": "directed",
     "description": "ثانوس يستخدم قفاز اللانهاية لتنفيذ الطفرة",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f3fb9745-3548-4fe3-96bb-6c68f894b74d",
@@ -456,7 +706,12 @@
     "type": "located_in",
     "direction": "directed",
     "description": "برج ستارك (برج الأفنجرز) هو مقر توني ستارك في نيويورك",
-    "source": null
+    "source": "The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "9c09648e-0be4-4f46-8497-2ef34986304f",
@@ -465,7 +720,12 @@
     "type": "originated_from",
     "direction": "directed",
     "description": "ثور ينحدر من مملكة أسجارد",
-    "source": null
+    "source": "Thor",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "010df3ca-9711-4203-8445-7a0350244bf3",
@@ -474,7 +734,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "شيلد هي المنظمة التي أسست مبادرة الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "98942e99-0a32-4c16-ac36-f050cc1e07c9",
@@ -483,7 +748,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لتوني ستارك/آيرون مان في هذا الفيلم",
-    "source": null
+    "source": "Iron Man",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f4aef17a-9254-455c-be80-aabf030c2973",
@@ -492,7 +762,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لستيف روجرز/كابتن أمريكا في هذا الفيلم",
-    "source": null
+    "source": "Captain America: The First Avenger",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "14a97a5a-7220-4ea7-b853-357b998ff585",
@@ -501,7 +776,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لثور في هذا الفيلم",
-    "source": null
+    "source": "Thor",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "442e5e22-b65c-49f0-9792-7d656a842c9f",
@@ -510,7 +790,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "معركة نيويورك هي الحدث الرئيسي في أحداث هذا الفيلم",
-    "source": null
+    "source": "The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "4e4b380a-0058-40a5-9ff7-46274fa4fdd2",
@@ -519,7 +804,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "قفاز اللانهاية عنصر محوري في أحداث هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "7d3fd1e4-08f5-41c8-a9f6-63cf390781b7",
@@ -528,7 +818,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "قفاز اللانهاية يُستخدم مرة أخرى لعكس الطفرة في هذا الفيلم",
-    "source": null
+    "source": "Avengers: Endgame",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "9cb21d91-983e-4ce3-a7e1-f835778544a2",
@@ -537,7 +832,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "بروس بانر (هالك) عضو مؤسس في فريق الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ae998910-b2bd-4852-b569-009ba429be71",
@@ -546,7 +846,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "ناتاشا رومانوف (بلاك ويدو) عضوة مؤسسة في فريق الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cb305b2e-3766-4082-9e15-77f706ed8fa5",
@@ -555,7 +860,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "كلينت بارتون (هوكآي) عضو مؤسس في فريق الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "59c5976d-2cdc-4db3-bcbe-9e79000328d4",
@@ -564,7 +874,12 @@
     "type": "member_of",
     "direction": "directed",
     "description": "نيك فيوري هو مدير منظمة شيلد",
-    "source": null
+    "source": "Iron Man",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "495c2bd6-97e9-4a3e-8d86-6e06a53de78b",
@@ -573,7 +888,12 @@
     "type": "created",
     "direction": "directed",
     "description": "نيك فيوري هو من أسس ونظّم مبادرة الأفنجرز",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "52a43a6e-7f0d-4c52-8126-ad2693662abd",
@@ -582,7 +902,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور سينمائي لبروس بانر/هالك في عصر MCU الحالي كان في هذا الفيلم",
-    "source": null
+    "source": "The Incredible Hulk",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "60a5fe8c-e6b8-4dc8-a57e-404bcaa161ab",
@@ -591,7 +916,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لناتاشا رومانوف (بلاك ويدو) كان في هذا الفيلم",
-    "source": null
+    "source": "Iron Man 2",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cfc0bb3f-f92a-4829-bf12-27e2274041b8",
@@ -600,7 +930,12 @@
     "type": "cameo",
     "direction": "directed",
     "description": "كلينت بارتون (هوكآي) ظهر في مشهد قصير (كاميو) في هذا الفيلم قبل أول ظهور رسمي كامل له في The Avengers",
-    "source": null
+    "source": "Thor",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "d07e144b-301e-4784-aa76-4e9695ff7e4f",
@@ -609,7 +944,12 @@
     "type": "enemy_of",
     "direction": "undirected",
     "description": "اتضح إن هايدرا اخترقت شيلد من الداخل لعقود طويلة، وانكشف ده بالكامل في هذا الفيلم",
-    "source": null
+    "source": "Captain America: The Winter Soldier",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "39111174-2afe-4529-8d4e-e34376a8e012",
@@ -618,7 +958,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "انكشاف اختراق هايدرا لشيلد هو الحدث المحوري في أحداث هذا الفيلم",
-    "source": null
+    "source": "Captain America: The Winter Soldier",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "fe387c8d-12ce-4c7a-8e28-0b7065505044",
@@ -627,7 +972,12 @@
     "type": "owns",
     "direction": "directed",
     "description": "توني ستارك هو مالك ورئيس شركة ستارك إندستريز",
-    "source": null
+    "source": "Iron Man",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "4ea0d29b-725b-4d5a-a58a-71ae2d48f197",
@@ -636,7 +986,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "أسلحة ستارك إندستريز (من إنتاج هاورد ستارك) ظهرت في أحداث هذا الفيلم",
-    "source": null
+    "source": "Captain America: The First Avenger",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ac3cb531-22ea-4a37-a788-2a337187c568",
@@ -645,7 +1000,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "واكاندا اتقدّمت لأول مرة بشكل واضح في أحداث هذا الفيلم",
-    "source": null
+    "source": "Captain America: Civil War",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "688f17d9-ec44-48de-9d4a-1a691dc01c87",
@@ -654,7 +1014,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "واكاندا هي المحور الأساسي لأحداث هذا الفيلم بالكامل",
-    "source": null
+    "source": "Black Panther",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "1d087dfb-c3ff-48df-b067-6f1fa3580a83",
@@ -663,7 +1028,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "سوكوفيا هي موقع الأحداث والمعركة الأخيرة في هذا الفيلم",
-    "source": null
+    "source": "Avengers: Age of Ultron",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "0b794b86-22bf-4920-8a6a-9126e3cdc120",
@@ -672,7 +1042,12 @@
     "type": "owns",
     "direction": "directed",
     "description": "ستيف روجرز (كابتن أمريكا) يحمل هذا الدرع منذ أول ظهور له",
-    "source": null
+    "source": "Captain America: The First Avenger",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "df5f6150-9432-4785-885f-105be4264884",
@@ -681,7 +1056,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لدرع كابتن أمريكا كان في هذا الفيلم",
-    "source": null
+    "source": "Captain America: The First Avenger",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "2170717c-8c10-4bbd-8cd6-da063ed5ad15",
@@ -690,7 +1070,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور للتسراكت (حجر الفضاء) كان في هذا الفيلم بحوزة الجيش النازي",
-    "source": null
+    "source": "Captain America: The First Avenger",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "6b017dc7-444b-4fc5-95e9-f27e11399cd5",
@@ -699,7 +1084,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "لوكي يستخدم التسراكت لفتح بوابة لغزو الأرض في أحداث هذا الفيلم",
-    "source": null
+    "source": "The Avengers",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "9bf25cb8-408e-4d71-8749-b2de4dd1515d",
@@ -708,7 +1098,12 @@
     "type": "owns",
     "direction": "directed",
     "description": "ثور يمتلك ستورمبريكر بعد تدمير مولنير، وتم صنعه خصيصًا له",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ae7570ac-c365-4e75-96e1-a6192c52e7ab",
@@ -717,7 +1112,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لستورمبريكر كان في هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "80237176-be81-43cb-8782-8c8160ac9cc7",
@@ -726,7 +1126,12 @@
     "type": "uses",
     "direction": "directed",
     "description": "كلينت بارتون (هوكآي) يستخدم هذا القوس كسلاحه الأساسي منذ ظهوره الأول",
-    "source": null
+    "source": "The Avengers",
+    "weight": 6,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f0901fdf-90b1-4adc-b489-66453bb2609d",
@@ -735,7 +1140,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "كوكب زاندار ظهر لأول مرة في أحداث هذا الفيلم",
-    "source": null
+    "source": "Guardians of the Galaxy",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "d5b8bce8-fe7e-4bd9-9c29-3847d1e7f5b0",
@@ -744,7 +1154,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "كوكب ساكار هو موقع معظم أحداث هذا الفيلم",
-    "source": null
+    "source": "Thor: Ragnarok",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "f54d400e-7093-4281-8070-9b973b5657e3",
@@ -753,7 +1168,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "البُعد الكمي (Quantum Realm) تم تقديمه لأول مرة في هذا الفيلم",
-    "source": null
+    "source": "Ant-Man",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "3feef11b-0d73-45af-a030-751ff4fbc88b",
@@ -762,7 +1182,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "بُعد المرايا تم تقديمه لأول مرة في هذا الفيلم",
-    "source": null
+    "source": "Doctor Strange",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "6f49aa10-f8ec-42c2-bb7a-3734f0ea26eb",
@@ -771,7 +1196,12 @@
     "type": "multiverse_link",
     "direction": "directed",
     "description": "هذا الفيلم تعامل بشكل مباشر مع مفهوم تعدد الأكوان وربط أرض-199999 بأكوان أخرى",
-    "source": null
+    "source": "Spider-Man: No Way Home",
+    "weight": 4,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "17075b17-30e5-4592-9142-f4f30e54ebb1",
@@ -780,7 +1210,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "مفهوم الخط الزمني المقدّس هو المحور الأساسي لأحداث هذا المسلسل",
-    "source": null
+    "source": "Loki",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "4f85d00b-c15d-4ec5-a4af-934092c3ec17",
@@ -789,7 +1224,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "عمالقة الجليد ظهروا كأعداء رئيسيين في أحداث هذا الفيلم",
-    "source": null
+    "source": "Thor",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "0b0aa073-06dd-4635-8957-e51134cc44f6",
@@ -798,7 +1238,12 @@
     "type": "introduced_in",
     "direction": "directed",
     "description": "السكرولز ظهروا لأول مرة في أحداث هذا الفيلم",
-    "source": null
+    "source": "Captain Marvel",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "1e687ed3-8765-4cc6-b5db-88fb9ceabf0b",
@@ -807,7 +1252,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "معركة سوكوفيا هي الحدث الختامي لهذا الفيلم",
-    "source": null
+    "source": "Avengers: Age of Ultron",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "506c80fa-fed8-4741-905e-abb67681a0a2",
@@ -816,7 +1266,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "معركة واكاندا هي المعركة الكبرى في الفصل الأخير من هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "2ae52e95-dafe-49a6-9d25-628a3fd6ea55",
@@ -825,7 +1280,12 @@
     "type": "created",
     "direction": "directed",
     "description": "توني ستارك صنع هذا الدرع الأول بنفسه أثناء أسره",
-    "source": null
+    "source": "Iron Man",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "8d914a61-65ec-4c6f-9919-f12e073fc0b1",
@@ -834,7 +1294,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لدرع Mark I كان في هذا الفيلم",
-    "source": null
+    "source": "Iron Man",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "53af02fc-78fb-4fbf-8297-971e91cc3369",
@@ -843,7 +1308,12 @@
     "type": "created",
     "direction": "directed",
     "description": "توني ستارك طوّر هذه التقنية وعرضها في مؤتمر علمي",
-    "source": null
+    "source": "Captain America: Civil War",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "63758892-40e3-4ec7-b656-1ea362c27225",
@@ -852,7 +1322,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور لتقنية B.A.R.F. كان في مشهد استهلالي من هذا الفيلم",
-    "source": null
+    "source": "Captain America: Civil War",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "dcb91809-e7d8-464f-8666-482b78aaa3d8",
@@ -861,7 +1336,12 @@
     "type": "first_appeared",
     "direction": "directed",
     "description": "أول ظهور واضح للكوينجيت كان في أحداث هذا الفيلم",
-    "source": null
+    "source": "The Avengers",
+    "weight": 8,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "abaadcf4-5b73-41b1-8aca-d0d740ef2a82",
@@ -870,7 +1350,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "هذه السلسلة كانت المصدر الأساسي لإلهام أحداث هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "92392ae7-9b36-452b-a7b5-ea230f85c50d",
@@ -879,7 +1364,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "روبرت داوني جونيور هو الممثل اللي جسّد شخصية توني ستارك/آيرون مان",
-    "source": null
+    "source": "بيانات إنتاج (Casting) — واقعة حقيقية خارج أحداث الكون السينمائي",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "84266f0b-6146-44da-85a8-ad53b0e9a628",
@@ -888,7 +1378,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "كريس إيفانز هو الممثل اللي جسّد شخصية ستيف روجرز/كابتن أمريكا",
-    "source": null
+    "source": "بيانات إنتاج (Casting) — واقعة حقيقية خارج أحداث الكون السينمائي",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "7d60a419-373d-49da-b81d-175467d60c6b",
@@ -897,7 +1392,12 @@
     "type": "created",
     "direction": "directed",
     "description": "أنتوني روسو أحد مخرجَي هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "07795545-5acf-4611-a4de-6694e3a0d160",
@@ -906,7 +1406,12 @@
     "type": "created",
     "direction": "directed",
     "description": "جو روسو أحد مخرجَي هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "b7135183-865c-445a-8a85-31a5a7c3ad8a",
@@ -915,7 +1420,12 @@
     "type": "created",
     "direction": "directed",
     "description": "آلان سيلفستري ألّف الموسيقى التصويرية لهذا الفيلم",
-    "source": null
+    "source": "The Avengers",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "2d5d0df1-8714-4a1f-81ae-2705b8c5504d",
@@ -924,7 +1434,12 @@
     "type": "created",
     "direction": "directed",
     "description": "كريستوفر ماركوس شارك في كتابة سيناريو هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "903fdec1-ec0e-4497-b5d2-b42660727dc1",
@@ -933,7 +1448,12 @@
     "type": "created",
     "direction": "directed",
     "description": "ستيفن ماكفيلي شارك في كتابة سيناريو هذا الفيلم",
-    "source": null
+    "source": "Avengers: Infinity War",
+    "weight": 7,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "3009c9a8-e10b-442f-9773-483834950bc1",
@@ -942,7 +1462,12 @@
     "type": "connected_to",
     "direction": "directed",
     "description": "هذا المشهد ظهر في نهاية هذا الفيلم بالظبط",
-    "source": null
+    "source": "Iron Man",
+    "weight": 5,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "21c71d1c-c9a5-44d1-91dd-b3e09cb3b116",
@@ -951,6 +1476,11 @@
     "type": "post_credit_to",
     "direction": "directed",
     "description": "هذا المشهد كان أول تلميح رسمي لمشروع الأفنجرز اللي تحقق لاحقًا في هذا الفيلم",
-    "source": null
+    "source": "The Avengers",
+    "weight": 9,
+    "confidence": 100,
+    "evidenceType": "manual_research",
+    "createdAt": null,
+    "updatedAt": null
   }
 ]
